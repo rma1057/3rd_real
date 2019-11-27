@@ -5,14 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" 
-
-
-name="viewport" content="width=device-width, initial-scale=1"
-
-
-
->
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
 <style type="text/css">
@@ -33,14 +26,117 @@ name="viewport" content="width=device-width, initial-scale=1"
 	/* 푸터 끝  */
 	#hTitle{font-family: '고딕'; font-size: 30px; font-weight: bold;}
 	
-	img:hover {
-		background-color: black;
-		opacity: 0.7;
-	}
+	@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+figure.snip1200 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 250px;
+  max-width: 500px;
+  max-height: 370px;
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  font-size: 16px;
+}
+figure.snip1200 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+}
+figure.snip1200 img {
+  max-width: 100%;
+  position: relative;
+  opacity: 0.9;
+}
+figure.snip1200 figcaption {
+  position: absolute;
+  top: 45%;
+  left: 7%;
+  right: 7%;
+  bottom: 45%;
+  border: 1px solid white;
+  border-width: 1px 1px 0;
+}
+figure.snip1200 .heading {
+  overflow: hidden;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+figure.snip1200 h2 {
+  display: table;
+  margin: 0 auto;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  width: auto;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+figure.snip1200 h2 span {
+  font-weight: 800;
+}
+figure.snip1200 h2:before,
+figure.snip1200 h2:after {
+  position: absolute;
+  display: block;
+  width: 1000%;
+  height: 1px;
+  content: '';
+  background: white;
+  top: 50%;
+}
+figure.snip1200 h2:before {
+  left: -1000%;
+}
+figure.snip1200 h2:after {
+  right: -1000%;
+}
+figure.snip1200 p {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0;
+  opacity: 0;
+  line-height: 1.6em;
+  font-size: 0.9em;
+}
+figure.snip1200 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+}
+figure.snip1200:hover img,
+figure.snip1200.hover img {
+  opacity: 0.25;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+figure.snip1200:hover figcaption,
+figure.snip1200.hover figcaption {
+  top: 7%;
+  bottom: 7%;
+}
+figure.snip1200:hover p,
+figure.snip1200.hover p {
+  opacity: 1; 
+  -webkit-transition-delay: 0.35s;
+  transition-delay: 0.35s;
+}
 	
-
-
-
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -54,8 +150,6 @@ name="viewport" content="width=device-width, initial-scale=1"
 $(function(){
 	//여기서 이미지가 클릭되었을 때 캘린더 예약창으로
 	
-	
-
 });//ready
 </script>
 </head>
@@ -67,8 +161,7 @@ $(function(){
  	<!-- MENU 끝 -->
 </div>
 <div id="container">   
-          
-<div id="container">	
+
 	<div align="center" style="font-size: 35px; font-weight: bold;">Reservation</div>
 		<div style="text-align: center; margin-bottom: 20px">
 			<span style="font-size: 25px; font-weight: bold; background-color: red; color: white; ">
@@ -79,17 +172,65 @@ $(function(){
 		
 		
 		
-		<div align="center" class="leftside">	
 		
 		
+		
+ 	<div align="center">
+	<figure class="snip1200" style="float: left; margin-left: 33px">
+	  <img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg"  id="partyRoom1"/>
+	  <figcaption>
+	    <p>할로윈 파티나 크리스마스에 제격인 이색파티룸~!</p>
+	    <div class="heading">
+	      <h2>PartyRoom1<span></span></h2>
+	    </div>
+	  </figcaption>
+	 <a href="../reservation/diary/diary.jsp" ></a>
+	</figure>
+	
+	<figure class="snip1200" style="float: right; margin-right: 33px">
+	  <img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="partyRoom2"/>
+	  <figcaption>
+	    <p>브라이덜 샤워나 생일파티에 싹이세욘~~~~~~~!!</p>
+	    <div class="heading">
+	      <h2>PartyRoom2<span></span></h2>
+	    </div>
+	  </figcaption>
+	  <a href="../reservation/diary/diary.jsp" ></a>
+	</figure>
+ 	</div>			
+	
+	
+	<div align="center">
+	<figure class="snip1200" style="float: left; margin-left: 33px">
+	  <img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B83.jpg" id="conferenceRoom1"/> 
+	  <figcaption>
+	    <p>지식 얻어가즈아 강연회~~~~~~~~~~~~</p> 
+	    <div class="heading">
+	      <h2>ConferenceRoom3<span></span></h2>
+	    </div>
+	  </figcaption>
+	  <a href="../reservation/diary/diary.jsp" ></a>
+	</figure>
+	
+	<figure class="snip1200" style="float: right; margin-right: 33px; ">
+	  <img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="conferenceRoom2" />
+	  <figcaption>
+	    <p>공연장이 필요하신가요? 그렇다면 잘오셨습니다.</p>
+	    <div class="heading">
+	      <h2>ConferenceRoom4<span></span></h2>
+	    </div>
+	  </figcaption>
+	  <a href="../reservation/diary/diary.jsp" ></a>
+	</figure>
+	</div>
 
- 		<div>	
- 			<a href="../reservation/diary/diary.jsp" >
+		
+		
+		
+<!-- 		<div align="center" >
+			<a href="../reservation/diary/diary.jsp" >
 				<img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg" id="partyRoom1" style="width:450px; height:300px; margin-right: 50px;" >
-			</a> 
-			
-
-			
+			</a>
 			<a href="../reservation/diary/diary.jsp" >
 				<img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="partyRoom2" style="width:450px; height:300px">
 			</a>
@@ -101,19 +242,14 @@ $(function(){
 			<a href="../reservation/diary/diary.jsp" >
 				<img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B84.jpg" id="conferenceRoom2" style="width:450px; height:300px; margin-top: 30px">
 			</a>
-		</div>
+		</div> -->
 	</div>
-</div>
 </div>
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
-	<div id="fLogo">
-		
-	</div>
-	<div id="fContent">
+  <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
-		<h4><strong>[;P]</strong></h4>
+		<h4><strong>[:P]</strong></h4>
 		사업자명 : (주)Baek's company<br/>
 		 대표이사 : 윤태식   <br/> 
 		이메일 : wo2015@naver.com<br/>
@@ -134,7 +270,6 @@ $(function(){
 			&copy;CopyRight. AllRight Reserved.<br/>
 		</div>
 	</div>
-</div>
 </div>
 
 </body>
