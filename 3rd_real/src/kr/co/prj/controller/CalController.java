@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class CalController {
-	@RequestMapping(value="/diary/diary.do", method=RequestMethod.GET)
+	@RequestMapping(value="diary/diary.do", method=RequestMethod.GET)
 	public String about() {
 		return "reservation/diary/diary";
 	}//hello

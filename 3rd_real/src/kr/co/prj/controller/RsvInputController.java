@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class RsvInputController {
-	@RequestMapping(value="/rsv_input.do", method=RequestMethod.GET)
-	public String about() {
+	@RequestMapping(value="reservation/rsv_input.do", method=RequestMethod.GET)
+	public String revInput() {
 		return "reservation/rsv_input";
 	}//hello
 }//class

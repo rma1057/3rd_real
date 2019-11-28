@@ -12,7 +12,52 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TestController {
 	@RequestMapping(value="/index.do", method=RequestMethod.GET)
-	public String about() {
-		return "introduce/about";
+	public String mainForm() {
+		return "main/home";
 	}//hello
-}//class
+
+
+	   //임시 매핑들
+
+	   @RequestMapping(value="introduce.do")
+	   public String introForm() {
+	      return "introduce/about";
+	   }//introduceForm
+	   @RequestMapping(value="about1.do")
+	   public String about1Form() {
+	      return "introduce/about1";
+	   }//introduceForm
+	   @RequestMapping(value="about2.do")
+	   public String about2Form() {
+	      return "introduce/about2";
+	   }//introduceForm
+	   @RequestMapping(value="location.do")
+	   public String locationForm() {
+	      return "contact/location";
+	   }//introduceForm
+	   @RequestMapping(value="login.do")
+	   public String loginForm() {
+	      return "login/login";
+	   }//introduceForm
+	   @RequestMapping(value="signUp.do")
+	   public String signUpForm() {
+	      return "login/signUp";
+	   }//introduceForm
+	   
+	   
+	   
+	}//class
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

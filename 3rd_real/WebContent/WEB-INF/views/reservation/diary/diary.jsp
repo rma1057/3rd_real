@@ -186,7 +186,7 @@ $(function(){
                   for(int blankTd=cal.get(Calendar.DAY_OF_WEEK)-1;blankTd>0;blankTd--){
                      System.out.println(blankTd-1);
                %>
-               <td class="blankTd"><a href="../rsv_input.jsp"><%= backLastDay-(blankTd-1)%></a></td>
+               <td class="blankTd"><a href="/3rd_real/reservation/rsv_input.do"><%= backLastDay-(blankTd-1)%></a></td>
                <%
                      
                   }//end for
@@ -216,7 +216,7 @@ $(function(){
                %>
                
                
-                  <a href="../rsv_input.jsp"><div <%=color %>><%=tempDay %></div></a>
+                  <a href="/3rd_real/reservation/rsv_input.do"><div <%=color %>><%=tempDay %></div></a>
                   
                	  <% if (cal.get(Calendar.DAY_OF_WEEK)==Calendar.TUESDAY | cal.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY ) { %>
 	                  <div style="background-color: yellow">ㅎㅇㅎㅇ</div>

@@ -184,7 +184,7 @@ $(function(){
 	      <h2>PartyRoom1<span></span></h2>
 	    </div>
 	  </figcaption>
-	 <a href="../reservation/diary/diary.jsp" ></a>
+	 <a href="/3rd_real/diary/diary.do" ></a>
 	</figure>
 	
 	<figure class="snip1200" style="float: right; margin-right: 33px">
@@ -195,7 +195,7 @@ $(function(){
 	      <h2>PartyRoom2<span></span></h2>
 	    </div>
 	  </figcaption>
-	  <a href="../reservation/diary/diary.jsp" ></a>
+	  <a href="/3rd_real/diary/diary.do" ></a>
 	</figure>
  	</div>			
 	
@@ -209,7 +209,7 @@ $(function(){
 	      <h2>ConferenceRoom3<span></span></h2>
 	    </div>
 	  </figcaption>
-	  <a href="../reservation/diary/diary.jsp" ></a>
+	  <a href="/3rd_real/diary/diary.do" ></a>
 	</figure>
 	
 	<figure class="snip1200" style="float: right; margin-right: 33px; ">
@@ -220,7 +220,7 @@ $(function(){
 	      <h2>ConferenceRoom4<span></span></h2>
 	    </div>
 	  </figcaption>
-	  <a href="../reservation/diary/diary.jsp" ></a>
+	  <a href="/3rd_real/diary/diary.do" ></a>
 	</figure>
 	</div>
 
