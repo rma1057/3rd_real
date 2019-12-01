@@ -8,19 +8,19 @@ package kr.co.prj.domain;
  */
 
 public class RoomInfoDomain {
-	private String r_name, r_name2, info, brief_info, image1, image2, image3, concept_name;
+	private String room_name, room_name2, info, brief_info, image1, image2, image3, concept_name;
 	private int person_num, charge;
-	public String getR_name() {
-		return r_name;
+	public String getRoom_name() {
+		return room_name;
 	}
-	public void setR_name(String r_name) {
-		this.r_name = r_name;
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
 	}
-	public String getR_name2() {
-		return r_name2;
+	public String getRoom_name2() {
+		return room_name2;
 	}
-	public void setR_name2(String r_name2) {
-		this.r_name2 = r_name2;
+	public void setRoom_name2(String room_name2) {
+		this.room_name2 = room_name2;
 	}
 	public String getInfo() {
 		return info;
@@ -70,6 +70,7 @@ public class RoomInfoDomain {
 	public void setCharge(int charge) {
 		this.charge = charge;
 	}
-
+	
+	
 	
 }

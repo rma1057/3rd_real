@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     info=""
     %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,13 +65,13 @@ $(function(){
 				<td class="tdTable">예약시간</td><td class="tdTable2">8:00AM - 16:00PM</td>
 			</tr>
 			<tr class="trTable">
-				<td class="tdTable">이름</td><td class="tdTable2">백승규</td>
+				<td class="tdTable">이름</td><td class="tdTable2"><c:out value="${ param.rsv_person }"/></td>
 			</tr>
 			<tr class="trTable">
 				<td class="tdTable">연락처</td><td class="tdTable2">010-1111-1111</td>
 			</tr>
 			<tr class="trTable">
-				<td class="tdTable">이메일</td><td class="tdTable2">back@naver.com</td>				
+				<td class="tdTable">이메일</td><td class="tdTable2">${ param.email }</td>				
 			</tr>			
 			<tr class="trTable">
 				<td class="tdTable"><strong>결제요금</strong></td><td class="tdTable"><strong>160,000원</strong></td>			
@@ -90,7 +91,7 @@ $(function(){
 
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://localhost:8080/3rd_real/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

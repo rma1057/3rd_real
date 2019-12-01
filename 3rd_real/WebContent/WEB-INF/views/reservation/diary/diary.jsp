@@ -135,10 +135,10 @@ $(function(){
          %>
          <div id="calWrap">
             <div id="calHeader">
-            <a href='diary.jsp?<%="year="+nowYear+"&"+"month="+(nowMonth-1)%>'><img src="../images/prev_btn.png"title="이전월"id="pre"/></a>
+            <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth-1)%>'><img src="/3rd_real/common/images/prev_btn.png"title="이전월"id="pre"/></a>
             <span style="font-family: 고딕  SansSerif;font-weight: bold;font-size: 27px"><%=nowYear%>.<%=nowMonth+1 %></span>
-            <a href='diary.jsp?<%="year="+nowYear+"&"+"month="+(nowMonth+1)%>'><img src="../images/next_btn.png"title="다음월"id="next"/></a>
-            <a href='diary.jsp'><img src="../images/today_btn.png"title="현재월"/></a>
+            <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth+1)%>'><img src="/3rd_real/common/images/next_btn.png"title="다음월"id="next"/></a>
+            <a href='diary.do'><img src="/3rd_real/common/images/today_btn.png"title="현재월"/></a>
             </div>         
             <div id="calContent">
             <table id="diaryTab">
@@ -186,7 +186,9 @@ $(function(){
                   for(int blankTd=cal.get(Calendar.DAY_OF_WEEK)-1;blankTd>0;blankTd--){
                      System.out.println(blankTd-1);
                %>
-               <td class="blankTd"><a href="/3rd_real/reservation/rsv_input.do"><%= backLastDay-(blankTd-1)%></a></td>
+               <td class="blankTd"><a href="/3rd_real/reservation/rsv_input.do">
+         
+               <%= backLastDay-(blankTd-1)%></a></td>
                <%
                      
                   }//end for
@@ -215,10 +217,10 @@ $(function(){
                
                %>
                
-               
-                  <a href="/3rd_real/reservation/rsv_input.do"><div <%=color %>><%=tempDay %></div></a>
-                  
-               	  <% if (cal.get(Calendar.DAY_OF_WEEK)==Calendar.TUESDAY | cal.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY ) { %>
+               		
+                  <a href="/3rd_real/reservation/rsv_input.do?param_year=<%=nowYear %>&param_month=<%=nowMonth+1 %>&param_day=<%=tempDay %>"><div <%=color %>><%=tempDay %></div></a>
+                  <%-- <input type="hidden" value="<%= nowYear %>-<%= nowMonth %>-<%=tempDay %>" name="rsvDate">  --%>
+               	  <% if (cal.get(Calendar.DAY_OF_WEEK)==Calendar.TUESDAY | cal.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY ) { %>                    
 	                  <div style="background-color: yellow">ㅎㅇㅎㅇ</div>
 	                  <div style="background-color: red">ㅎddd</div>
                   <%} %>
@@ -237,47 +239,21 @@ $(function(){
             
             }//end for
             %>
-            
-            <!-- 1123 to-do1 : 일자 클릭하면 예약상세정보 입력창으로 이동함 OK 
-                  아님 <script>에 이 코드 작성하기
-                  
-                  function readEvt(year, month, day, num){
-					$("#param_year").val(year); // 해당 HTML Form Controld 
-					$("#param_month").val(month);
-					$("#param_day").val(day); 
-					$("#param_flag").val("R"); 
-					$("#num").val(num); 
-					$("#diaryFrm").submit(); //jQuery에서는 error가 안나니까, 에러났는데 스크립트에서 확인 안되면 jQuery가서 확인해야함~
-				  }
-                  -->
-            
-            <!-- 1123 to-do2 : 일정 그냥 넣어서 달력에 표시해보기 // 색상 변경 어떻게 할거 ? 배열에 넣어서?
-                  아님 <script>에 이 코드 작성하기
-                  
-                  function readEvt(year, month, day, num){
-					$("#param_year").val(year); // 해당 HTML Form Controld 
-					$("#param_month").val(month);
-					$("#param_day").val(day); 
-					$("#param_flag").val("R"); 
-					$("#num").val(num); 
-					$("#diaryFrm").submit(); //jQuery에서는 error가 안나니까, 에러났는데 스크립트에서 확인 안되면 jQuery가서 확인해야함~
-				  }
-                  -->
-            
-            
+
             
             
             
             
          
             </table>
+            
             </div>         
          
          </div>
       
       </div>
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://localhost:8080/3rd_real/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

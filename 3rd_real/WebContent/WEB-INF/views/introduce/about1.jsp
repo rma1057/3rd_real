@@ -56,7 +56,7 @@ RoomA, RoomB
 "파티룸+브라이덜샤워+프로포즈"
 </div><br/>
 <div style="margin: auto;">
-<img style="width:1100px;height:300px" src="http://localhost:8080/3rd_pprj/common/images/main.PNG"></div><br/><br/>
+<img style="width:1100px;height:300px" src="http://localhost:8080/3rd_real/common/images/main.PNG"></div><br/><br/>
 <div style="font-size: 30px; font-weight: bold; text-align: center;">
 RoomA
 </div><br/>
@@ -70,13 +70,13 @@ RoomA
   </ol>
   <div class="carousel-inner" style="width:1100px; height:700px; ">
     <div class="carousel-item active">
-      <img src="http://localhost:8080/3rd_pprj/common/images/3-1.jpg" class="d-block w-100" alt="...">
+      <img src="http://localhost:8080/3rd_real/common/images/3-1.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8080/3rd_pprj/common/images/3-2.jpg" class="d-block w-100" alt="...">
+      <img src="http://localhost:8080/3rd_real/common/images/3-2.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8080/3rd_pprj/common/images/3.jpg" class="d-block w-100" alt="...">
+      <img src="http://localhost:8080/3rd_real/common/images/3.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -108,13 +108,13 @@ RoomB
   </ol>
   <div class="carousel-inner" style="width:1100px; height:700px;">
     <div class="carousel-item active">
-      <img src="http://localhost:8080/3rd_pprj/common/images/11.PNG" class="d-block w-100" >
+      <img src="http://localhost:8080/3rd_real/common/images/11.PNG" class="d-block w-100" >
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8080/3rd_pprj/common/images/10.PNG" class="d-block w-100" >
+      <img src="http://localhost:8080/3rd_real/common/images/10.PNG" class="d-block w-100" >
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8080/3rd_pprj/common/images/12.PNG" class="d-block w-100" >
+      <img src="http://localhost:8080/3rd_real/common/images/12.PNG" class="d-block w-100" >
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

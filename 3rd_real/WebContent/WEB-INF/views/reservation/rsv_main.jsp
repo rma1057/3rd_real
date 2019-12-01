@@ -2,19 +2,23 @@
     pageEncoding="UTF-8"
     info=""
     %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_real/common/css/main.css"/>
 <style type="text/css">
-	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
+	#class4Wrap{ min-width:1100px; margin: 0px auto;
+	display: flex; min-height: 100vh; flex-direction: column;
+	}
+	
 	/* 헤더 시작*/
 	#naviBar{ min-width:1100px; min-height: 130px; position:relative; font-size: 20px;}
 	/* 헤더 끝 */
 	/* 컨테이너 시작  */
-	#container{ width:1100px; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%;}
+	#container{ width:1100px; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%; flex: 1;}
 	.btn{width: 100px;height: 40px;}
 	.nav-item{margin: 10px;}
 	#sub-menuItem{font-family:"고딕";}
@@ -25,6 +29,10 @@
 	#fContent{ width: 1100px;height: 110px; padding-top: 30px; margin-right: auto; margin-left: auto }
 	/* 푸터 끝  */
 	#hTitle{font-family: '고딕'; font-size: 30px; font-weight: bold;}
+	
+	html,body{ margin:0; padding:0; width:100%; height:100% }
+
+	
 	
 	@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
 figure.snip1200 {
@@ -160,7 +168,16 @@ $(function(){
 	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
-<div id="container">   
+<div id="container">  
+
+
+
+
+
+
+
+
+ 
 
 	<div align="center" style="font-size: 35px; font-weight: bold;">Reservation</div>
 		<div style="text-align: center; margin-bottom: 20px">
@@ -170,14 +187,60 @@ $(function(){
 		</div>	
 		
 		
+<%-- 	<div>
+		<strong>사원정보</strong>
+		<table border="1">
+		<tr>
+			<th width="100">방이름</th>
+	
+		</tr>	
+		<c:forEach var="ri" items="${ RoomInfo }">
+		<tr>
+			<td><c:out value="${ ri.room_name }"/></td>
+			<td><a href="emp/emp_detail.do?empno=${ emp.empno }"><c:out value="${ emp.ename }"/></a></td>
+			<td><c:out value="${ emp.hiredate }"/></td>
+		</tr>
+		</c:forEach>
+		<c:if test="${ empty RoomInfo }">
+		<tr>
+			<td colspan="3">사원정보가 없습니다.</td>
+		</tr>
+		</c:if>
+		</table>
+	</div> --%>
+	
+	
+	<div>
+		<!-- image:  %ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg -->
+		<c:forEach var="ri" items="${ RoomInfo }">
+		<figure class="snip1200" style="float: left; margin-left: 33px">
+		  <img src="http://localhost:8080/3rd_real/common/images/${ ri.image1 }" id="partyRoom1"/>
+		  <figcaption>
+		    <p><c:out value="${ ri.room_name2 }"/></p>
+		    <div class="heading">
+		      <h2><c:out value="${ ri.room_name }"/><span></span></h2>
+		    </div>
+		  </figcaption>
+		 <a href="/3rd_real/diary/diary.do" ></a>
+		</figure>
+			
+
+		</c:forEach>
+		
+		<c:if test="${ empty RoomInfo }">
+		
+			사원정보가 없습니다.
+		
+		</c:if>
+	
+	</div>
+		
+	<!-- 여기서 고민. 어떻게 원하는 행만 골라서 위치에 맞게 값을 가져올 수 있는지.  -->	
 		
 		
-		
-		
-		
- 	<div align="center">
+<!--  	<div align="center">
 	<figure class="snip1200" style="float: left; margin-left: 33px">
-	  <img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg"  id="partyRoom1"/>
+	  <img src="http://localhost:8080/3rd_real/common/images/%ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg"  id="partyRoom1"/>
 	  <figcaption>
 	    <p>할로윈 파티나 크리스마스에 제격인 이색파티룸~!</p>
 	    <div class="heading">
@@ -188,7 +251,7 @@ $(function(){
 	</figure>
 	
 	<figure class="snip1200" style="float: right; margin-right: 33px">
-	  <img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="partyRoom2"/>
+	  <img src="http://localhost:8080/3rd_real/common/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="partyRoom2"/>
 	  <figcaption>
 	    <p>브라이덜 샤워나 생일파티에 싹이세욘~~~~~~~!!</p>
 	    <div class="heading">
@@ -197,12 +260,12 @@ $(function(){
 	  </figcaption>
 	  <a href="/3rd_real/diary/diary.do" ></a>
 	</figure>
- 	</div>			
+ 	</div>	 	
 	
 	
 	<div align="center">
 	<figure class="snip1200" style="float: left; margin-left: 33px">
-	  <img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B83.jpg" id="conferenceRoom1"/> 
+	  <img src="http://localhost:8080/3rd_real/common/images/%ED%8C%8C%ED%8B%B0%EB%A3%B83.jpg" id="conferenceRoom1"/> 
 	  <figcaption>
 	    <p>지식 얻어가즈아 강연회~~~~~~~~~~~~</p> 
 	    <div class="heading">
@@ -213,7 +276,7 @@ $(function(){
 	</figure>
 	
 	<figure class="snip1200" style="float: right; margin-right: 33px; ">
-	  <img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="conferenceRoom2" />
+	  <img src="http://localhost:8080/3rd_real/common/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="conferenceRoom2" />
 	  <figcaption>
 	    <p>공연장이 필요하신가요? 그렇다면 잘오셨습니다.</p>
 	    <div class="heading">
@@ -224,25 +287,12 @@ $(function(){
 	</figure>
 	</div>
 
+		-->	
 		
-		
-		
-<!-- 		<div align="center" >
-			<a href="../reservation/diary/diary.jsp" >
-				<img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg" id="partyRoom1" style="width:450px; height:300px; margin-right: 50px;" >
-			</a>
-			<a href="../reservation/diary/diary.jsp" >
-				<img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="partyRoom2" style="width:450px; height:300px">
-			</a>
-		</div>
-		<div align="center" >
-			<a href="../reservation/diary/diary.jsp" >
-				<img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B83.jpg" id="conferenceRoom1" style="width:450px; height:300px; margin-right: 50px; margin-top: 30px;">
-			</a>
-			<a href="../reservation/diary/diary.jsp" >
-				<img src="http://localhost:8080/3rd_pprj/view/images/%ED%8C%8C%ED%8B%B0%EB%A3%B84.jpg" id="conferenceRoom2" style="width:450px; height:300px; margin-top: 30px">
-			</a>
-		</div> -->
+
+
+
+
 	</div>
 </div>
 

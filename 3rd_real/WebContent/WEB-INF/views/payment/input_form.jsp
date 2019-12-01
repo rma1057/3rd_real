@@ -50,7 +50,7 @@ $(function(){
 </div>
 <div id="container">   
          <div align="center" style=" width: 550px; height: 700px; padding-top: 20px ; margin-left: auto; margin-right: auto;">
-		<div><img src="http://localhost:8080/3rd_pprj/view/images/credit-card3.png">&nbsp;&nbsp;&nbsp;&nbsp;<strong>결제정보 입력</strong></div><br/>
+		<div><img src="http://localhost:8080/3rd_real/view/images/credit-card3.png">&nbsp;&nbsp;&nbsp;&nbsp;<strong>결제정보 입력</strong></div><br/>
 			<table>
 				<tr>
 					<td>카드번호</td><td><input type="password" class="form-control" id="inputPassword2"></td>
@@ -93,7 +93,7 @@ $(function(){
 </div>
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://localhost:8080/3rd_real/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

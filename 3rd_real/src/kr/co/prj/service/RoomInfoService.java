@@ -10,13 +10,16 @@ import kr.co.prj.domain.RoomInfoDomain;
 
 public class RoomInfoService {
 	
-	/*
-	 * public List<QnAListDomain> searchAllQnA(){ List<RoomInfoDomain> list= null;
-	 * ReservationDAO rsvDao = rsvDao.getInstance(); try {
-	 * list=rsvDao.selectAllQnA();
-	 * 
-	 * } catch (SQLException e) { e.printStackTrace(); }//end catch return list;
-	 * }//searchAllQnA
-	 */	
+	public List<RoomInfoDomain> searchRoomInfo(){
+		List<RoomInfoDomain> list= null;
+		ReservationDAO rsvDao = ReservationDAO.getInstance();
+		try {
+			list=rsvDao.selectAllRoomInfo();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//end catch
+		return list;
+	}//searchRoomInfo
 	
 }//class

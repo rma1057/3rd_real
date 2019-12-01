@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_real/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -69,7 +69,7 @@ $(function(){
       안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
       안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
       안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-      <img src="http://localhost:8080/3rd_pprj/view/images/dd.jpg" style="margin-left: 80px;"/>
+      <img src="http://localhost:8080/3rd_real/view/images/dd.jpg" style="margin-left: 80px;"/>
       </div>
       </td>
     </tr>
@@ -92,7 +92,7 @@ $(function(){
 
 </div>
 <div id="footer">
-<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+<a href="#"><img src="http://localhost:8080/3rd_real/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

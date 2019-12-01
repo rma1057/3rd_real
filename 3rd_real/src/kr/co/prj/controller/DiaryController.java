@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author sist
  */
 @Controller
-public class CalController {
+public class DiaryController {
 	@RequestMapping(value="diary/diary.do", method=RequestMethod.GET)
-	public String about() {
+	public String diary() { // 룸 이름 어떻게 받아와?
 		return "reservation/diary/diary";
 	}//hello
 }//class

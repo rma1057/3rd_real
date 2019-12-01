@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import kr.co.prj.domain.QnAListDomain;
+import kr.co.prj.domain.MemberCheckDomain;
 import kr.co.prj.domain.RoomInfoDomain;
 
 public class ReservationDAO {
@@ -53,7 +53,7 @@ public class ReservationDAO {
 		//3.Handler얻기
 		try {
 			SqlSession ss = getSessionFactory().openSession();
-			list=ss.selectList("qnaList"); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
+			list=ss.selectList("RoomInfoList"); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
 			ss.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -66,4 +66,23 @@ public class ReservationDAO {
 	
 	
 	
-}
+	public MemberCheckDomain selectMemberInfo(String user_id) throws SQLException{
+		MemberCheckDomain mcd=null;
+		
+		try {
+			//Handler 얻기
+			SqlSession ss=getSessionFactory().openSession();
+			//쿼리 수행 : 한 행 조회
+			mcd=ss.selectOne("memberChk", user_id);
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+	
+	
+		return mcd;
+	}//selectMemberInfo 
+	
+	
+	
+}//class

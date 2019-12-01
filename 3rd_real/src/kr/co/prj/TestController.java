@@ -1,5 +1,7 @@
 package kr.co.prj;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,11 +14,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TestController {
 	@RequestMapping(value="/index.do", method=RequestMethod.GET)
-	public String mainForm() {
+	public String mainForm(HttpSession session) {
+		
+		//1. 생존시간 설정
+		session.setMaxInactiveInterval(60);
+		
+		//2. 값 설정
+		session.setAttribute("id", "admin");
+		session.setAttribute("passwd", 1234);
+		
+		
 		return "main/home";
 	}//hello
-
-
+	
+	
+	
+	
 	   //임시 매핑들
 
 	   @RequestMapping(value="introduce.do")
