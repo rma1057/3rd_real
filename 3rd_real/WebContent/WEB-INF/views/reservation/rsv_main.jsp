@@ -172,43 +172,14 @@ $(function(){
 
 
 
-
-
-
-
-
- 
-
 	<div align="center" style="font-size: 35px; font-weight: bold;">Reservation</div>
 		<div style="text-align: center; margin-bottom: 20px">
 			<span style="font-size: 25px; font-weight: bold; background-color: red; color: white; ">
 				12월 얼리버드 EVENT Room2 10% 할인
 			 </span>
 		</div>	
-		
-		
-<%-- 	<div>
-		<strong>사원정보</strong>
-		<table border="1">
-		<tr>
-			<th width="100">방이름</th>
-	
-		</tr>	
-		<c:forEach var="ri" items="${ RoomInfo }">
-		<tr>
-			<td><c:out value="${ ri.room_name }"/></td>
-			<td><a href="emp/emp_detail.do?empno=${ emp.empno }"><c:out value="${ emp.ename }"/></a></td>
-			<td><c:out value="${ emp.hiredate }"/></td>
-		</tr>
-		</c:forEach>
-		<c:if test="${ empty RoomInfo }">
-		<tr>
-			<td colspan="3">사원정보가 없습니다.</td>
-		</tr>
-		</c:if>
-		</table>
-	</div> --%>
-	
+
+	<!-- 추가되어야 할 부분 : 이미지 개수 홀수일 때  -->
 	
 	<div>
 		<!-- image:  %ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg -->
@@ -235,60 +206,7 @@ $(function(){
 	
 	</div>
 		
-	<!-- 여기서 고민. 어떻게 원하는 행만 골라서 위치에 맞게 값을 가져올 수 있는지.  -->	
-		
-		
-<!--  	<div align="center">
-	<figure class="snip1200" style="float: left; margin-left: 33px">
-	  <img src="http://localhost:8080/3rd_real/common/images/%ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg"  id="partyRoom1"/>
-	  <figcaption>
-	    <p>할로윈 파티나 크리스마스에 제격인 이색파티룸~!</p>
-	    <div class="heading">
-	      <h2>PartyRoom1<span></span></h2>
-	    </div>
-	  </figcaption>
-	 <a href="/3rd_real/diary/diary.do" ></a>
-	</figure>
-	
-	<figure class="snip1200" style="float: right; margin-right: 33px">
-	  <img src="http://localhost:8080/3rd_real/common/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="partyRoom2"/>
-	  <figcaption>
-	    <p>브라이덜 샤워나 생일파티에 싹이세욘~~~~~~~!!</p>
-	    <div class="heading">
-	      <h2>PartyRoom2<span></span></h2>
-	    </div>
-	  </figcaption>
-	  <a href="/3rd_real/diary/diary.do" ></a>
-	</figure>
- 	</div>	 	
-	
-	
-	<div align="center">
-	<figure class="snip1200" style="float: left; margin-left: 33px">
-	  <img src="http://localhost:8080/3rd_real/common/images/%ED%8C%8C%ED%8B%B0%EB%A3%B83.jpg" id="conferenceRoom1"/> 
-	  <figcaption>
-	    <p>지식 얻어가즈아 강연회~~~~~~~~~~~~</p> 
-	    <div class="heading">
-	      <h2>ConferenceRoom3<span></span></h2>
-	    </div>
-	  </figcaption>
-	  <a href="/3rd_real/diary/diary.do" ></a>
-	</figure>
-	
-	<figure class="snip1200" style="float: right; margin-right: 33px; ">
-	  <img src="http://localhost:8080/3rd_real/common/images/%ED%8C%8C%ED%8B%B0%EB%A3%B82.jpg" id="conferenceRoom2" />
-	  <figcaption>
-	    <p>공연장이 필요하신가요? 그렇다면 잘오셨습니다.</p>
-	    <div class="heading">
-	      <h2>ConferenceRoom4<span></span></h2>
-	    </div>
-	  </figcaption>
-	  <a href="/3rd_real/diary/diary.do" ></a>
-	</figure>
-	</div>
 
-		-->	
-		
 
 
 

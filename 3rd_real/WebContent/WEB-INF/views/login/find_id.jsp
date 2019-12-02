@@ -44,13 +44,13 @@ $(function(){
 <div id="class4Wrap">
 <div id="naviBar">
  	<!-- MENU 시작 -->
-		<%@include file="../../../common/navbar/nav.jsp" %>
+	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
 <div id="container">   
 
 	<div align="center" style="margin-left: auto; margin-right: auto; width: 510px; height: 500px;" >
-		<img src="http://localhost:8080/3rd_real/kr.co.sist.user.view/images/id1.png"><strong><font size="5px">&nbsp;아이디 찾기</font></strong><br/><br/><br/>
+		<img src="http://localhost:8080/3rd_pprj/kr.co.sist.user.view/images/id1.png"><strong><font size="5px">&nbsp;아이디 찾기</font></strong><br/><br/><br/>
 		<input type="radio" name="radio">&nbsp;<strong>내정보에 등록된 휴대폰으로 찾기</strong><br/><br/>
 		<input type="text" class="form-control" id="findIDbyPhone" value="이름을 입력해 주세요" style="width:230px; margin-bottom: 10px;">
 		
@@ -84,13 +84,9 @@ $(function(){
 </div>
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_real/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
-	<div id="fLogo">
-		
-	</div>
-	<div id="fContent">
+  <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
-		<h4><strong>[;P]</strong></h4>
+		<h4><strong>[:P]</strong></h4>
 		사업자명 : (주)Baek's company<br/>
 		 대표이사 : 윤태식   <br/> 
 		이메일 : wo2015@naver.com<br/>
@@ -111,6 +107,7 @@ $(function(){
 			&copy;CopyRight. AllRight Reserved.<br/>
 		</div>
 	</div>
+</div>
 </div>
 
 </body>
