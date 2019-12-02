@@ -1,15 +1,15 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info=""
     %>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_real/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -38,19 +38,26 @@
 </style>
 <script type="text/javascript">
 $(function(){
-
-});
+	$("#searchBtn").click(function(){
+		//유효성 검증
+		if ($("#keyword").val().trim() ==""){
+			alert("검색어를 입력해주세요");
+			$("#keyword").focus();
+			return;
+		};//end if /* id는 자바스크립트에서 편하게 쓰려고 하는거고 name은 백엔드로 넘길 값 */
+		$("#searchFrm").submit();
+	});//click
+});//ready
 </script>
 </head>
 <body>
 <div id="class4Wrap">
 <div id="naviBar">
  	<!-- MENU 시작 -->
- 		<%@include file="../../../common/navbar/nav.jsp" %>
+ 	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
 <div id="container">
-<% SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd hh시 mm분"); %>
 <h3>문의 게시판</h3>
 <table class="table table-hover" style="text-align: center;">
   <thead class="table" style="background-color:#C8C4C1 ">
@@ -59,79 +66,55 @@ $(function(){
       <th scope="col" style="width: 700px;">제목</th>
       <th scope="col">작성자</th>
       <th scope="col" >작성일</th>
+      <th scope="col" >답변 여부</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><a href="qna_post.jsp" style="color: black;">이거 어떻게하는거?</a></td>
-      <td>백승규</td>
-      <td><%=sdf.format(new Date()) %></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>김서영</td>
-   	 <td><%=sdf.format(new Date()) %></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry the Bird</td>
-      <td>신수연</td>
-       <td><%=sdf.format(new Date()) %></td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>Mark</td>
-      <td>윤태식</td>
-       <td><%=sdf.format(new Date()) %></td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td>Jacob</td>
-      <td>강다혜</td>
-       <td><%=sdf.format(new Date()) %></td>
-    </tr>
-    <tr>
-      <th scope="row">6</th>
-      <td>Larry the Bird</td>
-      <td>강민경</td>
-	 <td><%=sdf.format(new Date()) %></td>
-    </tr>
-    <tr>
-      <th scope="row">7</th>
-      <td>Jacob</td>
-      <td>곽우신</td>
-       <td><%=sdf.format(new Date()) %></td>
-    </tr>
-    <tr>
-      <th scope="row">8</th>
-      <td>Larry the Bird</td>
-      <td>이하은</td>
-       <td><%=sdf.format(new Date()) %></td>
-    </tr>
-  </tbody>
+ <c:forEach var="list" items="${list}">
+			<tr>
+				<td><c:out value="${list.num}"/></td>
+				<td><a href="qna_post.do?q_num=${list.num}"><font color="black"><c:out value="${list.subject}"/></font></a></td>
+				<td><c:out value="${list.id}"/></td>
+				<td><c:out value="${list.input_date}"/></td>
+				<td>
+				<c:choose>
+					<c:when test="${list.answer_flag eq 'N'}"><font color="red">답변 미완료</font></c:when>
+					<c:when test="${list.answer_flag eq 'Y'}"><font color="blue">답변 완료</font></c:when>
+				</c:choose>
+				
+				
+				</td>
+			</tr>
+			</c:forEach>
+		<c:if test="${empty list}">
+			<tr>
+			<td colspan="5" style="text-align: center;">문의사항 내역이 존재하지 않습니다.</td>
+			</tr>
+		</c:if>
+  
 </table>
-<form action="list.jsp"method="get" id="searchFrm">
-<div class="form-row" style="margin: 0px auto; margin-left: 250px; margin-top: 50px;">
+</div>
+<div id="boardSearch" style="margin-left: 35%;">	
+<form action="qna_list.do" id="searchFrm" class="form-inline">
+<div class="form-row" >
   <div class="form-group col-mb-2">
       <select id="field" name="field" class="form-control" style="width: 150px;">
-        <option value="subject"${param.field eq 'subject'?" selected='selected'":"" }>제목</option>
-        <option value="content"${param.field eq 'content'?" selected='selected'":"" }>내용</option>
+        <option value="q_subject" ${param.field eq 'q_subject'?" selected='selected'":"" }>제목</option>
+        <option value="q_content" ${param.field eq 'q_content'?" selected='selected'":"" }>내용</option>
       </select>
     </div>
     <div class="form-group col-mb-2">
-      <input type="text" class="form-control" name="keyword" id="keyword">
+      <input type="text" class="form-control" name="keyword" value="${ param.keyword }" id="keyword">
     </div>
     <div class="form-group col-mb-2">
-      <input type="button" class="btn btn-outline-secondary alert-danger"  value="검색" id="btnSearch">
+      <input type="button" class="btn btn-outline-secondary alert-danger"  value="검색" id="searchBtn">
     </div>
-    <div class="form-group col-mb-2" style="margin-left:750px; margin-top: 10px;">
-      <input type="button"  class="btn btn-outline-secondary alert-secondary btn-sm" value="글쓰기" id="btnSearch" onclick="location.href='write_form.jsp'">
+    <div class="form-group col-mb-2" style="margin-left:200px; margin-top: 10px;">
+      <input type="button"  class="btn btn-outline-secondary alert-secondary btn-sm" value="글쓰기" id="btnSearch" onclick="location.href='write_form.do'">
     </div>
 </div>
 </form>
-<div style="margin-left: 420px;" >
+<div style="margin-left: 150px;">
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
@@ -139,10 +122,10 @@ $(function(){
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link" href="#"><font color="#000000">1</font></a></li>
-    <li class="page-item"><a class="page-link" href="#"><font color="#000000">2</font></a></li>
-    <li class="page-item"><a class="page-link" href="#"><font color="#000000">3</font></a></li>
-    <li class="page-item">
+    <c:forEach var="i" begin="1" end="${totalPage}" step="1">
+    <li class="page-item"><a class="page-link" href="/3rd_prj/board/qna_list.do?page=<c:out value="${i}"/>
+    <c:if test="${param.keyword !=null}">&field=<c:out value="${param.field}"/>&keyword=<c:out value="${param.keyword}"/></c:if>"><font color="#000000"><c:out value="${i}"/></font></a></li>
+    </c:forEach>
       <a class="page-link" href="#" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
@@ -150,9 +133,13 @@ $(function(){
   </ul>
 </nav>
 </div>
+
+
+
+
 </div>
 <div id="footer">
-<a href="#"><img src="http://localhost:8080/3rd_real/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%;  "/></a> 
 	<div id="fLogo">
 		
 	</div>

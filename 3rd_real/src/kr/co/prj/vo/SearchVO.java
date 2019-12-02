@@ -1,21 +1,62 @@
 package kr.co.prj.vo;
-
 public class SearchVO {
-	private int num;
-	private String subject,input_date,delete_flag;
-	public int getNum() {
-		return num;
+	private String field, keyword;
+	private int currentPage,startNum,endNum;
+	
+	public SearchVO() {
+		super();
 	}
-	public String getSubject() {
-		return subject;
+	
+
+
+
+	public SearchVO(String field, String keyword, int currentPage, int startNum, int endNum) {
+		super();
+		this.field = field;
+		this.keyword = keyword;
+		this.currentPage = currentPage;
+		this.startNum = startNum;
+		this.endNum = endNum;
 	}
 
-	public String getInput_date() {
-		return input_date;
+
+
+
+	public int getStartNum() {
+		return startNum;
 	}
-	public String getDelete_flag() {
-		return delete_flag;
-	} 
+
+
+	public int getEndNum() {
+		return endNum;
+	}
+
+
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
 	
 	
 }//class
+
+	
+
+	

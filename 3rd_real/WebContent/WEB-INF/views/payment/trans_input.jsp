@@ -54,8 +54,8 @@ $(function(){
 	
 		<div style="text-align: left; padding-top: 5px">&nbsp;&nbsp;<input type="radio" name="radio" value="카드결제" > <strong >&nbsp;&nbsp;카드결제</strong></div>
 		<hr>
-		<img src="http://localhost:8080/3rd_real/view/images/addbtn1.png">&nbsp;&nbsp;1111-1111-1111<br/>
-		<img src="http://localhost:8080/3rd_real/view/images/addbtn1.png">&nbsp;&nbsp;2222-2222-2222<br/>		
+		<img src="http://localhost:8080/3rd_prj/view/images/addbtn1.png">&nbsp;&nbsp;1111-1111-1111<br/>
+		<img src="http://localhost:8080/3rd_prj/view/images/addbtn1.png">&nbsp;&nbsp;2222-2222-2222<br/>		
 		 <div id="btnClass"style="position: relative; margin-top: 50px;" align="center">
 				<input type="button" value="결제" class="btn btn-secondary alert-danger" id="goBtn" style="margin-right: 25px;" >
 				<input type="button" value="수단변경" class="btn btn-secondary alert-secondary" id="backBtn">
@@ -82,7 +82,7 @@ $(function(){
 </div>
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_real/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://localhost:8080/3rd_prj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_real/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -37,33 +37,23 @@
 <script type="text/javascript">
 $(function(){
 	$("#goBtn").click(function() {
-		if($("#qnaValue").val()=="none"){
-			alert("문의 종류를 선택해주세요.");
-			return;
-		}//end if
-		if($("#subject").val()==""){
+		
+		if($("#q_subject").val()==""){
 			alert("게시글 제목을 입력해주세요.");
 			return;
 		}//end if
-		if($("#passwd").val()==""){
-			alert("비밀번호를 입력해주세요.");
-			return;
-		}//end if
-		if($("#contain").val().trim()==""){
+	
+		if($("#q_content").val().trim()==""){
 			alert("내용을 작성해주세요.");
 			return
 		}//end if
-		if(document.getElementById("secretChk").checked){
-			confirm("비밀글로 작성하시겠습니까?")
-			
-		}
-			location.href="qna_post.jsp";
 		
+	$("#writeFrm").submit();
 		
 	});//click
 	$("#backBtn").click(function(){
 		if(confirm('작성하지 않고 돌아가시겠습니까?')){
-		location.href="qna_list.jsp";
+		location.href="qna_list.do";
 		}//end if
 	});//click
 });//ready
@@ -73,44 +63,26 @@ $(function(){
 <div id="class4Wrap">
 <div id="naviBar">
  	<!-- MENU 시작 -->
- 		<%@include file="../../../common/navbar/nav.jsp" %>
+ 	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
 <div id="container">   
 
+   <form action="write_post.do" method="post" id="writeFrm">
    <div style="margin-left: 50px;">
          <table>
-            <tr>
-               <td id="ex">문의종류</td>
-               <td>
-              	<select class="form-control form-control-sm" name="qnaValue" id="qnaValue"  style="width: 150px;">
-					<option value="none">카테고리 선택</option>
-					<option value="대관문의">대관문의</option>
-				</select>
-				<br/>
-               </td>
-            </tr>
+            
             <tr>
                <td id="ex">제목</td>
                <td>
-         			<input class="form-control form-control-sm" type="text" name="subject" id="subject" autofocus="autofocus" placeholder="게시글 제목을 입력해주세요." style="width: 734px;"/>
+         			<input class="form-control form-control-sm" type="text" name="q_subject" id="q_subject" autofocus="autofocus" placeholder="게시글 제목을 입력해주세요." style="width: 734px;"/>
         			<br/>
         		</td>
             </tr>
-            <tr>
-               <td id="ex">비밀번호</td>
-               <td>
-               		<input class="form-control form-control-sm" style="width: 250px;" type="password" name="passwd" id="passwd" placeholder="비밀번호 입력"/><br/>
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2" style="padding-left: 190px; padding-bottom: 15px;">
-               		<input class="form-check-input" type="checkbox" id="secretChk" value="secret" />비밀글로 등록<br/>
-               </td>
-            </tr>
+           
             <tr>
                <td colspan="2" style="padding-left:150px;">
-                  <textarea class="form-control form-control-sm" id="contain" rows="15" cols="100" placeholder="문의사항이 있을경우 자유롭게 기재해주세요."></textarea>
+                  <textarea class="form-control form-control-sm" name="q_content" id="q_content" rows="15" cols="100" placeholder="문의사항이 있을경우 자유롭게 기재해주세요."></textarea>
                </td>
             </tr>         
             </table>
@@ -122,11 +94,11 @@ $(function(){
 				<input type="button" value="돌아가기" class="btn btn-secondary alert-secondary" id="backBtn">
 				
 			</div>
-         
+         </form>
 </div>
 
 <div id="footer">
-<a href="#"><img src="http://localhost:8080/3rd_real/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<!-- 900(w)x150(h) -->
 	<div id="fLogo">
 		

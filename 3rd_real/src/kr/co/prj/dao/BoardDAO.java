@@ -2,6 +2,9 @@ package kr.co.prj.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,8 +12,17 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.jasper.tagplugins.jstl.core.If;
 
+import kr.co.prj.domain.LoginDomain;
+import kr.co.prj.domain.NoticeBoardDetailDomain;
+import kr.co.prj.domain.NoticeListDomain;
+import kr.co.prj.domain.QnABoardDetailDomain;
 import kr.co.prj.domain.QnAListDomain;
+import kr.co.prj.vo.LoginVO;
+import kr.co.prj.vo.QnAWriteVO;
+import kr.co.prj.vo.SearchRangeVO;
+import kr.co.prj.vo.SearchVO;
 
 
 public class BoardDAO {
@@ -19,6 +31,7 @@ public class BoardDAO {
 	public static SqlSessionFactory ssf;
 	
 	private BoardDAO() {
+		org.apache.ibatis.logging.LogFactory.useLog4JLogging();
 	}
 
 	public static BoardDAO getInstance() {
@@ -48,22 +61,128 @@ public class BoardDAO {
 		return ssf;
 	}//getSessionFactory
 	
-	public List<QnAListDomain> selectAllQnA()throws SQLException{
+	
+	///////////////////////////////////////////////////퍼온것///////////////////////////////////////////////////////////////
+	
+	
+	/**
+	 * 전체 게시물의 수 
+	 * @return
+	 * @throws SQLException
+	 */
+	public int selectTotalCount(String mappedId,SearchVO sVO) throws SQLException{
+		int cnt=0;
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			if( sVO != null && sVO.getKeyword() != null && !"".equals(sVO.getKeyword())){
+			cnt = ss.selectOne(mappedId,sVO);
+			System.out.println(mappedId+"-----------------------"+sVO.getField());
+			}else {
+				cnt = ss.selectOne(mappedId);
+			}
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+			System.out.println(cnt+"쿄콬");
+		return cnt;
+	}//selectTotalCount
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	public List<QnAListDomain> selectAllQnA(SearchVO sVO)throws SQLException{
 		List<QnAListDomain> list = null;
 		
 		//3.Handler얻기
 		try {
 			SqlSession ss = getSessionFactory().openSession();
-			list=ss.selectList("qnaList"); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
+			
+			
+			if( sVO != null && sVO.getKeyword() != null && !"".equals(sVO.getKeyword())) {//검색값이 존재할 때 
+			}
+			list=ss.selectList("qnaList",sVO);
 			ss.close();
+		
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		return list;
+		
+	}//selectAllEmp
+	
+	public QnABoardDetailDomain selectDetailQnA(int q_num)throws SQLException{
+		QnABoardDetailDomain qbdd = null;
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			qbdd = ss.selectOne("qnaPost", q_num);
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		return qbdd;
+	}//selectDetailQnA
+	
+	public int insertQnAPost(QnAWriteVO qwVO) {
+		int flag = 0;
+		
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			flag=ss.insert("writePost", qwVO);
+			ss.commit();
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//endcatch
+		
+		
+		return flag;
+	}
+	public int deletePostQnA(int q_num) {
+	int flag =0;
+	
+	SqlSession ss;
+	try {
+		ss = getSessionFactory().openSession();
+		ss.delete("deletePost",q_num);
+		ss.commit();
+		ss.close();
+} catch (IOException e) {
+		e.printStackTrace();
+	}//end catch
+	
+	return flag;
+	}//deletePostQnA
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	public List<NoticeListDomain> selectAllNotice(SearchVO sVO)throws SQLException{
+		List<NoticeListDomain> list = null;
+		
+		//3.Handler얻기
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			list=ss.selectList("noticeList",sVO); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
+			ss.close();
+			System.out.println( "시작번호" + sVO.getStartNum()+"끝번호"+sVO.getEndNum());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}//end catch
 		
 		return list;
 		
-	}//selectAllEmp
-	
+	}//selectAllNotice
+	public NoticeBoardDetailDomain selectDetailNotice(int n_num)throws SQLException{
+		NoticeBoardDetailDomain nbdd = null;
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			nbdd = ss.selectOne("noticePost", n_num);
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		return nbdd;
+	}//selectDetailQnA
 	
 	
 }//class

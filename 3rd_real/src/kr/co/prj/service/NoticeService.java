@@ -4,15 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import kr.co.prj.dao.BoardDAO;
+import kr.co.prj.domain.NoticeBoardDetailDomain;
+import kr.co.prj.domain.NoticeListDomain;
 import kr.co.prj.domain.QnABoardDetailDomain;
-import kr.co.prj.domain.QnAListDomain;
-import kr.co.prj.vo.QnAWriteVO;
 import kr.co.prj.vo.SearchRangeVO;
 import kr.co.prj.vo.SearchVO;
 
-
-public class QnAService {
-///////////////////////퍼온것////////////////////////////////////////
+public class NoticeService {
 	
 	/**
 	 * 검색값을 받아서 검색값이 없다면 전체 글의 갯수를 조회하고, 검색값이 있다면 
@@ -22,7 +20,7 @@ public class QnAService {
 	 */
 	public int selectTotalCount(SearchVO sVO) {
 		int cnt = 0;
-		String mappedId="qnaTotalCount";
+		String mappedId="noticeTotalCount";
 		BoardDAO bDao = BoardDAO.getInstance();
 		try {
 			cnt = bDao.selectTotalCount(mappedId,sVO);
@@ -32,6 +30,9 @@ public class QnAService {
 		return cnt;
 	}
 	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	/**
 	 * 한 화면에 보여줄 게시물의 수
 	 * @return
@@ -80,48 +81,31 @@ public class QnAService {
 		return endNum;
 	}//endNum
 	
-///////////////////////////////////////////////////////////////
 	
-	public List<QnAListDomain> searchAllQnA( SearchVO sVO){
-		List<QnAListDomain> list= null;
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public List<NoticeListDomain> searchAllNotice( SearchVO sVO){
+		List<NoticeListDomain> noticeList= null;
 		BoardDAO bDao = BoardDAO.getInstance();
 		try {
-			list=bDao.selectAllQnA(sVO);
+			noticeList=bDao.selectAllNotice(sVO);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//end catch
-		 
-		
-		return list;
-	}//searchAllQnA
-	public QnABoardDetailDomain searchDetailQnA(int num){
-		QnABoardDetailDomain qbdd =null;
+		return noticeList;
+	}//searchAllNotice
+	public NoticeBoardDetailDomain searchDetailNotice(int num){
+		NoticeBoardDetailDomain nbdd =null;
 		BoardDAO bDao = BoardDAO.getInstance();
 		
 		try {
-			qbdd = bDao.selectDetailQnA(num);
+			nbdd = bDao.selectDetailNotice(num);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//end catch
-		return qbdd;
+		return nbdd;
 	}//searchDetailQnA
-	
-	public int insertQnAPost(QnAWriteVO qwVO) {
-		int cnt = 0;
-		
-		BoardDAO bDAO = BoardDAO.getInstance();
-		cnt = bDAO.insertQnAPost(qwVO);
-		
-		return cnt;
-	}//insertQnAPost
-	
-	public int deletePostQnA(int q_num) {
-		int cnt=0;
-		BoardDAO bDAO = BoardDAO.getInstance();
-		cnt = bDAO.deletePostQnA(q_num);
-		
-		return cnt;
-	}//deletePostQnA
 }//class

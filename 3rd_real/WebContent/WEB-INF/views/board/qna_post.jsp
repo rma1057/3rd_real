@@ -4,12 +4,13 @@
     pageEncoding="UTF-8"
     info=""
     %>
-<!DOCTYPE html>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html> 
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_real/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -42,14 +43,10 @@ $(function(){
 
 });
 function del_process(){
-	var pw= prompt("비밀번호를 입력해주세요.");
-	if("1234"==pw){
-		alert("삭제되었습니다.");
-		location.href = "notice_list.jsp";
-	}else{
-		alert("정확한 비밀번호를 입력해주세요.");
-		return;
-	}//삭제
+	if(confirm("정말 삭제하시겠습니까?")){
+		location.href="/3rd_prj/board/delete_post.do";
+	}//end if
+	
 	
 }//del_process
 </script>
@@ -58,7 +55,7 @@ function del_process(){
 <div id="class4Wrap">
 <div id="naviBar">
  	<!-- MENU 시작 -->
- 		<%@include file="../../../common/navbar/nav.jsp" %>
+ 	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
 <div id="container">
@@ -66,47 +63,65 @@ function del_process(){
 <table class="table" >
   <tbody>
     <tr>
-      <th scope="row" id="th">subject</th><td>이거 어떻게 하는거?</td>
+      <th scope="row" id="th">subject</th><td><c:out value="${qbdd.q_subject}"/></td>
     </tr>
     <tr>
-      <th scope="row" id="th">name</th><td>윤태식</td>
+      <th scope="row" id="th">name</th><td><c:out value="${qbdd.user_id}"/></td>
     </tr>
     <tr>
-      <th scope="row" id="th">Date</th><td>2019-10-11</td>
+      <th scope="row" id="th">Date</th><td><c:out value="${qbdd.q_input_Date}"/></td>
     </tr>
     <tr>
       <td colspan="2" style="height: 600px;">
       <div style="margin: 50px; text-align: left;">
-    안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-      안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-      안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-      안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-         안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-      안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-      안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-      안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~안녕하세요~~
-      
+ 	 <c:out value="${qbdd.q_content}" escapeXml="false"/>
       </div>
       </td>
-    </tr>
+   	</tr>
+     <c:if test="${qbdd.q_answer_Flag eq 'Y'}">
+     <tr>
+   	<th style="vertical-align: middle; text-align: center;">관리자   </th>
+      <td>
+      <div style="float:left;">
+       <c:out value="${qbdd.q_answer}" escapeXml="false"/> <span style="font-size: 12px; color: gray; margin-left: 50px;" ><c:out value="${qbdd.q_answer_date}"/></span>
+       </div>
+         <div style="float:right;">
+    <input type="button" value="수정" class="btn btn-secondary alert-secondary" id="modifyRp" />
+    	</div> 	
+      </td>
+      </tr>
+      </c:if>
     <tr>
+      <th scope="row" id="th" style="vertical-align: middle;">댓글</th>
+      <td>
+      <div>
+      <div style="float:left;">
+      <textarea class="form-control" style="width: 810px;" rows="5" placeholder="관리자만 작성 가능합니다."></textarea>
+      </div>
+      <div style="float:right;">
+    <input type="button" value="입력" class="btn btn-secondary alert-danger" id="addRp" onclick="" style="width: 110px; height: 135px;"/>
+    	</div>
+    	</div>
+    </td>
     </tr>
   </tbody>
 </table>
 
-<div>
+<div >
 <div style="float: left;">
-	<input type="button" value="목록" class="btn btn-secondary alert-danger btn-sm" id="golist" onclick="location.href='qna_list.jsp'">
+	<input type="button" value="목록" class="btn btn-secondary alert-danger btn-sm" id="golist" onclick="location.href='/3rd_prj/board/qna_list.do'">
 </div>
 <div style="float:right;">
+	<c:if test="${qbdd.q_answer_Flag != 'Y'}">
 	<input type="button" value="수정" class="btn btn-secondary alert-secondary" id="modifyPost" onclick="location.href='modify_form.jsp'" >
+	</c:if>
 	<input type="button" value="삭제" class="btn btn-secondary alert-secondary" id="deletePost" onclick="del_process()" >
 </div>
 </div>
 
 </div>
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_real/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%;  "/></a> 
+	<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%;  "/></a> 
 	<div id="fLogo">
 		
 	</div>

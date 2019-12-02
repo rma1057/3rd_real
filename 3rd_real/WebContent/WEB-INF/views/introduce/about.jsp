@@ -57,12 +57,12 @@ $(function(){
 	</div><br/>
 	
 	<div style="margin: auto;">
-	<img style="width:1100px;height:300px" src="http://localhost:8080/3rd_real/common/images/main.PNG"></div><br/>
+	<img style="width:1100px;height:300px" src="http://localhost:8080/3rd_prj/common/images/main.PNG"></div><br/>
 	
 	<div class="card-deck" style="margin-top: 100px">
 	  <div class="card">
 	  <a href="about1.jsp">
-	    <img src="http://localhost:8080/3rd_real/common/images/2.PNG" id="roomA"  class="card-img-top" >
+	    <img src="http://localhost:8080/3rd_prj/common/images/2.PNG" id="roomA"  class="card-img-top" >
 	  </a>
 	    <div class="card-body">
 	      <h5 class="card-title" style="font-weight: bold">"파티룸+브라이덜샤워+프로포즈"</h5>
@@ -73,7 +73,7 @@ $(function(){
 	  </div>
 	  <div class="card">
 	  	<a href="about2.jsp">
-	    <img src="http://localhost:8080/3rd_real/common/images/4.jpg"  id="roomC" class="card-img-top" >
+	    <img src="http://localhost:8080/3rd_prj/common/images/4.jpg"  id="roomC" class="card-img-top" >
 	    </a>
 	    <div class="card-body">
 	      <h5 class="card-title" style="font-weight: bold">"그룹스터디룸+세미나실+강연장"</h5>

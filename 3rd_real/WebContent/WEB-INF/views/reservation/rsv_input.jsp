@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_real/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1800px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -46,7 +46,7 @@ $(function(){
 			alert("체크함");
 			
 			$.ajax({
-				url:"/3rd_real/reservation/rsv_input1.do",
+				url:"/3rd_prj/reservation/rsv_input1.do",
 				type:"get",
 				data:"user_id=shin",
 				dataType:"json",
@@ -112,7 +112,7 @@ $(function(){
 			
 		<div id="leftside">
 			<h3><strong> [ :P ] / Room1 </strong></h3><br/>
-			<img src="http://localhost:8080/3rd_real/common/images/%ED%81%AC%EB%A6%AC%EC%8A%A4%EB%A7%88%EC%8A%A43.jpg" style="width: 400px">
+			<img src="http://localhost:8080/3rd_prj/common/images/%ED%81%AC%EB%A6%AC%EC%8A%A4%EB%A7%88%EC%8A%A43.jpg" style="width: 400px">
 			<br/><br/><br/>
 		
 			<div>
@@ -222,7 +222,7 @@ $(function(){
 		
 		
 		<div id="rightside">
-		<form action="/3rd_real/payment/confirm_parameter.do" method="post">
+		<form action="/3rd_prj/payment/confirm_parameter.do" method="post">
 			<h6><c:out value="${ param.param_year }"/>-<c:out value="${ param.param_month }"/>-<c:out value="${ param.param_day }"/>
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="변경" class="btn btn-secondary alert-secondary" id="backBtn" style="width:60px; height:35px; text-align: center;"></h6>
 			<input type="checkbox" class="checkbox" id="infoCheckBtn"> 기존 회원정보와 동일 <br/><br/>
@@ -434,7 +434,7 @@ $(function(){
 </div>
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_real/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

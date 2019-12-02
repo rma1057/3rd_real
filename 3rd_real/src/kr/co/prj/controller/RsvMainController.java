@@ -17,7 +17,7 @@ import kr.co.prj.service.RoomInfoService;
  */
 @Controller
 public class RsvMainController {
-	@RequestMapping(value="/rsv_main.do", method=RequestMethod.GET)
+	@RequestMapping(value="reservation/rsv_main.do", method=RequestMethod.GET)
 	public String rsvMain(Model model) {
 		
 		RoomInfoService ris=new RoomInfoService();

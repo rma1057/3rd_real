@@ -135,10 +135,10 @@ $(function(){
          %>
          <div id="calWrap">
             <div id="calHeader">
-            <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth-1)%>'><img src="/3rd_real/common/images/prev_btn.png"title="이전월"id="pre"/></a>
+            <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth-1)%>'><img src="/3rd_prj/common/images/prev_btn.png"title="이전월"id="pre"/></a>
             <span style="font-family: 고딕  SansSerif;font-weight: bold;font-size: 27px"><%=nowYear%>.<%=nowMonth+1 %></span>
-            <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth+1)%>'><img src="/3rd_real/common/images/next_btn.png"title="다음월"id="next"/></a>
-            <a href='diary.do'><img src="/3rd_real/common/images/today_btn.png"title="현재월"/></a>
+            <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth+1)%>'><img src="/3rd_prj/common/images/next_btn.png"title="다음월"id="next"/></a>
+            <a href='diary.do'><img src="/3rd_prj/common/images/today_btn.png"title="현재월"/></a>
             </div>         
             <div id="calContent">
             <table id="diaryTab">
@@ -186,7 +186,7 @@ $(function(){
                   for(int blankTd=cal.get(Calendar.DAY_OF_WEEK)-1;blankTd>0;blankTd--){
                      System.out.println(blankTd-1);
                %>
-               <td class="blankTd"><a href="/3rd_real/reservation/rsv_input.do">
+               <td class="blankTd"><a href="/3rd_prj/reservation/rsv_input.do">
          
                <%= backLastDay-(blankTd-1)%></a></td>
                <%
@@ -218,7 +218,7 @@ $(function(){
                %>
                
                		
-                  <a href="/3rd_real/reservation/rsv_input.do?param_year=<%=nowYear %>&param_month=<%=nowMonth+1 %>&param_day=<%=tempDay %>"><div <%=color %>><%=tempDay %></div></a>
+                  <a href="/3rd_prj/reservation/rsv_input.do?param_year=<%=nowYear %>&param_month=<%=nowMonth+1 %>&param_day=<%=tempDay %>"><div <%=color %>><%=tempDay %></div></a>
                   <%-- <input type="hidden" value="<%= nowYear %>-<%= nowMonth %>-<%=tempDay %>" name="rsvDate">  --%>
                	  <% if (cal.get(Calendar.DAY_OF_WEEK)==Calendar.TUESDAY | cal.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY ) { %>                    
 	                  <div style="background-color: yellow">ㅎㅇㅎㅇ</div>
@@ -253,7 +253,7 @@ $(function(){
       
       </div>
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_real/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

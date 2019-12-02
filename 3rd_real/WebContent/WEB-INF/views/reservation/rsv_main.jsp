@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_real/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; margin: 0px auto;
 	display: flex; min-height: 100vh; flex-direction: column;
@@ -185,14 +185,14 @@ $(function(){
 		<!-- image:  %ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg -->
 		<c:forEach var="ri" items="${ RoomInfo }">
 		<figure class="snip1200" style="float: left; margin-left: 33px">
-		  <img src="http://localhost:8080/3rd_real/common/images/${ ri.image1 }" id="partyRoom1"/>
+		  <img src="http://localhost:8080/3rd_prj/common/images/${ ri.image1 }" id="partyRoom1"/>
 		  <figcaption>
 		    <p><c:out value="${ ri.room_name2 }"/></p>
 		    <div class="heading">
 		      <h2><c:out value="${ ri.room_name }"/><span></span></h2>
 		    </div>
 		  </figcaption>
-		 <a href="/3rd_real/diary/diary.do" ></a>
+		 <a href="/3rd_prj/diary/diary.do" ></a>
 		</figure>
 			
 

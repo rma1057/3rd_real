@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
  <properties resource="properties/database.properties"/>
+  <typeAliases>
+	<typeAlias type="kr.co.prj.domain.QnABoardDetailDomain" alias="qbdd"/>
+	<typeAlias type="kr.co.prj.domain.NoticeBoardDetailDomain" alias="nbdd"/>
+	<typeAlias type="kr.co.prj.domain.NoticeListDomain" alias="nld"/>
+</typeAliases>
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
@@ -16,10 +21,10 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="kr/co/prj/mapper/qna_mapper.xml"/>
     <mapper resource="kr/co/prj/mapper/roominfo_mapper.xml"/>
     <mapper resource="kr/co/prj/mapper/memberchk_mapper.xml"/>
-    
+    <mapper resource="kr/co/prj/mapper/qna_mapper.xml"/>
+    <mapper resource="kr/co/prj/mapper/notice_mapper.xml"/>
      <mapper resource="kr/co/prj/mapper/login_mapper.xml"/>
     
   </mappers>
