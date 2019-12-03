@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DiaryController {
 	@RequestMapping(value="diary/diary.do", method=RequestMethod.GET)
 	public String diary() { // 룸 이름 어떻게 받아와?
+		
 		return "reservation/diary/diary";
 	}//hello
 }//class

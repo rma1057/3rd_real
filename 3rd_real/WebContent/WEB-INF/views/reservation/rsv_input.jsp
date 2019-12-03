@@ -28,6 +28,11 @@
 	#fContent{ width: 1100px;height: 110px; padding-top: 30px; margin-right: auto; margin-left: auto }
 	/* 푸터 끝  */
 	#hTitle{font-family: '고딕'; font-size: 30px; font-weight: bold;}
+	
+	
+	
+	
+/* 	#chkboxCnt{ color: #FF0000; font-weight: bold; display: none; } */
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -65,40 +70,30 @@ $(function(){
 					if( json.resultFlag ){
 						output="<strong>"+json.data+"</strong>";
 					}//end if
+					
 					$("#rsv_person").val ( decodeURIComponent(json.user_name) );
 					$("#num1").val(phone1);
 					$("#num2").val(phone2);
 					$("#num3").val(phone3);
 					$("#email").val(json.email);
+					
 				}
 			});//ajax
-			
-						
-/* 			$.ajax({
-				url:"select/single_column.do",
-				type:"get",
-				data:"deptno="+$("#deptno").val(),
-				dataType:"json",
-				error:function( xhr ){
-					alert("문제발생\n"+ xhr.status+"\n"+xhr.statusText);
-					
-				},
-				success:function( json ){
-					var output="부서정보 없음";
-					if( json.resultFlag ){
-						output="<strong>"+json.data+"</strong>";
-					}//end if
-					$("#dname").html( output );
-				}
-			}); */
-			
 		} else {
 			alert("체크 노노");
 		}//end else
-		
-	});//click
+	});//click	
+	
+	
+	
+	$(".checkbox").click(function(){
+	var n=$("input:checkbox[name='timetouse']:checked").length;
+		$("#chkboxCnt").text(n*${ RsvRoomCharge });
+	});
 	
 });//ready
+
+
 </script>
 </head>
 <body>
@@ -111,7 +106,7 @@ $(function(){
 <div id="container">   
 			
 		<div id="leftside">
-			<h3><strong> [ :P ] / Room1 </strong></h3><br/>
+			<h3><strong> [ :P ] / <%= request.getParameter("room_name") %> </strong></h3><br/>
 			<img src="http://localhost:8080/3rd_prj/common/images/%ED%81%AC%EB%A6%AC%EC%8A%A4%EB%A7%88%EC%8A%A43.jpg" style="width: 400px">
 			<br/><br/><br/>
 		
@@ -230,35 +225,49 @@ $(function(){
 
 			
 					예약자<br/>
-					<input type="text" class="form-control form-control-sm" id="rsv_person" name="rsv_person">			
+					<input type="text" class="form-control form-control-sm" id="rsv_person" name="rsv_person" >			
 					<br/>
 					
 					연락처<br/>
 				<div class="form-inline"> 
-						<input type="text" class="form-control form-control-sm" id="num1" name="phone" style="width:100px">&nbsp;- &nbsp;
-						<input type="text" class="form-control form-control-sm" id="num2" name="phone" style="width:100px">&nbsp;- &nbsp;
-						<input type="text" class="form-control form-control-sm" id="num3" name="phone" style="width:100px">
+						<input type="text" class="form-control form-control-sm" id="num1" name="phone" style="width:100px" >&nbsp;- &nbsp;
+						<input type="text" class="form-control form-control-sm" id="num2" name="phone" style="width:100px" >&nbsp;- &nbsp;
+						<input type="text" class="form-control form-control-sm" id="num3" name="phone" style="width:100px" >
 					</div> 
 					<br/>
 					
 					메일주소<br/>
-					<input type="text" class="form-control form-control-sm" id="email" name="email"><br/>
+					<input type="text" class="form-control form-control-sm" id="email" name="email" ><br/>
 					
 	
-
+		
+		사용시간<br/>
+		<c:forEach var="rti" items="${ RsvTimeInfo }">
+			<input type="checkbox" name="timetouse" class="checkbox">
+		    <c:out value="${ rti.r_realtime }"/>&nbsp;&nbsp;<c:out value="${ RsvRoomCharge }원"/><br/>
+		</c:forEach>
 			
 			
-			
-			사용시간<br/>
+		<!-- 	사용시간<br/>
 			<input type="checkbox" name="timetouse" class="checkbox"> 8~12 (+40000) <br/>
 			<input type="checkbox" name="timetouse" class="checkbox"> 12~4 (+40000) <br/>
 			<input type="checkbox" name="timetouse" class="checkbox"> 4~8 (+40000) <br/>
-			<input type="checkbox" name="timetouse" class="checkbox"> 8~12 (+40000) <br/><br/>
+			<input type="checkbox" name="timetouse" class="checkbox"> 8~12 (+40000) <br/><br/> -->
 			
-			<strong>총 예상 금액 : 160000 원</strong><br/><br/>
+			
+			
+			
+			<strong>총 금액 : <span id="chkboxCnt"></span> 원</strong><br/><br/>
+			
+			
+			
 			
 			요청사항<br/>
-			<textarea class="form-control" id="request" rows="5" name="rsvRequest"></textarea><br/>
+			<textarea class="form-control" id="request" rows="5" name="rsvRequest">
+			
+			
+			
+			</textarea><br/>
 			<br/>
 			
 				개인정보 수집 및 동의

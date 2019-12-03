@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.co.prj.domain.MemberCheckDomain;
 import kr.co.prj.domain.RoomInfoDomain;
+import kr.co.prj.domain.RsvTimeDomain;
 
 public class ReservationDAO {
 	private static ReservationDAO rsvDao;
@@ -63,7 +64,22 @@ public class ReservationDAO {
 		
 	}//selectAllEmp
 	
-	
+	public List<RsvTimeDomain> selectRsvTime() throws SQLException{
+		List<RsvTimeDomain> list = null;
+		
+		//3.Handler얻기
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			list=ss.selectList("selectRsvTime"); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return list;
+		
+	}//selectAllEmp
+		
 	
 	
 	public MemberCheckDomain selectMemberInfo(String user_id) throws SQLException{
@@ -81,6 +97,24 @@ public class ReservationDAO {
 	
 	
 		return mcd;
+	}//selectMemberInfo 
+	
+	
+	public int selectRoomCharge(String room_name) throws SQLException{
+		int roomCharge=0;
+		
+		try {
+			//Handler 얻기
+			SqlSession ss=getSessionFactory().openSession();
+			//쿼리 수행 : 한 행 조회
+			roomCharge=ss.selectOne("selectRoomCharge", room_name);
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		
+		return roomCharge;
 	}//selectMemberInfo 
 	
 	

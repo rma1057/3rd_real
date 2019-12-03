@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info=""
+    isELIgnored="false"
     %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -175,7 +176,7 @@ $(function(){
 	<div align="center" style="font-size: 35px; font-weight: bold;">Reservation</div>
 		<div style="text-align: center; margin-bottom: 20px">
 			<span style="font-size: 25px; font-weight: bold; background-color: red; color: white; ">
-				12월 얼리버드 EVENT Room2 10% 할인
+				12월 얼리버드 EVENT Room2 10% 할인	<%-- <c:out value="${ sessionScope.memberId }"/> --%>
 			 </span>
 		</div>	
 
@@ -187,14 +188,13 @@ $(function(){
 		<figure class="snip1200" style="float: left; margin-left: 33px">
 		  <img src="http://localhost:8080/3rd_prj/common/images/${ ri.image1 }" id="partyRoom1"/>
 		  <figcaption>
-		    <p><c:out value="${ ri.room_name2 }"/></p>
+		    <p><c:out value="${ ri.brief_info }"/></p>
 		    <div class="heading">
-		      <h2><c:out value="${ ri.room_name }"/><span></span></h2>
+		      <h2><c:out value="${ ri.room_name2 }"/><span></span></h2>
 		    </div>
 		  </figcaption>
-		 <a href="/3rd_prj/diary/diary.do" ></a>
+		 <a href="/3rd_prj/diary/diary.do?room_name=${ ri.room_name }"></a> <!-- 링크로 넘어가는 건 GET방식이다~ -->
 		</figure>
-			
 
 		</c:forEach>
 		

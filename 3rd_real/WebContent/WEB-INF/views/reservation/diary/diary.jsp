@@ -115,6 +115,14 @@ $(function(){
       
    })
 });
+function moveResv(room_name, year,month,day){
+	$("#room_name").val(room_name);
+	$("#param_year").val(year);
+	$("#param_month").val(month);
+	$("#param_day").val(day);
+	$("#resvFrm").submit();
+	
+}
 </script>
 </head>
 <body>
@@ -141,6 +149,15 @@ $(function(){
             <a href='diary.do'><img src="/3rd_prj/common/images/today_btn.png"title="현재월"/></a>
             </div>         
             <div id="calContent">
+            
+            
+            <form action=" /3rd_prj/reservation/rsv_input.do" method="post" id="resvFrm">
+            <input type="hidden" name="room_name" id="room_name"/>
+            <input type="hidden" name="param_year" id="param_year"/>
+            <input type="hidden" name="param_month" id="param_month"/>
+            <input type="hidden" name="param_day" id="param_day"/>
+            </form>
+            
             <table id="diaryTab">
             <tr style="text-align: center; height:40px">
                <th class="sunTitle" style="background-color: #E3C6C2">일</th>
@@ -218,7 +235,7 @@ $(function(){
                %>
                
                		
-                  <a href="/3rd_prj/reservation/rsv_input.do?param_year=<%=nowYear %>&param_month=<%=nowMonth+1 %>&param_day=<%=tempDay %>"><div <%=color %>><%=tempDay %></div></a>
+                  <a href="javascript:moveResv('${ param.room_name }','<%=nowYear %>','<%=nowMonth+1 %>', '<%=tempDay %>')"><div <%=color %>><%=tempDay %></div></a>
                   <%-- <input type="hidden" value="<%= nowYear %>-<%= nowMonth %>-<%=tempDay %>" name="rsvDate">  --%>
                	  <% if (cal.get(Calendar.DAY_OF_WEEK)==Calendar.TUESDAY | cal.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY ) { %>                    
 	                  <div style="background-color: yellow">ㅎㅇㅎㅇ</div>

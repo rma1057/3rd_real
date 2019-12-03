@@ -14,14 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TestController {
 	@RequestMapping(value="/index.do", method=RequestMethod.GET)
-	public String mainForm(HttpSession session) {
-		
-		//1. 생존시간 설정
-		session.setMaxInactiveInterval(60);
-		
-		//2. 값 설정
-		session.setAttribute("id", "admin");
-		session.setAttribute("passwd", 1234);
+	public String mainForm() {	
 		
 		
 		return "main/home";
