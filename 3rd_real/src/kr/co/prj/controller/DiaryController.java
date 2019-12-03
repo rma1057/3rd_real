@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class DiaryController {
-	@RequestMapping(value="diary/diary.do", method=RequestMethod.GET)
-	public String diary() { // 룸 이름 어떻게 받아와?
-		
+	@RequestMapping(value="diary/diary.do", method=RequestMethod.POST)
+	public String diary(String image1) { // 룸 이름 어떻게 받아와?
+		System.out.println("------gdgd--------"+image1);
 		return "reservation/diary/diary";
 	}//hello
 }//class

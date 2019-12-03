@@ -165,7 +165,7 @@ function moveResv(room_name, year,month,day){
                <th class="weekTitle">화</th>
                <th class="weekTitle">수</th>
                <th class="weekTitle">목</th>
-               <th class="weekTitle">금</th>
+               <th class="weekTitle">금<%= request.getParameter("image1") %></th>
                <th class="satTitle" style="background-color: #C8C4C1">토</th>
             </tr>
             <tr>

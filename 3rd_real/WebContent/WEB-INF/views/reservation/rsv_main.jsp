@@ -160,6 +160,13 @@ $(function(){
 	//여기서 이미지가 클릭되었을 때 캘린더 예약창으로
 	
 });//ready
+function moveDiary(room_name, image1, charge){
+	$("#room_name").val(room_name);
+	$("#image1").val(image1);
+	$("#charge").val(charge);
+	$("#DiaryFrm").submit();
+	
+}
 </script>
 </head>
 <body>
@@ -193,8 +200,15 @@ $(function(){
 		      <h2><c:out value="${ ri.room_name2 }"/><span></span></h2>
 		    </div>
 		  </figcaption>
-		 <a href="/3rd_prj/diary/diary.do?room_name=${ ri.room_name }"></a> <!-- 링크로 넘어가는 건 GET방식이다~ -->
+		<%--  <a href="/3rd_prj/diary/diary.do?room_name=${ ri.room_name }"></a> <!-- 링크로 넘어가는 건 GET방식이다~ --> --%>
+		 <a href="javascript:moveDiary('${ ri.room_name }','${ ri.image1 }','${ ri.charge }')"></a>
 		</figure>
+		
+		    <form action=" /3rd_prj/diary/diary.do" method="post" id="DiaryFrm">
+            <input type="hidden" name="room_name" id="room_name"/>
+            <input type="hidden" name="image1" id="image1"/>
+            <input type="hidden" name="charge" id="charge"/>
+            </form>
 
 		</c:forEach>
 		
