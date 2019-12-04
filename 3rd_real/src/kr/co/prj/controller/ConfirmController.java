@@ -1,10 +1,14 @@
 package kr.co.prj.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.co.prj.service.RsvInputService;
+import kr.co.prj.vo.ReservationVO;
 
 @Controller
 public class ConfirmController {
@@ -13,13 +17,29 @@ public class ConfirmController {
 	//매개변수로 HttpServletRequest를 선언 : Spring MVC Framework에서
 	//WAS에서 접속자가 요청할 때 생성되는 요청객체를 얻어 method arguments로
 	//할당한다.
-	public String useRequestParameter(HttpServletRequest request) {
-//		//post한글처리 : filter설정을 한 이후에는 할 필요가 없습니다. 
-//		try {
-//			request.setCharacterEncoding("UTF-8");
-//		} catch (UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//		}//end catch
+	public String useRequestParameter(HttpSession session,HttpServletRequest request, ReservationVO rsvVO) {
+		
+	
+		//예약 insert쿼리
+		System.out.println("------------"+ rsvVO.toString());
+	//	rsvVO.setId((String)session.getAttribute("mamberId"));
+
+		System.out.println("------------"+ rsvVO.toString());
+		
+		RsvInputService ris=new RsvInputService();
+		boolean insertFlag=ris.insertReservation(rsvVO);
+				
+		
+		System.out.println(insertFlag+"-------되는거????????");
+		
+		
+		
+		
+		
+		/////////////////////////////////////////////////////////////////////////////
+		
+	
+		
 		
 		//이름이 유일한 parameter 값 받기
 		String name=request.getParameter("rsv_person");

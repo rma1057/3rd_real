@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import kr.co.prj.domain.MemberCheckDomain;
 import kr.co.prj.domain.RoomInfoDomain;
 import kr.co.prj.domain.RsvTimeDomain;
+import kr.co.prj.vo.ReservationVO;
 
 public class ReservationDAO {
 	private static ReservationDAO rsvDao;
@@ -119,4 +120,32 @@ public class ReservationDAO {
 	
 	
 	
+	public boolean insertReservation(ReservationVO rsvVO) {
+		boolean insertFlag=false;
+		
+		try {
+			//Handler 얻기
+			SqlSession ss=getSessionFactory().openSession();
+			//쿼리 수행 : 한 행 조회
+			insertFlag=ss.insert("insertReservation",rsvVO)==1;
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return insertFlag;
+		
+	}//insertReservation
+	
+	
 }//class
+
+
+
+
+
+
+
+
+
+

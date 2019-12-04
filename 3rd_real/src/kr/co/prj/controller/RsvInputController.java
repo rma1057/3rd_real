@@ -40,7 +40,7 @@ public class RsvInputController {
 		
 		
 		return "reservation/rsv_input";
-	}//hello
+	}//revInputForm
 	
 	@RequestMapping(value="reservation/rsv_input1.do", method=RequestMethod.GET, produces = "application/json; charset=utf8")
 	@ResponseBody
@@ -49,7 +49,14 @@ public class RsvInputController {
 		JSONObject json=ris.multiColumn(user_id);
 		System.out.println(json.toJSONString());
 		return json.toJSONString();
-	}//hello
+	}//searchMemberInfo
 
+
+	
 
 }//class
+
+
+
+
+

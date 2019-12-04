@@ -8,4 +8,15 @@
     FROM ROOM_INFO
     WHERE ROOM_NAME=#{ ROOM_NAME }
   </select>
+  
+  
+  <insert id="insertReservation" parameterType="kr.co.prj.vo.ReservationVO">
+  INSERT INTO RESERVATION(USER_ID,USE_DATE,NAME,PHONE,EMAIL,	CHARGE,	RESERVATION_DATE, PAY_STATUS)
+  VALUES(#{ id }, #{ year }||'-'||#{ month }||'-'||#{ day } , #{rsv_person}, #{ phone1}||'-'||#{ phone2}||'-'||#{phone3}, #{ email }, #{totalCharge}, SYSDATE, 'N' )	
+  
+  
+  
+  
+  
+  </insert>
 </mapper>

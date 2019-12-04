@@ -88,8 +88,10 @@ $(function(){
 	
 	$(".checkbox").click(function(){
 	var n=$("input:checkbox[name='timetouse']:checked").length;
-		$("#chkboxCnt").text(n*${ RsvRoomCharge });
-	});
+		$("#chkboxCnt").text(n* ${ RsvRoomCharge } );
+		$("#totalCharge").val(n* ${ RsvRoomCharge } );
+	})//click
+	
 	
 });//ready
 
@@ -107,7 +109,7 @@ $(function(){
 			
 		<div id="leftside">
 			<h3><strong> [ :P ] / <%= request.getParameter("room_name") %> </strong></h3><br/>
-			<img src="http://localhost:8080/3rd_prj/common/images/%ED%81%AC%EB%A6%AC%EC%8A%A4%EB%A7%88%EC%8A%A43.jpg" style="width: 400px">
+			<img src="http://localhost:8080/3rd_prj/common/images/<c:out value="${ param.image1 }"/>" style="width: 400px">
 			<br/><br/><br/>
 		
 			<div>
@@ -222,7 +224,13 @@ $(function(){
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="변경" class="btn btn-secondary alert-secondary" id="backBtn" style="width:60px; height:35px; text-align: center;"></h6>
 			<input type="checkbox" class="checkbox" id="infoCheckBtn"> 기존 회원정보와 동일 <br/><br/>
 			
-
+ <input type="hidden" value="${ param.param_year }" name="year"/>
+ <input type="hidden" value="${ param.param_month }" name="month"/>
+ <input type="hidden" value="${ param.param_day }" name="day"/>
+ <input type="hidden" value="${ param.room_name }" name="room_name1"/>
+ <input type="hidden" id="totalCharge" name="totalCharge"/>
+ <input type="hidden" value="${ param.memberId }" name="id"/>
+  
 			
 					예약자<br/>
 					<input type="text" class="form-control form-control-sm" id="rsv_person" name="rsv_person" >			
@@ -230,9 +238,9 @@ $(function(){
 					
 					연락처<br/>
 				<div class="form-inline"> 
-						<input type="text" class="form-control form-control-sm" id="num1" name="phone" style="width:100px" >&nbsp;- &nbsp;
-						<input type="text" class="form-control form-control-sm" id="num2" name="phone" style="width:100px" >&nbsp;- &nbsp;
-						<input type="text" class="form-control form-control-sm" id="num3" name="phone" style="width:100px" >
+						<input type="text" class="form-control form-control-sm" id="num1" name="phone1" style="width:100px" >&nbsp;- &nbsp;
+						<input type="text" class="form-control form-control-sm" id="num2" name="phone2" style="width:100px" >&nbsp;- &nbsp;
+						<input type="text" class="form-control form-control-sm" id="num3" name="phone3" style="width:100px" >
 					</div> 
 					<br/>
 					
@@ -243,7 +251,7 @@ $(function(){
 		
 		사용시간<br/>
 		<c:forEach var="rti" items="${ RsvTimeInfo }">
-			<input type="checkbox" name="timetouse" class="checkbox">
+			<input type="checkbox" name="timetouse" class="checkbox" value="${ rti.r_time }">
 		    <c:out value="${ rti.r_realtime }"/>&nbsp;&nbsp;<c:out value="${ RsvRoomCharge }원"/><br/>
 		</c:forEach>
 			
@@ -263,11 +271,7 @@ $(function(){
 			
 			
 			요청사항<br/>
-			<textarea class="form-control" id="request" rows="5" name="rsvRequest">
-			
-			
-			
-			</textarea><br/>
+			<textarea class="form-control" id="request" rows="5" name="rsvRequest"></textarea><br/>
 			<br/>
 			
 				개인정보 수집 및 동의
