@@ -53,7 +53,7 @@ $(function(){
 			$.ajax({
 				url:"/3rd_prj/reservation/rsv_input1.do",
 				type:"get",
-				data:"user_id=shin",
+				data:"user_id=${memberId}",
 				dataType:"json",
 				contentType: "application/json; charset=utf-8" ,
 				error:function( xhr ){
@@ -84,6 +84,13 @@ $(function(){
 		}//end else
 	});//click	
 	
+	$("#goBtn").click(function(){
+		
+	if(confirm("예약 할까요?")){
+		$("#goBtn").submit
+	}
+		
+	})
 	
 	
 	$(".checkbox").click(function(){
@@ -221,7 +228,10 @@ $(function(){
 		<div id="rightside">
 		<form action="/3rd_prj/payment/confirm_parameter.do" method="post">
 			<h6><c:out value="${ param.param_year }"/>-<c:out value="${ param.param_month }"/>-<c:out value="${ param.param_day }"/>
-			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="변경" class="btn btn-secondary alert-secondary" id="backBtn" style="width:60px; height:35px; text-align: center;"></h6>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			 <a href="/3rd_prj/diary/diary.do" method="post">
+				 <input type="button" value="변경" class="btn btn-secondary alert-secondary" id="backBtn" style="width:60px; height:35px; text-align: center;"></h6>
+			 </a>
 			<input type="checkbox" class="checkbox" id="infoCheckBtn"> 기존 회원정보와 동일 <br/><br/>
 			
  <input type="hidden" value="${ param.param_year }" name="year"/>

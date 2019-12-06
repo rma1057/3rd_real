@@ -9,6 +9,7 @@ import kr.co.prj.dao.ReservationDAO;
 import kr.co.prj.domain.MemberCheckDomain;
 import kr.co.prj.domain.RoomInfoDomain;
 import kr.co.prj.domain.RsvTimeDomain;
+import kr.co.prj.vo.ReservationTimeVO;
 import kr.co.prj.vo.ReservationVO;
 
 
@@ -72,7 +73,27 @@ public class RsvInputService {
 			return insertFlag;
 			
 		}//insertReservation
+		public boolean insertReservationTime(ReservationTimeVO rsvTVO) {
+			boolean insertFlag=false;
+			
+			ReservationDAO rsvDAO=ReservationDAO.getInstance();
+			
+			insertFlag=rsvDAO.insertReservationTime(rsvTVO);
+			
+			return insertFlag;
+			
+		}//insertReservation
 	
+		public String getReservationNum() {
+			String reservationCode="";
+			
+			ReservationDAO rsvDAO=ReservationDAO.getInstance();
+			
+			reservationCode=rsvDAO.getReservationNum();
+			
+			return reservationCode;
+			
+		}//insertReservation
 }//class
 
 

@@ -11,12 +11,19 @@
   
   
   <insert id="insertReservation" parameterType="kr.co.prj.vo.ReservationVO">
-  INSERT INTO RESERVATION(USER_ID,USE_DATE,NAME,PHONE,EMAIL,	CHARGE,	RESERVATION_DATE, PAY_STATUS)
-  VALUES(#{ id }, #{ year }||'-'||#{ month }||'-'||#{ day } , #{rsv_person}, #{ phone1}||'-'||#{ phone2}||'-'||#{phone3}, #{ email }, #{totalCharge}, SYSDATE, 'N' )	
-  
-  
-  
-  
+  INSERT INTO RESERVATION(reservation_num,USER_ID,USE_DATE,NAME,PHONE,EMAIL,	CHARGE,	RESERVATION_DATE, PAY_STATUS)
+  VALUES(RESERCATION_CODE,#{ id }, #{ year }||'-'||#{ month }||'-'||#{ day } , #{rsv_person}, #{ phone1}||'-'||#{ phone2}||'-'||#{phone3}, #{ email }, #{totalCharge}, SYSDATE, 'N' )	
   
   </insert>
+  
+    <insert id="insertTime" parameterType="kr.co.prj.vo.ReservationTimeVO">
+  INSERT INTO RESERVATION_INFO(RESERVATION_NUM, ROOM_NAME, R_TIME, YEAR, MONTH, DAY)
+  VALUES(#{reservation_num},#{room_name},#{r_time},#{year},#{month},#{day})	
+  </insert>
+  
+    <select id="reservationCode" resultType="java.lang.String" >
+   SELECT cur_resercation_code from dual
+  </select>
+  
+  
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.prj.service.RsvInputService;
+import kr.co.prj.vo.ReservationTimeVO;
 import kr.co.prj.vo.ReservationVO;
 
 @Controller
@@ -21,16 +22,23 @@ public class ConfirmController {
 		
 	
 		//예약 insert쿼리
-		System.out.println("------------"+ rsvVO.toString());
+		//System.out.println("------------"+ rsvVO.toString());
 	//	rsvVO.setId((String)session.getAttribute("mamberId"));
 
 		System.out.println("------------"+ rsvVO.toString());
-		
+		rsvVO.setId((String)session.getAttribute("memberId"));
 		RsvInputService ris=new RsvInputService();
+		System.out.println("------------"+ rsvVO.toString());
 		boolean insertFlag=ris.insertReservation(rsvVO);
-				
+		String reservationCode = ris.getReservationNum();		
 		
-		System.out.println(insertFlag+"-------되는거????????");
+		int[] time =rsvVO.getTimetouse();
+		
+		for (int i = 0; i < time.length; i++) {
+			ris.insertReservationTime(new ReservationTimeVO(reservationCode, rsvVO.getRoom_name1(), time[i], rsvVO.getYear(), rsvVO.getMonth(), rsvVO.getDay()));
+		}		
+		
+		System.out.println(insertFlag+"-------되는거????????<-- 당근 됨");
 		
 		
 		

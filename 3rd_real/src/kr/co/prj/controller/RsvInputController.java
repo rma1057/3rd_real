@@ -27,7 +27,7 @@ import kr.co.prj.service.RsvInputService;
  */
 @Controller
 public class RsvInputController {	
-	@RequestMapping(value="reservation/rsv_input.do", method=POST)
+	@RequestMapping(value="reservation/rsv_input.do")
 	public String revInputForm(String room_name, Model model) {
 		System.out.println("--------------"+room_name);
 		RsvInputService ris=new RsvInputService();

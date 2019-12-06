@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import kr.co.prj.domain.MemberCheckDomain;
 import kr.co.prj.domain.RoomInfoDomain;
 import kr.co.prj.domain.RsvTimeDomain;
+import kr.co.prj.vo.ReservationTimeVO;
 import kr.co.prj.vo.ReservationVO;
 
 public class ReservationDAO {
@@ -108,6 +109,7 @@ public class ReservationDAO {
 			//Handler 얻기
 			SqlSession ss=getSessionFactory().openSession();
 			//쿼리 수행 : 한 행 조회
+			System.out.println(room_name+"---------방이름");
 			roomCharge=ss.selectOne("selectRoomCharge", room_name);
 			ss.close();
 		} catch (IOException e) {
@@ -128,6 +130,7 @@ public class ReservationDAO {
 			SqlSession ss=getSessionFactory().openSession();
 			//쿼리 수행 : 한 행 조회
 			insertFlag=ss.insert("insertReservation",rsvVO)==1;
+			ss.commit();
 			ss.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -136,6 +139,46 @@ public class ReservationDAO {
 		return insertFlag;
 		
 	}//insertReservation
+	
+	public boolean insertReservationTime(ReservationTimeVO rsvTVO) {
+		boolean insertFlag=false;
+		
+		try {
+			//Handler 얻기
+			SqlSession ss=getSessionFactory().openSession();
+			//쿼리 수행 : 한 행 조회
+			insertFlag=ss.insert("insertTime",rsvTVO)==1;
+			ss.commit();
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return insertFlag;
+		
+	}//insertReservation
+	
+	
+	
+	
+	public String getReservationNum() {
+		String reservationCode = "";
+		
+		try {
+			//Handler 얻기
+			SqlSession ss=getSessionFactory().openSession();
+			//쿼리 수행 : 한 행 조회
+			reservationCode=ss.selectOne("reservationCode");
+		
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return reservationCode;
+		
+	}//insertReservation
+	
 	
 	
 }//class

@@ -124,6 +124,8 @@ function moveResv(room_name, year,month,day,image1){
 	$("#resvFrm").submit();
 	
 }
+
+
 </script>
 </head>
 <body>
@@ -138,8 +140,8 @@ function moveResv(room_name, year,month,day,image1){
          <%
       
          
-   
-         
+
+    	
    
          %>
          <div id="calWrap">
@@ -239,10 +241,10 @@ function moveResv(room_name, year,month,day,image1){
                		
                   <a href="javascript:moveResv('${ param.room_name }','<%=nowYear %>','<%=nowMonth+1 %>', '<%=tempDay %>','<%= request.getParameter("image1") %>')"><div <%=color %>><%=tempDay %></div></a>
                   <%-- <input type="hidden" value="<%= nowYear %>-<%= nowMonth %>-<%=tempDay %>" name="rsvDate">  --%>
-               	  <% if (cal.get(Calendar.DAY_OF_WEEK)==Calendar.TUESDAY | cal.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY ) { %>                    
+<%--                	  <% if (cal.get(Calendar.DAY_OF_WEEK)==Calendar.TUESDAY | cal.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY ) { %>                    
 	                  <div style="background-color: yellow">ㅎㅇㅎㅇ</div>
 	                  <div style="background-color: red">ㅎddd</div>
-                  <%} %>
+                  <%} %> --%>
                   
                   
                   
