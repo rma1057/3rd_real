@@ -25,6 +25,9 @@
 	#fContent{ width: 1100px;height: 110px; padding-top: 30px; margin-right: auto; margin-left: auto }
 	/* 푸터 끝  */
 	#hTitle{font-family: '고딕'; font-size: 30px; font-weight: bold;}
+	
+	
+	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -36,6 +39,76 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	$("#b1").click(function() {
+		$("#a").show();
+/* 		$("#inputPassword").val("휴대폰 번호를 입력해주세요."); */
+		$("#b").hide();
+		
+		
+	
+	});
+	$("#b2").click(function() {
+		$("#a").hide();
+		$("#b").show(); 
+/* 		$("#inputPassword").val("이메일을 입력해주세요."); */
+		
+	});
+	
+/* 	$("#findIDbyPhone").keypress(){
+		if(flag) {
+			
+		}//end if			
+		
+	}); */
+	
+	$(".btn").click(function(){
+ 		//라디오 버튼 둘 중 한개 선택되었는지 
+		if( $("#b1").is(":checked") || $("#b2").is(":checked") ){ 
+			//사용자가 아이디 한글 넣고 // 핸드폰 번호 양식에 맞게 넣어 줬는지값을 넣어줬는지
+			
+			//휴대폰으로 찾기
+			if( $("#b1").is(":checked") ){
+				if ( !$("#findIDbyPhone").val()=="" & !$("#inputPassword").val()==""){
+					
+				//값 넘겨줘라아~
+				$.ajax({
+					url: "/3rd_prj/reservation/find_id1.do",
+					type: "post",
+					data: "name="+$("#findIDbyPhone").val()+"&"+
+					dataType: "json"
+					error : function( xhr ){
+						$("#modal_output")
+						.html("서비스가 원활하지 못한 점 "+ xhr.status + " / "+xhr.statusText);
+					},
+					success : function( data ){
+						var csvData=json_obj.data; //JSONObjectg parsing
+						var data=csvData.split(","); //CSV data를 배열로 분해
+						//출력 내용 생성
+						var outputData="이름 : "+arr[num]+"<br/>주소 : "+
+							data[0]+"<br/>이메일 : "+data[2]+"<br/>나이 : "+data[1];
+						//화면의 일부분을 변경하여 서버에서 받아온 데이터를 보여준다.
+						
+						$("#modal_output").html(outputData);
+					
+						}
+					});	
+				
+				});//ajax
+				
+				
+				
+				
+				}//end if				
+			} else {
+			//이메일로 찾기
+			if ( !$("#findIDbyEmail").val()=="" & !$("#inputPassword2").val()==""){
+				alert("입력 요망");
+			}//end else
+			
+
+		
+ 		}//end if		
+	});//end click
 	
 });//ready
 </script>
@@ -48,39 +121,58 @@ $(function(){
  	<!-- MENU 끝 -->
 </div>
 <div id="container">   
+	
 
 	<div align="center" style="margin-left: auto; margin-right: auto; width: 510px; height: 500px;" >
-		<img src="http://localhost:8080/3rd_pprj/kr.co.sist.user.view/images/id1.png"><strong><font size="5px">&nbsp;아이디 찾기</font></strong><br/><br/><br/>
-		<input type="radio" name="radio">&nbsp;<strong>내정보에 등록된 휴대폰으로 찾기</strong><br/><br/>
-		<input type="text" class="form-control" id="findIDbyPhone" value="이름을 입력해 주세요" style="width:230px; margin-bottom: 10px;">
+		<img src="/3rd_prj/common/images/idcard2.png"><strong><font size="5px">&nbsp;아이디 찾기</font></strong><br/><br/><br/>
+		<input type="radio" name="radio" id="b1" style="margin-left: 20px;" checked="checked">&nbsp;<strong>내정보에 등록된 휴대폰으로 찾기</strong><br/><br/>
+		<input type="radio" name="radio" id="b2" style="margin-left: 4px;">&nbsp;<strong>내정보에 등록된 이메일로 찾기</strong><br/><br/>
 		
-		
+		<div id="a">
 		<form class="form-inline" style="padding-left: 123px ">
+			<input type="text" class="form-control" id="findIDbyPhone" placeholder="이름을 입력해 주세요" style="width:230px; margin-bottom: 10px; margin-left:17px" >
 			  <div class="form-group mx-sm-3 mb-2" >
-			    <label for="inputPassword2" class="sr-only" >휴대폰 번호를 입력해주세요.</label>
-			    <input type="text" class="form-control" id="inputPassword2" placeholder="휴대폰 번호를 입력해주세요." style="width:230px; ">
+			    <label for="inputPassword" class="sr-only" ></label>
+			    <input type="text" class="form-control" id="inputPassword" placeholder="휴대폰 번호를 입력해주세요." style="width:230px; ">
 			  </div>
-			 <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="backBtn">
+			 <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="searchBtn">
 		</form>
-	
-		<br/>
+		</div>
+
 				
-		<input type="radio" name="radio2">&nbsp;<strong>내정보에 등록된 이메일로 찾기</strong><br/><br/>
-		<input type="text" class="form-control" id="findIDbyEmail" value="이름을 입력해 주세요" style="width:230px; margin-bottom: 10px;">
+		<div id="b" style="display: none; ">
+		<input type="text" class="form-control" id="findIDbyEmail" placeholder="이름을 입력해 주세요" style="width:230px; margin-bottom: 10px;">
 		<form class="form-inline" style="padding-left: 123px ">
 			  <div class="form-group mx-sm-3 mb-2" >
-			    <label for="inputPassword2" class="sr-only" >휴대폰 번호를 입력해주세요.</label>
-			    <input type="text" class="form-control" id="inputPassword2" placeholder="휴대폰 번호를 입력해주세요." style="width:230px; ">
+			    <label for="inputPassword2" class="sr-only" ></label>
+			    <input type="text" class="form-control" id="inputPassword2" placeholder="이메일을 입력해주세요." style="width:230px; ">
 			  </div>
-			  <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="backBtn">
+			  <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="searchBtn2">
 		</form>		
-
-
-	</div>
-
-	
+		</div> 
+	</div>	
 </div>
-          
+
+
+<!-- Modal -->
+	<div class="modal fade" id="modalMsg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">파싱결과</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div id="modal_output"><span id="hihi"></span></div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>          
 </div>
 
 <div id="footer">

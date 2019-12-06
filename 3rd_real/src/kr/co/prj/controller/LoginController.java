@@ -1,4 +1,4 @@
-package kr.co.prj.controller; 
+package kr.co.prj.controller;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -14,10 +14,7 @@ import kr.co.sist.util.cipher.DataEncrypt;
 public class LoginController {
 
 	
-	@RequestMapping(value="login/signUp.do")
-	public String signUpForm() {
-		return "login/signUp";
-	}//introduceForm
+
 	@RequestMapping(value="login/login.do")
 	public String loginForm() {
 		return "login/login";
@@ -50,12 +47,22 @@ public class LoginController {
 		
 		return "main/home";
 	}
+	
+	
 	@RequestMapping(value = "login/find_id.do")
 	public String findId() {
 	
 		
 		return "login/find_id";
 	}
+	
+
+	@RequestMapping(value = "login/find_pw.do")
+	public String findId2() {
+	
+		
+		return "login/find_pw";
+	}//ajax·Î ÇØ¼­ alert
 	
 	
 }

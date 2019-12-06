@@ -33,7 +33,19 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Amaranth&display=swap" rel="stylesheet">
 <script type="text/javascript">
+
 $(function(){
+	$("#email2").change(function(){
+		var tempEm2=$("#email2").val();
+		if( tempEm2 !="직접입력"){
+		//	if( tempEm2 !="직접입력"){
+				$("#email3").val( tempEm2 );
+		//	}//end if
+		}else{
+			$("#email3").val("");
+			$("#email3").focus();
+		}
+	});
 	$("#id").focusout(function(){
 		 if($("#id").val()!=""){
 			$("#id").attr('class','form-control is-valid');
@@ -76,6 +88,7 @@ $(function(){
 	$("#inputPasswordCheck").focusout(function(){
 		 if($("#inputPasswordCheck").val()!=""){
 			if($("#inputPassword").val()!=$("#inputPasswordCheck").val()){
+				
 				alert("값이 다름");
 			}//end if
 			 
@@ -122,7 +135,11 @@ $(function(){
 			}//비밀번호 확인 존재여부 
 	});//focusout - pass
 	
-	$("#email2").focusout(function(){
+	$("#goBtn").click(function(){
+		$("#signUpFrm").submit();
+	});//click
+	
+/* 	$("#email2").focusout(function(){
 		 if($("#email").val()!=""&& $("#email2").val()!=""){
 			 
 			 $("#email").attr('class','form-control is-valid');
@@ -137,7 +154,7 @@ $(function(){
 				$("#email_div").text("핸드폰 번호를 입력해주세요.");
 				
 			}//이메일 존재 여부
-	});//focusout - pass
+	});//focusout - pass */
 	
 });//ready
 </script>
@@ -151,16 +168,16 @@ $(function(){
 </div>
 <div id="container">
 
-<form id="signUpFrm">
+<form id="signUpFrm" action="input_card.do" method="get" >
  <h2 align="center"><strong>Register</strong></h2>
 <div style="margin-left: 200px;">
- 
+ <span name="span">sadasdad</span>
   <br/>
   
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-2 col-form-label">아이디</label>
     <div class="col-sm-3">
-       <input type="text" class="form-control " id="id" placeholder="아이디 입력"  required/>
+       <input type="text" class="form-control " id="id" placeholder="아이디 입력"  required name="user_id"/>
       <div  id="id_div"> </div> 
       
     </div>
@@ -169,7 +186,7 @@ $(function(){
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-2 col-form-label">이름</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="userName" value="">
+      <input type="text" class="form-control" id="userName" value="" name="user_name">
       <div  id="userName_div"> </div> 
     </div>
   </div> 
@@ -177,14 +194,14 @@ $(function(){
   <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
     <div class="col-sm-3" >
-      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
       <div  id="inputPassword_div"> </div> 
     </div>
   </div>
   <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호 확인</label>
     <div class="col-sm-3">
-      <input type="password" class="form-control" id="inputPasswordCheck" placeholder="Password">
+      <input type="password" class="form-control" id="inputPasswordCheck" placeholder="Password" name="password2">
       <div  id="inputPasswordCheck_div"> </div> 
     </div>
   </div>
@@ -192,10 +209,13 @@ $(function(){
  <div class="form-group row">
   <label for="staticEmail" class="col-sm-2 col-form-label">비밀번호 힌트</label>
     <div class="col-sm-3">
-      <select class="form-control">
-  		<option>나의 보물 1호는?</option>
-  		<option>강아지</option>
-  		<option>고양이</option>
+  
+    
+      <select class="form-control" name="hint_code">
+  		  <c:forEach var="passHintList" items="${passHintList }">
+			<option value="${ passHintList.hintCode }"><c:out value="${ passHintList.hint }"/></option>
+		  </c:forEach>
+    
 	  </select>
     </div>
   </div>
@@ -203,7 +223,7 @@ $(function(){
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-2 col-form-label">힌트 정답</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="hintAw" >
+      <input type="text" class="form-control" id="hintAw" name="answer">
       <div  id="hintAw_div"> </div> 
     </div>
   </div> 
@@ -211,17 +231,17 @@ $(function(){
   <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">휴대전화</label>
     <div class="col-sm-1" >
-      <select class="form-control" style="width:80px">
-  		<option>010</option>
-  		<option>011</option>
-  		<option>012</option>
+      <select class="form-control" style="width:80px" name="phon1">
+  		<option value="010">010</option>
+  		<option value="011">011</option>
+  		<option value="012">012</option>
 	  </select>
     </div>
     <div class="col-sm-3" align="left">
-     <input type="text" class="form-control" id="phone1" style="margin-left: 15px;">
+     <input type="text" class="form-control" id="phone1" name="phon2" style="margin-left: 15px;">
     </div><span style="margin-top: 10px; margin-left: 10px;" >-</span>
     <div class="col-sm-3">
-     <input type="text" class="form-control" id="phone2">
+     <input type="text" class="form-control" id="phone2" name="phon3">
       <div  id="phone_div"> </div> 
     </div>
   </div>
@@ -229,24 +249,26 @@ $(function(){
  <div class="form-group row">
   <label for="staticEmail" class="col-sm-2 col-form-label">이메일</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" placeholder="mail" id="email">
+      <input type="text" class="form-control" placeholder="mail"  name="email1" id="email1">
     </div>
     @
     <div class="col-sm-3">
-      <select class="form-control">
-  		<option>직접입력</option>
-  		<option>naver.com</option>
-  		<option>hanmail.co.kr</option>
+      <select id="email2" class="form-control">
+		<option value="직접입력">직접입력</option>
+		<option value="daum.net">daum.net</option>
+		<option value="naver.com">naver.com</option>
+		<option value="gmail.com">gmail.com</option>
+		<option value="hotmail.com">hotmail.com</option>
 	  </select>
     </div>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="email2"/>
+      <input type="text" class="form-control" name="email3" id="email3"/>
   </div>
       <div  id="email_div"></div> 
   </div>
     <div id="btnClass"style="position: relative; margin-top: 50px; margin-left: 250px; margin-bottom: 100px;" >
-				<input type="button" value="취소" class="btn btn-outline-secondary alert-danger" id="goBtn" style="margin-right: 25px;" >
-				<input type="button" value="다음" class="btn btn-outline-secondary alert-secondary" id="backBtn">
+				<input type="button" value="취소" class="btn btn-outline-secondary alert-danger" id="backBtn" style="margin-right: 25px;" >
+				<input type="button" value="다음" class="btn btn-outline-secondary alert-secondary" id="goBtn">
 				
 			</div>
     
