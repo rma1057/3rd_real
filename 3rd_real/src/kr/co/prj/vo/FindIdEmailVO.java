@@ -1,6 +1,6 @@
 package kr.co.prj.vo;
 
-public class FindVO {
+public class FindIdEmailVO {
 	
 	private String name, email;
 
@@ -19,7 +19,10 @@ public class FindVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	
+	
+
 	
 
 }

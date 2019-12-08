@@ -2,13 +2,12 @@
     pageEncoding="UTF-8"
     info=""
     %>
-   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -32,80 +31,57 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Amaranth&display=swap" rel="stylesheet">
+<style type="text/css">
+.alert-danger{color: #000000; background-color: #E3C6C2}
+</style>
 <script type="text/javascript">
 $(function(){
-	$("#btn").click(function(){
-		chkNull();
-	});//click
-	$("#inputId").keydown(function(evt){
-		if(evt.which == 13){
-		chkNull();
-		}//end if
-	});//keydown
-	$("#inputPassword").keydown(function(evt){
-		if(evt.which == 13){
-		chkNull();
-		}//end if
-	});//keydown
 	
 });//ready
-
-function chkNull(){
-	var id=$("#inputId").val();
-	if(id.trim()==""){
-		$("#inputId").focus();
-		return;
-	}//end if
-	var passwd=$("#inputPassword").val();
-	if(passwd.trim()==""){
-		$("#inputPassword").focus();
-		return;
-	}//end if
-	$("#logFrm").submit();
-	
-	
-}//chkNull
-
 </script>
 </head>
 <body>
 <div id="class4Wrap">
 <div id="naviBar">
  	<!-- MENU 시작 -->
-	 <%@include file="../../../common/navbar/nav.jsp" %>
+	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
-<div id="container">
-
-<form class="form-signin" style=" height:500px; margin-left:450px;" action="login_process.do" method="post" id="logFrm">
-  <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal" >LOGIN</h1>
-  <label for="inputEmail" class="sr-only">Username</label>
-  <input type="text" id="inputId" name="inputId" class="form-control" placeholder="Username" required="" autofocus="" style="width:300px; margin-bottom: 10px;">
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword"   name="inputPassword" class="form-control" placeholder="Password" required="" style="width:300px; margin-bottom: 10px;">
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me">아이디 저장
-    </label>
-  </div>
-  <button class="btn btn-secondary alert-secondary" type="button" style="width: 300px;" id="btn">로그인</button>
-	<p class="text-muted">
-	<a href="find_id.do" class="text-reset">아이디찾기</a>&nbsp;|&nbsp;
-	<a href="find_pw.do"" class="text-reset">비밀번호 찾기</a>&nbsp;|&nbsp;
-	<a href="signUp.do" class="text-reset">회원가입</a>
-	</p>
-</form>
-
+<div id="container">   
+          
+            <h4>메일 보내기</h4>
+    <form action="mailSending.do" method="post">
+      <div>
+        <input type="text" name="tomail" size="120"
+        style="width: 100%" placeholder="상대의 이메일"
+        class="form-control">
+      </div>
+      <div align="center">
+        <!-- 제목 -->
+        <input type="text" name="title" size="120"
+        style="width: 100%" placeholder="제목을 입력해주세요"
+        class="form-control">
+      </div>
+        <p>
+          <div align="center">
+          <!-- 내용 -->
+            <textarea name="content" cols="120" rows="12"
+            style="width: 100%; resize: none" placeholder="내용#"
+            class="form-control"></textarea>
+          </div>
+        <p>
+      <div align="center">
+        <input type="submit" value="메일 보내기" class="btn btn-warning">
+      </div>
+    </form>
+				
+			</div>   
 </div>
+
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
-	<div id="fLogo">
-		
-	</div>
-	<div id="fContent">
+  <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
-		<h4><strong>[;P]</strong></h4>
+		<h4><strong>[:P]</strong></h4>
 		사업자명 : (주)Baek's company<br/>
 		 대표이사 : 윤태식   <br/> 
 		이메일 : wo2015@naver.com<br/>
@@ -125,8 +101,6 @@ function chkNull(){
 		​예금주 : 백승규<br/><br/><br/>
 			&copy;CopyRight. AllRight Reserved.<br/>
 		</div>
-	
-		
 	</div>
 </div>
 </div>
