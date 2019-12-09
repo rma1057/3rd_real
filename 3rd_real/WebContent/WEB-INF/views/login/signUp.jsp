@@ -35,6 +35,16 @@
 <script type="text/javascript">
 
 $(function(){
+	
+    var regExp1 = /^[a-zA-Z0-9]{4,12}$/;
+    //id와 비밀번호의 유효성 검사
+    var regExp2 = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/i;
+    //e-mail의 유효성 검사
+    var regname = /^[가-힝]{2,}$/;
+    //이름의 유효성 검사
+
+
+	
 	$("#email2").change(function(){
 		var tempEm2=$("#email2").val();
 		if( tempEm2 !="직접입력"){
@@ -47,44 +57,63 @@ $(function(){
 		}
 	});
 	$("#id").focusout(function(){
-		 if($("#id").val()!=""){
+		 if( $("#id").val()!="" & regExp1.test( $("#id").val() ) ){
 			$("#id").attr('class','form-control is-valid');
 			$("#id_div").attr('class','valid-feedback');
 			$("#id_div").text("");
-		}else{
+		} else  {
 			$("#id").attr('class','form-control is-invalid');
 			$("#id_div").attr('class','invalid-feedback');
-			$("#id_div").text("아이디를 입력해주세요.");
+			$("#id_div").text("형식에 맞춰 ID를 입력해주세요.");
 			
 		}//아이디 값 존재 여부
 		
 	});//focusout - id
 	
 	$("#userName").focusout(function(){
-		 if($("#userName").val()!=""){
+		 if($("#userName").val()!="" & regname.test( $("#userName").val() ) ){
 				$("#userName").attr('class','form-control is-valid');
 				$("#userName_div").attr('class','valid-feedback');
 				$("#userName_div").text("");
 			}else{
 				$("#userName").attr('class','form-control is-invalid');
 				$("#userName_div").attr('class','invalid-feedback');
-				$("#userName_div").text("이름 입력해주세요.");
+				$("#userName_div").text("한글로 이름을 입력해주세요.");
 				
 			}//이름 존재 여부
 	});//focusout - name
 	
+	
+	//비밀번호부터 해야함
+	
+	
+	
+	
+	
+	
 	$("#inputPassword").focusout(function(){
-		 if($("#inputPassword").val()!=""){
+		 if($("#inputPassword").val()!="" & regExp1.test( $("#inputPassword").val() ) ){
+				 
 				$("#inputPassword").attr('class','form-control is-valid');
 				$("#inputPassword_div").attr('class','valid-feedback');
 				$("#inputPassword_div").text("");
-			}else{
+				 
+		}else{
+			 if( $("#id").val() ==	$("#inputPassword").val() ){
+					$("#inputPassword").attr('class','form-control is-invalid');
+					$("#inputPassword_div").attr('class','invalid-feedback');
+					$("#inputPassword_div").text("아이디와 비밀번호가 같습니다.");				 
+			 } else {
 				$("#inputPassword").attr('class','form-control is-invalid');
 				$("#inputPassword_div").attr('class','invalid-feedback');
-				$("#inputPassword_div").text("비밀번호를 입력해주세요.");
-				
-			}//비밀번호 존재여부 
+				$("#inputPassword_div").text("형식에 맞춰 비밀번호를 입력해주세요.");
+			 }//end else	
+		}//비밀번호 존재여부 
 	});//focusout - pass
+	
+	
+	
+	
 	$("#inputPasswordCheck").focusout(function(){
 		 if($("#inputPasswordCheck").val()!=""){
 			if($("#inputPassword").val()!=$("#inputPasswordCheck").val()){
@@ -139,6 +168,8 @@ $(function(){
 		$("#signUpFrm").submit();
 	});//click
 	
+
+	
 /* 	$("#email2").focusout(function(){
 		 if($("#email").val()!=""&& $("#email2").val()!=""){
 			 
@@ -156,6 +187,95 @@ $(function(){
 			}//이메일 존재 여부
 	});//focusout - pass */
 	
+	
+	/**
+    function checked() {
+        var regExp1 = /^[a-zA-Z0-9]{4,12}$/;
+        //id와 비밀번호의 유효성 검사
+        var regExp2 = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/i;
+        //e-mail의 유효성 검사
+        var regname = /^[가-힝]{2,}$/;
+        //이름의 유효성 검사
+
+            if( regExp1.test( $("#id").val() ) ) {
+             //아이디 유효성 검사 후 4~12자의 영문 대소문자와 숫자의 유효성이 안 맞다면
+             //공백을 주고 알람을 띄운다.
+             //밑에 동일한 유효성 검사
+         
+                alert("형식에 맞춰 ID를 입력하세요");
+                idtext.value = "";
+                idtext.focus();
+                return false;
+            }
+        
+
+        
+        
+   
+        //이름의 유효성 검사
+        if(!getCheck.test($("#id").val())){
+          alert("형식에 맞게 입력해주세요");
+          $("#id").val("");
+          $("#id").focus();
+          return false;
+        }
+   
+        //비밀번호
+        if(!getCheck.test($("#inputPassword").val())) {
+        alert("형식에 맞춰서 PW를 입력해줘용");
+        $("#inputPassword").val("");
+        $("#inputPassword").focus();
+        return false;
+        }
+   
+        //아이디랑 비밀번호랑 같은지
+        if ($("#id").val()==($("#inputPassword").val())) {
+        alert("비밀번호가 ID와 똑같으면 안!대!");
+        $("#inputPassword").val("");
+        $("#inputPassword").focus();
+      }
+   
+        //비밀번호 똑같은지
+        if($("#inputPassword").val() != ($("#inputPasswordCheck").val())){ 
+        alert("비밀번호가 틀렸네용.");
+        $("#inputPassword").val("");
+        $("#inputPasswordCheck").val("");
+        $("#inputPassword").focus();
+        return false;
+       }
+   
+       //이메일 공백 확인
+        if($("#email1").val() == ""){
+          alert("이메일을 입력해주세요");
+          $("#email1").focus();
+          return false;
+        }
+             
+        //이메일 유효성 검사
+        if(!getMail.test($("#mail").val())){
+          alert("이메일형식에 맞게 입력해주세요")
+          $("#mail").val("");
+          $("#mail").focus();
+          return false;
+        } 
+   
+        //이름 유효성
+        if (!getName.test($("#userName").val())) {
+          alert("이름 똑띠 쓰세용");
+          $("#userName").val("");
+          $("#userName").focus();
+          return false;
+        }
+	
+
+   
+      return true;
+    }	
+	
+        */
+	
+	
+	
 });//ready
 </script>
 </head>
@@ -168,10 +288,10 @@ $(function(){
 </div>
 <div id="container">
 
-<form id="signUpFrm" action="input_card.do" method="get" >
+<form id="signUpFrm" action="input_card.do" onsubmit="return checked()" method="post" >
  <h2 align="center"><strong>Register</strong></h2>
 <div style="margin-left: 200px;">
- <span name="span">sadasdad</span>
+<!--  <span name="span">sadasdad</span> -->
   <br/>
   
   <div class="form-group row">

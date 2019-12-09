@@ -37,6 +37,8 @@ public class LoginController {
 	@RequestMapping(value="login/login.do")
 	public String loginForm() {
 		return "login/login";
+
+		
 	}//introduceForm
 	
 	@RequestMapping(value="login/login_process.do")
@@ -54,6 +56,7 @@ public class LoginController {
 			session.setAttribute("memberId", lVO.getInputId());
 			uri = "main/home";
 		}
+		
 		System.out.println("로그인 성공 아이디:"+session.getAttribute("memberId"));
 		return uri;
 	}
