@@ -142,7 +142,22 @@ public class LoginController {
 		 String setfrom = "";
 			String tomail = sevo.getEmail(); // 받는 사람 이메일
 			String title = sevo.getId() +"님의 임시 비밀번호 발급 메일입니다.";  // 제목
-			String content = sevo.getId()+" 님의 임시 비밀번호는 "+sevo.getPassword()+"입니다."; // 내용
+			StringBuilder content=new StringBuilder();
+			
+			content.append("[ :P ] \n\n")
+					  .append("비밀번호는 관리자도 알 수 없도록\n")
+					  .append("암호화하여 저장되기 때문에\n")
+					  .append("새로운 임시비밀번호를 생성하여 안내해 드리오니\n")
+					  .append("임시비밀번호로 로그인하신 후, \n")
+					  .append("비밀번호 분실 방지를 위해 개인정보 변경을 통해 \n")
+					  .append("새로운 비밀번호로 변경하여 사용해 주십시오. \n")
+					  .append("\n")
+					  .append(sevo.getId()+" 님의 임시 비밀번호는 "+sevo.getPassword()+"입니다.")
+					  .append("\n")
+					  .append("서울시 강남구 역삼동 409-7 3F, 4F [ :P ] | Copyright(C)2010 Worldjob.or.kr.All Rights Reserved. ");
+
+										 
+			//String content = sevo.getId()+" 님의 임시 비밀번호는 "+sevo.getPassword()+"입니다."; // 내용
 
 			try {
 				
@@ -156,9 +171,9 @@ public class LoginController {
 				System.out.println("메일 보내고 싶어여ㅠ");
 
 				messageHelper.setFrom("pspace.rental@gmail.com"); // 보내는사람 생략하면 정상작동을 안함
-				messageHelper.setTo("jieun585@naver.com"); // 받는사람 이메일
+				messageHelper.setTo("rma1057@gmail.com"); // 받는사람 이메일
 				messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-				messageHelper.setText(content); // 메일 내용
+				messageHelper.setText(String.valueOf(content)); // 메일 내용
 
 				mailSender.send(message);
 			} catch (Exception e) {

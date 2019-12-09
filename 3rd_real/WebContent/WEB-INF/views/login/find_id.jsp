@@ -26,6 +26,8 @@
 	/* 푸터 끝  */
 	#hTitle{font-family: '고딕'; font-size: 30px; font-weight: bold;}
 	
+	#mustId1, #warnId1, #warnNum1, #mustNum1, #mustId2, #warnId2, #warnEmail2, #mustEmail2 { color: red ; display: none ;}
+	#validId1, #validNum1  ,#validId2, #validEmail2 { color: green ; display: none ;}
 	
 	
 </style>
@@ -54,27 +56,117 @@ $(function(){
 		document.getElementById("closeBtn").className = "btn1";
 	});
 	
-
-
 	
-/* 	$("#findIDbyPhone").keypress(){
-		if(flag) {
+/////////////////////////////////////유효성 검증- 	사용자가 아이디 한글 넣고, 핸드폰 번호 양식에 맞게 넣어 줬는지값을 넣어줬는지
+	
+
+    $("#findIDbyPhone").keyup(function (event) {
+    	$("#validId1").hide();
+    	$("#warnId1").hide();
+    	$("#mustId1").hide();   
+    	  	
+ 
+        regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+        v = $(this).val();
+        if (regexp.test(v)) {
+   
+            $("#warnId1").show();
+       //     $("#warnId1").fadeOut(3000);  
+       		return; 
+       		
+        } else if( $("#findIDbyPhone").val()=="" ) {
+
+    		$("#mustId1").show();    
+    		return;
+    		
+        } else {
+
+        	$("#validId1").show();
+        return;
+        }//end if
+
+	 //     $(this).val(v.replace(regexp, '')); 
+    });
+	
+	
+ 	$("#inputPassword").focusout(function (event) {
+ 		$("#warnNum1").hide();
+ 		$("#validNum1").hide(); 		
+ 		$("#mustNum1").hide();
+ 		
+		if( $("#inputPassword").val().indexOf("-") == -1 ) {
+			$("#warnNum1").show();
+			return;
+	    } else if( $("#inputPassword").val()=="" ) {
+	    	$("#mustNum1").show();
+			return;	    	
+		} else {
+			$("#validNum1").show();
+			return;
+		}//end if 		
+ 	});//keyup
+ 	
+ 	
+    $("#findIDbyEmail").keyup(function (event) {
+ 		$("#validId2").hide();
+ 		$("#warnId2").hide(); 		
+ 		$("#mustId2").hide();
+    	
+        regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+        v = $(this).val();
+        if (regexp.test(v)) {
+            $("#warnId2").show();
+		//	$("#warnId2").fadeOut(3000);    
+       //   $(this).val(v.replace(regexp, ''));
+	    } else if( $("#findIDbyEmail").val()=="" ) {
+	    	$("#mustId2").show();
+			return;
+	    	
+        } else {
+        	$("#validId2").show();
+        }//end else
+    });
+	
+	
+ 	$("#inputPassword2").focusout(function (event) {
+ 		$("#validEmail2").hide();
+ 		$("#warnEmail2").hide(); 		
+ 		$("#mustEmail2").hide();
+ 		
+ 		
+		if( $("#inputPassword2").val().indexOf("@") == -1 ) {
+			$("#warnEmail2").show();
 			
-		}//end if			
-		
-	}); */
+	    } else if( $("#inputPassword2").val()=="" ) {
+	    	$("#mustEmail2").show();
+			return;
+			
+		} else {
+			$("#validEmail2").show();
+		}//end if 		
+ 	});//keyup
+
+ 	
+/////////////////////////////////////유효성 검증 끝
+ 	
+ 	
+ 	
 	
 	//버튼 둘중에 한개선택되었을 때 조건문 (id로 주는 법)
 	$(".btn").click(function(){
-		alert("왜안됑/");
+				
+		
  		//라디오 버튼 둘 중 한개 선택되었는지 
 		if( $("#b1").is(":checked") || $("#b2").is(":checked") ){ 
-			//사용자가 아이디 한글 넣고 // 핸드폰 번호 양식에 맞게 넣어 줬는지값을 넣어줬는지
-		
+
+			
+			
 			//휴대폰으로 찾기
 			if( $("#b1").is(":checked") ){				
 				if ( !$("#findIDbyPhone").val()=="" & !$("#inputPassword").val()=="" ){
+	
 					
+				// - 포함해서 핸드폰번호 넣어라~
 				//값 넘겨줘라아~
  				$.ajax({
 					url: "/3rd_prj/login/find_id1.do",
@@ -98,9 +190,13 @@ $(function(){
 						//location.href="login.do"; return
 
 							
-							$(".2nd").click(function(){
+							$("#goLogin").click(function(){
+								location.href="login.do"; //로그인창 연결해주기
+							});//click
+							
+							$("#goFindPw").click(function(){
 								location.href="find_pw.do"; //비밀번호창 연결해주기
-							});//click						
+							});//click					
 					
 					}//success
 				});	//ajax 
@@ -180,24 +276,41 @@ $(function(){
 		
 		<div id="a">
 		<form class="form-inline" style="padding-left: 123px ">
-			<input type="text" class="form-control" id="findIDbyPhone" name="name" placeholder="이름을 입력해 주세요" style="width:230px; margin-bottom: 10px; margin-left:17px" >
+			<div class="form-group mx-sm-3 mb-2">
+				<input type="text" class="form-control" id="findIDbyPhone" name="name" title="한글이름만 입력해주세요" placeholder="이름을 입력해 주세요" style="width:230px; margin-bottom: 5px;" >
+	         	  <p style="margin-left: 15px;" id="warnId1">이름은 한글로만 입력가능합니다.</p>
+	         	  <p style="margin-left: 15px;" id="validId1">맞는 입력형식입니다.</p>
+	         	  <p style="margin-left: 15px;" id="mustId1" >이름은 필수입력값입니다.</p>
+			</div>
+			
 			  <div class="form-group mx-sm-3 mb-2" >
 			    <label for="inputPassword" class="sr-only" ></label>
-			    <input type="text" class="form-control" id="inputPassword" name="phone" placeholder="휴대폰 번호를 입력해주세요." style="width:230px; ">
+			    <input type="text" class="form-control" id="inputPassword" name="phone" title="-을 포함한 번호를 입력해주세요" placeholder="휴대폰 번호를 입력해주세요." style="width:230px; ">
+			 	<p style="margin-left: 15px;"id="warnNum1"> '-'을 포함한 번호를 입력해주세요.</p>
+			 	<p style="margin-left: 15px;"id="validNum1"> 맞는 입력형식입니다. </p>
+			 	<p style="margin-left: 15px;"id="mustNum1"> 휴대폰 번호는 필수입력값입니다. </p>
 			  </div>
-			 <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="searchBtn">
+			 <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="searchBtn" style="margin-top: 50px; margin-left: 70px;">
 		</form>
 		</div>
 
 				
 		<div id="b" style="display: none; ">
-		<input type="text" class="form-control" id="findIDbyEmail" name="name" placeholder="이름을 입력해 주세요" style="width:230px; margin-bottom: 10px;">
 		<form class="form-inline" style="padding-left: 123px ">
+		 <div class="form-group mx-sm-3 mb-2" >
+			<input type="text" class="form-control" id="findIDbyEmail" name="name"  title="한글이름만 입력해주세요" placeholder="이름을 입력해 주세요" style="width:230px; margin-bottom: 5px;">
+			<p style="margin-left: 15px;" id="warnId2" >이름은 한글로만 입력가능합니다.</p>
+			<p style="margin-left: 15px;" id="validId2" >맞는 입력형식입니다.</p>
+			<p style="margin-left: 15px;" id="mustId2" >이름은 필수입력값입니다.</p>
+		</div>
 			  <div class="form-group mx-sm-3 mb-2" >
 			    <label for="inputPassword2" class="sr-only" ></label>
-			    <input type="text" class="form-control" id="inputPassword2" name="email" placeholder="이메일을 입력해주세요." style="width:230px; ">
+			    <input type="text" class="form-control" id="inputPassword2" name="email" title="@을 포함한 이메일을 입력해주세요" placeholder="이메일을 입력해주세요." style="width:230px; ">
+			    <p style="margin-left: 15px;"id="warnEmail2"> '@'을 포함한 이메일을 입력해주세요.</p>
+			    <p style="margin-left: 15px;"id="validEmail2"> 맞는 입력형식입니다.</p>
+			    <p style="margin-left: 15px;"id="mustEmail2"> 이메일은 필수입력값입니다. </p>
 			  </div>
-			  <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="searchBtn2">
+			  <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="searchBtn2" style="margin-top: 50px; margin-left: 70px;">
 		</form>		
 		</div> 
 	</div>	
@@ -220,8 +333,8 @@ $(function(){
 	      <br/>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="2nd btn btn-secondary" data-dismiss="modal" id="goLogin">닫기</button>
-	        <button type="button" class="2nd btn btn-secondary" data-dismiss="modal" id="goFindPw">비밀번호 찾기</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="goLogin">닫기</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="goFindPw">비밀번호 찾기</button>
 	      </div>
 	    </div>
 	  </div>

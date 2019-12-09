@@ -177,7 +177,7 @@ $(function(){
   <div class="form-group row">
     <label for="staticEmail" class="col-sm-2 col-form-label">아이디</label>
     <div class="col-sm-3">
-       <input type="text" class="form-control " id="id" placeholder="아이디 입력"  required name="user_id"/>
+       <input type="text" class="form-control " id="id" placeholder="아이디 입력"  required name="user_id"/>    
       <div  id="id_div"> </div> 
       
     </div>

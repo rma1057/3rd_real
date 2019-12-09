@@ -26,6 +26,10 @@
 	#fContent{ width: 1100px;height: 110px; padding-top: 30px; margin-right: auto; margin-left: auto }
 	/* 푸터 끝  */
 	#hTitle{font-family: '고딕'; font-size: 30px; font-weight: bold;}
+	
+	#mustAnswer, #warnAnswer, #mustId, #warnId, #warnNum, #mustNum, #mustEmail, #warnEmail { color: red ; display: none; margin-bottom: 0px;}
+	#validAnswer, #validId, #validNum, #validEmail { color: green ; display: none; margin-bottom: 0px;}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -37,6 +41,124 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	var userIdCheck = RegExp(/^[a-zA-Z0-9]{4,12}$/);
+	
+	////////////////////////////////// 유효성 검증 ///////////////////////////////////////////////
+	
+
+	/**
+ 	$("#inputPassword").focusout(function (event) {
+ 		$("#warnNum1").hide();
+ 		$("#validNum1").hide(); 		
+ 		$("#mustNum1").hide();
+ 		
+		if( $("#inputPassword").val().indexOf("-") == -1 ) {
+			$("#warnNum1").show();
+			return;
+	    } else if( $("#inputPassword").val()=="" ) {
+	    	$("#mustNum1").show();
+			return;	    	
+		} else {
+			$("#validNum1").show();
+			return;
+		}//end if 		
+ 	});//keyup
+ 	*/
+	
+	
+	
+	 $("#id").focusout(function (event) {	 
+		$("#warnId").hide();
+		$("#validId").hide();
+		$("#mustId").hide();
+		
+	     if( !userIdCheck.test(  $("#id").val()  ) ) {
+		    	 $("#warnId").show();
+		    	 return;
+		    	 //$("#warnId").fadeOut(3000);
+	     } else if( $("#id").val()=="" ) {
+		    	$("#mustId").show();
+				return;	    	
+	     } else { 
+	    	 $("#validId").show();
+	    	 return;
+	     }//end else
+	 });//focusout 
+   
+
+	
+ 	$("#phone").focusout(function (event) {
+		 $("#warnNum").hide();
+		 $("#validNum").hide();
+		 $("#mustNum").hide();
+		 
+ 		
+			if( $("#phone").val().indexOf("-") == -1 ) { 
+			    $("#warnNum").show();
+			    return;
+		    } else if( $("#phone").val()=="" ) {
+			    	$("#mustNum").show();
+					return;	    	
+			} else {
+				 $("#validNum").show();
+				 return;
+			}//end if
+	 });//focusout
+	 
+	 
+	 
+
+	 $("#email").focusout(function (event) {
+		 $("#warnEmail").hide();
+		 $("#validEmail").hide();
+		 $("#mustEmail").hide();
+		 
+		 if( $("#email").val().indexOf("@") == -1 ) {
+			 $("#warnEmail").show();
+				return;
+		    } else if( $("#email").val()=="" ) {
+		    	$("#mustEmail").show();
+				return;	    
+			} else {
+			$("#validEmail").show();	
+			return;
+			}//end if 		
+	 });//focusout
+	 
+	 
+	 
+
+	    $("#answer").focusout(function (event) {
+		    	$("#validAnswer").hide();
+		    	$("#warnAnswer").hide();
+		    	$("#mustAnswer").hide();    			    
+
+		    
+		     var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/;
+		
+		     v = $(this).val();
+		     if ( pattern_spc.test(v) ) {
+		
+		         $("#warnAnswer").show();
+		    	 	return; 
+		    		
+		     } else if( $("#answer").val()=="" ) {
+			
+			 		$("#mustAnswer").show();    
+			 		return;
+		     } else {
+		
+		     	$("#validAnswer").show();
+		    	 return;
+		     }//end else
+	     });//keyup     
+     
+
+
+
+	////////////////////////////////// 유효성 끝 ///////////////////////////////////////////////
+
+
 	
 	$("#find").click(function(){		
 				if ( !$("#id").val()=="" & !$("#phone").val()=="" & !$("#email").val()=="" & !$("#answer").val()=="" & !$("#hint_code option:selected").val()=="" ) {
@@ -103,25 +225,35 @@ $(function(){
 비밀번호 찾기
 </div>
 
+
 <div id="container1">
 <form>
-  <div class="form-group row">
+  <div class="form-group row" >
     <label for="inputEmail3" class="col-sm-2 col-form-label">아이디</label>
-    <div class="col-sm-4">
-      <input type="email" class="form-control" name="id" id="id" placeholder="id">
-    </div>
+   <div class="col-sm-4" style="margin-bottom: 0px">
+      <input type="email" class="form-control" name="id" id="id" placeholder="ID">
+   </div>
+	  <p id="warnId" style="margin-left:160px;">ID는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.</p>
+	  <p id="validId" >맞는 입력형식입니다.</p>
+	  <p id="mustId" >필수 입력값입니다. </p>
   </div>
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">전화번호</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" name="phone" id="phone" placeholder="number">
+      <input type="password" class="form-control" name="phone" id="phone" placeholder="EX ) 010-XXXX-XXXX" >
     </div>
+     <p id="warnNum" style="margin-left:160px;">전화번호는 -을 포함한 숫자를 입력해주세요.</p>
+     <p id="validNum" >맞는 입력형식입니다.</p>
+     <p id="mustNum" >필수 입력값입니다. </p>
   </div>
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" name="email" id="email" placeholder="email">
+      <input type="password" class="form-control" name="email" id="email" placeholder="EX ) XXX@gmail.com">
     </div>
+    <p id="warnEmail" style="margin-left:160px;">이메일은 @을 포함한 영문과 숫자를 입력해주세요.</p>
+    <p id="validEmail" >맞는 입력형식입니다.</p>
+    <p id="mustEmail" >필수 입력값입니다.</p>
   </div>
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">힌트</label>
@@ -147,8 +279,11 @@ $(function(){
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">정답</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" id="answer" placeholder="answer" name="answer">
+      <input type="password" class="form-control" id="answer" placeholder="answer" name="ANSWER">
     </div>
+	    <p id="warnAnswer" style="margin-left:160px;">특수문자를 제외한 답변을 입력해주세요.</p>
+	    <p id="validAnswer" >맞는 입력형식입니다.</p>
+	    <p id="mustAnswer" >필수 입력항목입니다.</p>
   </div>
 </form>
 </div>
@@ -176,8 +311,8 @@ $(function(){
 	      <br/>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn1 btn-secondary" data-dismiss="modal" id="sendPw">Close</button>
-	        <button type="button" class="btn1 btn-secondary" data-dismiss="modal" id="goLogin">Login으로</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sendPw">Close</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="goLogin">Login으로</button>
 	      </div>
 	    </div>
 	  </div>

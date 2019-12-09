@@ -29,6 +29,7 @@
     
     
     
+    <mapper resource="kr/co/prj/mapper/find_mapper.xml"/> 
      <mapper resource="kr/co/prj/mapper/rsvtime_mapper.xml"/>
      <mapper resource="kr/co/prj/mapper/rsvinput_mapper.xml"/>
      <mapper resource="kr/co/prj/mapper/roominfo_mapper.xml"/>
