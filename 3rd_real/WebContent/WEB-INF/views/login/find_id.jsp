@@ -349,7 +349,7 @@ $(function(){
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="goLogin">닫기</button>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="goFindPw">비밀번호 찾기</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="goFindPw">비번 찾기</button>
 	      </div>
 	    </div>
 	  </div>

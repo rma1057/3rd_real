@@ -96,6 +96,9 @@ $(function(){
 	 
 
 	 $("#email").focusout(function (event) {
+		 
+		 var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 	
+		 
 		 $("#warnEmail").hide();
 		 $("#validEmail").hide();
 		 $("#mustEmail").hide();
@@ -109,8 +112,9 @@ $(function(){
 				return;	    
 		    } else if ( !regExpEmail.test($("#email").val() ) ){
 		    	$("#warnEmail2").show();	 
-			} else {
-			$("#validEmail").show();	
+		    	return;
+			} else {				
+				$("#validEmail").show();	
 			return;
 			}//end if 		
 	 });//focusout
@@ -226,7 +230,7 @@ $(function(){
       <input type="email" class="form-control" name="id" id="id" placeholder="ID">
    </div>
 	  <p id="warnId" style="margin-left:160px;">ID는 4~20자 영문자 또는 숫자이어야 합니다.</p>
-	  <p id="validId" >맞는 입력형식입니다.</p>
+	  <p id="validId" >유효한 입력형식입니다.</p>
 	  <p id="mustId" >필수 입력값입니다. </p>
   </div>
   <div class="form-group row">
@@ -235,7 +239,7 @@ $(function(){
       <input type="password" class="form-control" name="phone" id="phone" placeholder="EX ) 010-XXXX-XXXX" >
     </div>
      <p id="warnNum" style="margin-left:160px;">전화번호는 -을 포함한 숫자를 입력해주세요.</p>
-     <p id="validNum" >맞는 입력형식입니다.</p>
+     <p id="validNum" >유효한 입력형식입니다.</p>
      <p id="mustNum" >필수 입력값입니다. </p>
      <p id="warnNum2"> 휴대폰 번호는 10~11자리 내여야 합니다.</p>
   </div>
@@ -246,7 +250,7 @@ $(function(){
     </div>
     <p id="warnEmail" style="margin-left:160px;">'@'과 '.'을 포함한 이메일을 입력해주세요.</p>
     <p id="warnEmail2" style="">유효한 이메일 형식이 아닙니다.</p>
-    <p id="validEmail" >맞는 입력형식입니다.</p>
+    <p id="validEmail" >유효한 입력형식입니다.</p>
     <p id="mustEmail" >필수 입력값입니다.</p>
   </div>
   <div class="form-group row">
