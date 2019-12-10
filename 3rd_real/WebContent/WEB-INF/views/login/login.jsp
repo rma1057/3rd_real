@@ -66,11 +66,35 @@ function chkNull(){
 }//chkNull
 
 
-//아이디 저장 기능 구현 - 쿠키
+//아이디 저장 기능 구현 - local storage 
 
 
-$(document).ready(function(){
-	 
+// Q1. 발견된 문제 로그인이 안되는 아이디를 입력한 후 아이디 저장을 클릭하고
+// 로그인 가능한 다른 아이디로 접속하고 로그아웃 후 로그인하려고 하면
+// 유효하지 않은 아이디가 저장되어 있음.
+
+
+$(function(){
+	
+	var saveId=localStorage.getItem("saveId");
+	if( saveId != null ){
+		$("#inputId").val(saveId);
+		$("#idSaveCheck").prop("checked", "checked='checked'");
+	}
+
+	
+	
+	$("#idSaveCheck").click(function(){
+		if($("#idSaveCheck").is(":checked")){
+			
+			localStorage.setItem("saveId", $("#inputId").val())
+		}else{
+			localStorage.removeItem("saveId");
+		}//end else
+	}); 
+	
+	
+	
     // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
     var key = getCookie("key");
     $("#userId").val(key); 

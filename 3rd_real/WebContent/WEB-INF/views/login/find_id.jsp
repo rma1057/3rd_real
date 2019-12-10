@@ -26,7 +26,7 @@
 	/* 푸터 끝  */
 	#hTitle{font-family: '고딕'; font-size: 30px; font-weight: bold;}
 	
-	#mustId1, #warnId1, #warnNum1, #mustNum1, #mustId2, #warnId2, #warnEmail2, #mustEmail2 { color: red ; display: none ;}
+	#mustId1, #warnId1, #warnNum1, #warnNum2, #mustNum1, #mustId2, #warnId2, #warnEmail2,#warnEmail3, #mustEmail2 { color: red ; display: none ;}
 	#validId1, #validNum1  ,#validId2, #validEmail2 { color: green ; display: none ;}
 	
 	
@@ -64,14 +64,13 @@ $(function(){
     	$("#validId1").hide();
     	$("#warnId1").hide();
     	$("#mustId1").hide();   
-    	  	
+
  
         regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
         v = $(this).val();
         if (regexp.test(v)) {
    
             $("#warnId1").show();
-       //     $("#warnId1").fadeOut(3000);  
        		return; 
        		
         } else if( $("#findIDbyPhone").val()=="" ) {
@@ -85,12 +84,15 @@ $(function(){
         return;
         }//end if
 
-	 //     $(this).val(v.replace(regexp, '')); 
     });
 	
 	
  	$("#inputPassword").focusout(function (event) {
+ 		
+    	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+    	
  		$("#warnNum1").hide();
+ 		$("#warnNum2").hide();
  		$("#validNum1").hide(); 		
  		$("#mustNum1").hide();
  		
@@ -100,6 +102,10 @@ $(function(){
 	    } else if( $("#inputPassword").val()=="" ) {
 	    	$("#mustNum1").show();
 			return;	    	
+		} else if ( !regExp.test( $("#inputPassword").val() ) )  {
+			$("#warnNum2").show();
+			      return;
+	
 		} else {
 			$("#validNum1").show();
 			return;
@@ -127,20 +133,24 @@ $(function(){
         }//end else
     });
 	
-	
+	//영문 + @ + . 만 들어가게
  	$("#inputPassword2").focusout(function (event) {
+ 		var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 	
+ 		
+ 		
  		$("#validEmail2").hide();
  		$("#warnEmail2").hide(); 		
  		$("#mustEmail2").hide();
  		
  		
-		if( $("#inputPassword2").val().indexOf("@") == -1 ) {
+		if( $("#inputPassword2").val().indexOf("@") == -1 ||  $("#inputPassword2").val().indexOf(".") == -1) {
 			$("#warnEmail2").show();
 			
 	    } else if( $("#inputPassword2").val()=="" ) {
 	    	$("#mustEmail2").show();
 			return;
-			
+	    } else if ( !regExpEmail.test($("#inputPassword2").val() ) ){
+	    	$("#warnEmail3").show();	    	
 		} else {
 			$("#validEmail2").show();
 		}//end if 		
@@ -154,7 +164,6 @@ $(function(){
 	
 	//버튼 둘중에 한개선택되었을 때 조건문 (id로 주는 법)
 	$(".btn").click(function(){
-				
 		
  		//라디오 버튼 둘 중 한개 선택되었는지 
 		if( $("#b1").is(":checked") || $("#b2").is(":checked") ){ 
@@ -201,7 +210,9 @@ $(function(){
 					}//success
 				});	//ajax 
 
-			};
+			} else {
+				alert("필요정보를 입력해야만 조회가 가능합니다.");
+			}
 				
 				
 				
@@ -246,7 +257,9 @@ $(function(){
 						}//success
 					});	//ajax 
 					
-				};
+				} else {
+					alert("필요정보를 입력해야만 조회가 가능합니다.");
+				}
 			
 			
 			}//end else
@@ -287,6 +300,7 @@ $(function(){
 			    <label for="inputPassword" class="sr-only" ></label>
 			    <input type="text" class="form-control" id="inputPassword" name="phone" title="-을 포함한 번호를 입력해주세요" placeholder="휴대폰 번호를 입력해주세요." style="width:230px; ">
 			 	<p style="margin-left: 15px;"id="warnNum1"> '-'을 포함한 번호를 입력해주세요.</p>
+			 	<p style="margin-left: 15px;"id="warnNum2"> 휴대폰 번호는 최소10자리, 최대 11자리까지 입력 가능합니다.</p>
 			 	<p style="margin-left: 15px;"id="validNum1"> 맞는 입력형식입니다. </p>
 			 	<p style="margin-left: 15px;"id="mustNum1"> 휴대폰 번호는 필수입력값입니다. </p>
 			  </div>
@@ -306,9 +320,10 @@ $(function(){
 			  <div class="form-group mx-sm-3 mb-2" >
 			    <label for="inputPassword2" class="sr-only" ></label>
 			    <input type="text" class="form-control" id="inputPassword2" name="email" title="@을 포함한 이메일을 입력해주세요" placeholder="이메일을 입력해주세요." style="width:230px; ">
-			    <p style="margin-left: 15px;"id="warnEmail2"> '@'을 포함한 이메일을 입력해주세요.</p>
+			    <p style="margin-left: 15px;"id="warnEmail2"> '@'과 '.'을 포함한 이메일을 입력해주세요.</p>
 			    <p style="margin-left: 15px;"id="validEmail2"> 맞는 입력형식입니다.</p>
 			    <p style="margin-left: 15px;"id="mustEmail2"> 이메일은 필수입력값입니다. </p>
+			    <p style="margin-left: 15px;"id="warnEmail3"> 유효한 이메일 형식이 아닙니다. </p>
 			  </div>
 			  <input type="button" value="찾기" class="btn btn-secondary alert-secondary" id="searchBtn2" style="margin-top: 50px; margin-left: 70px;">
 		</form>		

@@ -100,6 +100,12 @@ $(function(){
 	})//click
 	
 	
+	$("#request").focusout(function(){
+		var textarea = document.getElementById('#request');
+		alert(textarea);
+	});
+	
+	
 });//ready
 
 
@@ -223,7 +229,7 @@ $(function(){
 			
 		</div>
 
-		
+
 		
 		<div id="rightside">
 		<form action="/3rd_prj/payment/confirm_parameter.do" method="post">

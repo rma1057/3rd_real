@@ -9,9 +9,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.prj.domain.CardTypeDomain;
 import kr.co.prj.domain.PassHintDomain;
+import kr.co.prj.service.FindService;
 import kr.co.prj.service.SignUpService;
 import kr.co.prj.vo.CardInfoVO;
 import kr.co.prj.vo.SignUpVO;
@@ -68,6 +72,30 @@ public class SignUpController {
 	}//introduceForm
 	
 	
+	
+	
+	
+	
+	
+	
+	//아이디 중복 체크
+	@RequestMapping(value = "/login/checkSignup.do", method = RequestMethod.POST)
+		public @ResponseBody String AjaxView( @RequestParam("id") String id){
+			String str = "";
+			FindService fs=new FindService();
+			int idcheck = fs.checkId(id);
+			if(idcheck==1){ //이미 존재하는 계정
+				str = "NO";	
+			}else{	//사용 가능한 계정
+				str = "YES";	
+			}
+			return str;
+		}
+
+	
+
+
+	
 	public void signUpProcess(SignUpVO suVO, CardInfoVO ciVO) {
 		SignUpService ss= new SignUpService();
 		if(suVO !=null) {
@@ -80,6 +108,8 @@ public class SignUpController {
 	
 		
 	}
+	
+	
 	
 	public void passEncrypt(SignUpVO suVO) {
 		try {

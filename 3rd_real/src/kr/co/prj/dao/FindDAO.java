@@ -50,6 +50,27 @@ public class FindDAO {
 		return ssf;
 	}//getSessionFactory
 	
+	public int selectId(String id) throws SQLException {
+		
+		String idCheck=null;
+		int idCheckFlag=0;
+		
+		try {
+			SqlSession ss=getSessionFactory().openSession();
+			//쿼리 수행 : 한 행 조회
+			idCheck=ss.selectOne("selectIdCheck", id );
+			if (idCheck != null ) {
+				idCheckFlag=1;
+			}
+			System.out.println(idCheck + "개입니다~~~~~~~~~~~!!!");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return idCheckFlag;
+	}//selectIdByPhone
+	
+	
 	public String selectIdByPhone(FindIdPhoneVO fvo) throws SQLException {
 		String id=null;
 		

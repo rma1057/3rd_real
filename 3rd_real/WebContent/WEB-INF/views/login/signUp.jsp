@@ -44,18 +44,7 @@ $(function(){
     //이름의 유효성 검사
 
 
-	
-	$("#email2").change(function(){
-		var tempEm2=$("#email2").val();
-		if( tempEm2 !="직접입력"){
-		//	if( tempEm2 !="직접입력"){
-				$("#email3").val( tempEm2 );
-		//	}//end if
-		}else{
-			$("#email3").val("");
-			$("#email3").focus();
-		}
-	});
+    
 	$("#id").focusout(function(){
 		 if( $("#id").val()!="" & regExp1.test( $("#id").val() ) ){
 			$("#id").attr('class','form-control is-valid');
@@ -69,6 +58,37 @@ $(function(){
 		}//아이디 값 존재 여부
 		
 	});//focusout - id
+	
+		//아이디 중복체크
+		    $('#id').blur(function(){
+		        $.ajax({
+			     type:"POST",
+			     url:"checkSignup.do",
+			     data:{
+			            "id":$('#id').val()
+			     },
+			     success:function(data){	//data : checkSignup에서 넘겨준 결과값
+			            if($.trim(data)=="YES"){
+			               if($('#id').val()!=''){ 
+			            	$("#id").attr('class','form-control is-valid');
+			            	$("#id_div").attr('class','valid-feedback');
+			            	$("#id_div").text("");
+			               }
+			           	}else{
+			               if($('#id').val()!=''){
+			            	$("#id").attr('class','form-control is-invalid');
+			       			$("#id_div").attr('class','invalid-feedback');
+			       			$("#id_div").text("중복된 아이디입니다.");
+/* 			                  alert("중복된 아이디입니다.");
+			                  $('#id').val('');
+			                  $('#id').focus(); */
+			               }
+			            }
+			         }
+			    }) 
+		     });
+
+	
 	
 	$("#userName").focusout(function(){
 		 if($("#userName").val()!="" & regname.test( $("#userName").val() ) ){
@@ -102,7 +122,12 @@ $(function(){
 			 if( $("#id").val() ==	$("#inputPassword").val() ){
 					$("#inputPassword").attr('class','form-control is-invalid');
 					$("#inputPassword_div").attr('class','invalid-feedback');
-					$("#inputPassword_div").text("아이디와 비밀번호가 같습니다.");				 
+					if ( $("#id").val()==""  ) {
+						$("#inputPassword_div").text("필수입력항목입니다.");				 
+					} else {
+						$("#inputPassword_div").text("아이디와 비밀번호가 같습니다.");				 
+					}//end else
+
 			 } else {
 				$("#inputPassword").attr('class','form-control is-invalid');
 				$("#inputPassword_div").attr('class','invalid-feedback');
@@ -117,8 +142,9 @@ $(function(){
 	$("#inputPasswordCheck").focusout(function(){
 		 if($("#inputPasswordCheck").val()!=""){
 			if($("#inputPassword").val()!=$("#inputPasswordCheck").val()){
-				
-				alert("값이 다름");
+				$("#inputPasswordCheck").attr('class','form-control is-invalid');
+				$("#inputPasswordCheck_div").attr('class','invalid-feedback');
+				$("#inputPasswordCheck_div").text("입력하신 비밀번호가 다릅니다.");
 			}//end if
 			 
 			 $("#inputPasswordCheck").attr('class','form-control is-valid');
@@ -147,13 +173,36 @@ $(function(){
 				
 			}//비밀번호 힌트 정답 존재 여부
 	});//focusout - hintAw
+	
 	$("#phone2").focusout(function(){
+		var regNumber = /^[0-9]*$/;
+	    var temp2 = $("#phone2").val();
+	    var temp1 = $("#phone1").val();
+
+		
+		
 		 if($("#phone1").val()!=""&& $("#phone2").val()!=""){
 			 
-			 $("#phone1").attr('class','form-control is-valid');
-			 $("#phone2").attr('class','form-control is-valid');
-				$("#phone_div").attr('class','valid-feedback');
-				$("#phone_div").text("");
+			 //숫자가 아닌 다른 문자가 들어간다면
+			 if( !regNumber.test(temp1) |  !regNumber.test(temp2) ){
+					$("#phone1").attr('class','form-control is-invalid');
+					$("#phone2").attr('class','form-control is-invalid');
+					$("#phone_div").attr('class','invalid-feedback');
+					$("#phone_div").text("숫자만 입력 가능합니다.");				 				 
+			 } else { 				
+		 		if( $("#phone1").val().length >=3 && $("#phone1").val().length<=4 && $("#phone2").val().length >=3 && $("#phone2").val().length <=4 ){
+		 			
+					 $("#phone1").attr('class','form-control is-valid');
+					 $("#phone2").attr('class','form-control is-valid');
+					 $("#phone_div").attr('class','valid-feedback');
+					 $("#phone_div").text("");
+		 		} else {
+					$("#phone1").attr('class','form-control is-invalid');
+					$("#phone2").attr('class','form-control is-invalid');
+					$("#phone_div").attr('class','invalid-feedback');
+		 			$("#phone_div").text("번호는 각각 3~4자리만 입력 가능합니다.");	
+		 		}//end else
+			 }
 			
 		 	}else{
 				$("#phone1").attr('class','form-control is-invalid');
@@ -164,115 +213,44 @@ $(function(){
 			}//비밀번호 확인 존재여부 
 	});//focusout - pass
 	
+	
+	
+	$("#email2").change(function(){
+		
+		
+		var regNumber=/^[a-zA-Z0-9]+$/ 
+		
+		var tempEm2=$("#email2").val();
+		var tempEm3=$("#email3").val();
+		
+		if( tempEm2 !="직접입력"){
+		//	if( tempEm2 !="직접입력"){
+				$("#email3").val( tempEm2 );
+		//	}//end if
+		}else{
+			//. 또는 영문+숫자가 아니라면 
+			if ( !regNumber.test(tempEm3) ) {			
+				$("#email2").attr('class','form-control is-invalid');
+				$("#email3").attr('class','form-control is-invalid');
+				$("#email_div").attr('class','invalid-feedback');
+				$("#email_div").text("핸드폰 번호를 입력해주세요.");
+			}//end if
+				$("#email3").val("");
+				$("#email3").focus();
+		}
+	});
+	
+	
+	
 	$("#goBtn").click(function(){
-		$("#signUpFrm").submit();
+		if ( $("#id").val() !="" &&  $("#userName").val() !="" && $("#inputPassword").val() !="" && $("#hintAw").val() !="" && $("#phone2").val() !="" && $("#phone3").val() !="" ) {			
+			$("#signUpFrm").submit();			
+		} else {
+			alert("필요정보를 입력해야만 가입이 가능합니다.");		
+		}
 	});//click
 	
 
-	
-/* 	$("#email2").focusout(function(){
-		 if($("#email").val()!=""&& $("#email2").val()!=""){
-			 
-			 $("#email").attr('class','form-control is-valid');
-			 $("#email2").attr('class','form-control is-valid');
-				$("#email_div").attr('class','valid-feedback');
-				$("#email_div").text("");
-			
-		 	}else{
-				$("#email").attr('class','form-control is-invalid');
-				$("#email2").attr('class','form-control is-invalid');
-				$("#email_div").attr('class','invalid-feedback');
-				$("#email_div").text("핸드폰 번호를 입력해주세요.");
-				
-			}//이메일 존재 여부
-	});//focusout - pass */
-	
-	
-	/**
-    function checked() {
-        var regExp1 = /^[a-zA-Z0-9]{4,12}$/;
-        //id와 비밀번호의 유효성 검사
-        var regExp2 = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/i;
-        //e-mail의 유효성 검사
-        var regname = /^[가-힝]{2,}$/;
-        //이름의 유효성 검사
-
-            if( regExp1.test( $("#id").val() ) ) {
-             //아이디 유효성 검사 후 4~12자의 영문 대소문자와 숫자의 유효성이 안 맞다면
-             //공백을 주고 알람을 띄운다.
-             //밑에 동일한 유효성 검사
-         
-                alert("형식에 맞춰 ID를 입력하세요");
-                idtext.value = "";
-                idtext.focus();
-                return false;
-            }
-        
-
-        
-        
-   
-        //이름의 유효성 검사
-        if(!getCheck.test($("#id").val())){
-          alert("형식에 맞게 입력해주세요");
-          $("#id").val("");
-          $("#id").focus();
-          return false;
-        }
-   
-        //비밀번호
-        if(!getCheck.test($("#inputPassword").val())) {
-        alert("형식에 맞춰서 PW를 입력해줘용");
-        $("#inputPassword").val("");
-        $("#inputPassword").focus();
-        return false;
-        }
-   
-        //아이디랑 비밀번호랑 같은지
-        if ($("#id").val()==($("#inputPassword").val())) {
-        alert("비밀번호가 ID와 똑같으면 안!대!");
-        $("#inputPassword").val("");
-        $("#inputPassword").focus();
-      }
-   
-        //비밀번호 똑같은지
-        if($("#inputPassword").val() != ($("#inputPasswordCheck").val())){ 
-        alert("비밀번호가 틀렸네용.");
-        $("#inputPassword").val("");
-        $("#inputPasswordCheck").val("");
-        $("#inputPassword").focus();
-        return false;
-       }
-   
-       //이메일 공백 확인
-        if($("#email1").val() == ""){
-          alert("이메일을 입력해주세요");
-          $("#email1").focus();
-          return false;
-        }
-             
-        //이메일 유효성 검사
-        if(!getMail.test($("#mail").val())){
-          alert("이메일형식에 맞게 입력해주세요")
-          $("#mail").val("");
-          $("#mail").focus();
-          return false;
-        } 
-   
-        //이름 유효성
-        if (!getName.test($("#userName").val())) {
-          alert("이름 똑띠 쓰세용");
-          $("#userName").val("");
-          $("#userName").focus();
-          return false;
-        }
-	
-
-   
-      return true;
-    }	
-	
-        */
 	
 	
 	
@@ -288,7 +266,7 @@ $(function(){
 </div>
 <div id="container">
 
-<form id="signUpFrm" action="input_card.do" onsubmit="return checked()" method="post" >
+<form id="signUpFrm" action="input_card.do" method="post" >
  <h2 align="center"><strong>Register</strong></h2>
 <div style="margin-left: 200px;">
 <!--  <span name="span">sadasdad</span> -->
@@ -331,7 +309,7 @@ $(function(){
     <div class="col-sm-3">
   
     
-      <select class="form-control" name="hint_code">
+      <select class="form-control" name="hint_code" id="hint_code">
   		  <c:forEach var="passHintList" items="${passHintList }">
 			<option value="${ passHintList.hintCode }"><c:out value="${ passHintList.hint }"/></option>
 		  </c:forEach>
@@ -354,7 +332,10 @@ $(function(){
       <select class="form-control" style="width:80px" name="phon1">
   		<option value="010">010</option>
   		<option value="011">011</option>
-  		<option value="012">012</option>
+  		<option value="016">016</option>
+  		<option value="017">017</option>
+  		<option value="018">018</option>
+  		<option value="019">019</option>
 	  </select>
     </div>
     <div class="col-sm-3" align="left">

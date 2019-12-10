@@ -1,5 +1,6 @@
 package kr.co.prj.controller;
 
+import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,8 @@ public class LoginController {
 		System.out.println( lVO.getInputId()+"/"+lVO.getInputPassword());
 		
 		String uri = "login/failLogin";
+		
+		
 		try {
 			lVO.setInputPassword(DataEncrypt.messageDigest("MD5", lVO.getInputPassword()));
 		} catch (NoSuchAlgorithmException e) {
@@ -147,7 +151,10 @@ public class LoginController {
 			String title = sevo.getId() +"님의 임시 비밀번호 발급 메일입니다.";  // 제목
 			StringBuilder content=new StringBuilder();
 			
+
+			
 			content.append("[ :P ] \n\n")
+						
 					  .append("비밀번호는 관리자도 알 수 없도록\n")
 					  .append("암호화하여 저장되기 때문에\n")
 					  .append("새로운 임시비밀번호를 생성하여 안내해 드리오니\n")
@@ -177,7 +184,15 @@ public class LoginController {
 				messageHelper.setTo("rma1057@gmail.com"); // 받는사람 이메일
 				messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
 				messageHelper.setText(String.valueOf(content)); // 메일 내용
+				
+				String contents = content+ "<img src=\"cid:plogo.png\">";
+				messageHelper.setText(contents, true);
+				
+				FileSystemResource file = new FileSystemResource(new File("c:/plogo.png")); 
+				messageHelper.addInline("plogo.png", file);
 
+				
+				
 				mailSender.send(message);
 			} catch (Exception e) {
 				System.out.println(e);
