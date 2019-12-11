@@ -78,9 +78,17 @@ $(function(){
 	
 	var saveId=localStorage.getItem("saveId");
 	if( saveId != null ){
+		
+		$("#inputId").change(function() {
+			localStorage.removeItem("saveId");
+			localStorage.setItem("saveId", $("#inputId").val())
+		});
+		
+
 		$("#inputId").val(saveId);
 		$("#idSaveCheck").prop("checked", "checked='checked'");
-	}
+		
+	}//end if
 
 	
 	
