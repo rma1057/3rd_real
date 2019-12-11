@@ -5,6 +5,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.json.simple.JSONObject;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.prj.domain.RoomInfoDomain;
 import kr.co.prj.domain.RsvTimeDomain;
+import kr.co.prj.service.ReservationService;
 import kr.co.prj.service.RoomInfoService;
 import kr.co.prj.service.RsvInputService;
+import kr.co.prj.vo.ParamDateVO;
 
 
 /**
@@ -28,15 +32,28 @@ import kr.co.prj.service.RsvInputService;
 @Controller
 public class RsvInputController {	
 	@RequestMapping(value="reservation/rsv_input.do")
-	public String revInputForm(String room_name, Model model) {
-		System.out.println("--------------"+room_name);
+	public String revInputForm(HttpSession session,Model model,ParamDateVO pVO) {
+		//System.out.println("--------------"+room_name);
 		RsvInputService ris=new RsvInputService();
-		List<RsvTimeDomain>rsvTime=ris.searchRsvTime();
-		int roomCharge=ris.searchRoomCharge(room_name);
+		List<RsvTimeDomain> rsvTime=ris.searchRsvTime();
+	//	int roomCharge=ris.searchRoomCharge(room_name);
+		System.out.println(rsvTime);
+		
+		
+		
 		
 		model.addAttribute("RsvTimeInfo", rsvTime);
-		System.out.println("--------------"+roomCharge);
-		model.addAttribute("RsvRoomCharge", roomCharge);
+		//System.out.println("--------------"+roomCharge);
+//		model.addAttribute("RsvRoomCharge", roomCharge);
+		System.out.println(session.getAttribute("memberId")+"---  -"+(String)session.getAttribute("room_name")+session.getAttribute("image1")+session.getAttribute("charge"));
+		System.out.println(pVO);
+		pVO.setRoomName((String)session.getAttribute("room_name"));
+		System.out.println(pVO);
+		
+		ReservationService rs = new ReservationService();
+		List<Integer> list = rs.timeCheck(pVO);
+		
+		model.addAttribute("timeCheck",list);
 		
 		
 		return "reservation/rsv_input";

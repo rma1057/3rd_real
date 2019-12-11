@@ -14,7 +14,8 @@
 	#naviBar{ min-width:1100px; min-height: 130px; position:relative; font-size: 20px;}
 	/* 헤더 끝 */
 	/* 컨테이너 시작  */
-	#container{ width:1100px; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%; }
+	#container{ max-width:100%; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%; }
+	#container1{ width:1100px; height: 0px auto; position:relative; margin: 0px auto;  }
 	.btn{width: 100px;height: 40px;}
 	.nav-item{margin: 10px;}
 	#sub-menuItem{font-family:"고딕";}
@@ -47,33 +48,29 @@ $(function(){
 	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
-<div id="container">   
+<div id="container" style="margin-top:0px;">   
           
 
-<div style="margin: auto;">
+<div style="max-width: 100%;">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
   </ol>
-  <div class="carousel-inner" style="width:1100px; height:600px; ">
+  <div class="carousel-inner" style="max-width:100%; height:600px; ">
     <div class="carousel-item active">
-      <img src="http://localhost:8080/3rd_prj/common/images/15.png" class="d-block w-100" alt="1">
+      <img src="http://localhost:8080/3rd_prj/common/images/c1.png" class="d-block w-100" alt="1">
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8080/3rd_prj/common/images/2-4.jpg" class="d-block w-100" alt="2">
+      <img src="http://localhost:8080/3rd_prj/common/images/c2.jpg" class="d-block w-100" alt="2">
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8080/3rd_prj/common/images/4-5.jpg" class="d-block w-100" alt="3">
+      <img src="http://localhost:8080/3rd_prj/common/images/sl_party_01.png" class="d-block w-100" alt="3">
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8080/3rd_prj/common/images/7-5.png" class="d-block w-100" alt="4">
-    </div>
-    <div class="carousel-item">
-      <img src="http://localhost:8080/3rd_prj/common/images/16.png" class="d-block w-100" alt="5">
+      <img src="http://localhost:8080/3rd_prj/common/images/sl_party_02.png" class="d-block w-100" alt="4">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -86,11 +83,11 @@ $(function(){
   </a>
 </div><br/><br/>
 
-<div>
+<div id="container1">
 <ul class="list-unstyled">
  <div class="media">
   <div class="media-body">
-    <h5 class="mt-0 mb-1">Media object</h5>
+    <h5 class="mt-2 mb-3">Propose</h5>
    프로포즈
 나의 연인에게 진심을 담아 전하는 사랑고백.
 
@@ -99,22 +96,24 @@ $(function(){
 저희는 완벽한 프로포즈 준비를 위해 한분한분 친절하게 상담을 진행하고 있으며 또 그에 맞는 준비를 도와드립니다.
 
   </div>
-  <img src="http://localhost:8080/3rd_prj/common/images/8-2.jpg" class="ml-3" style="width:450px; height:300px" >
-</div>
+  <img src="http://localhost:8080/3rd_prj/common/images/main1.jpg" class="ml-3" style="width:450px; height:250px" >
+</div><br/>
   <li class="media my-4">
-   <img src="http://localhost:8080/3rd_prj/common/images/4-1.jpg" class="mr-3" style="width:450px; height:300px" >
+   <img src="http://localhost:8080/3rd_prj/common/images/main2.jpg" class="mr-3" style="width:450px; height:250px" >
     <div class="media-body">
-      <h5 class="mt-0 mb-1">List-based media object</h5>
-      가게 내부는 초록초록한 식물과 화이트톤의 인테리어로 구성되어있으며, 전문 플로리스트가 직접 테이블 꽃장식과 포토테이블의 꽃을 세팅해드리기 때문에 고급스럽고 유니크한 공간을 연출해드리고 있습니다. 그리고 사전에 예비신부와 신랑의 사진을 받아 보정하고 출력하여 이름과 함께 공간 곳곳을 데코해드립니다. 
+      <h5 class="mt-2 mb-3">meeting & workshop</h5>
+      미팅룸, 두 개의 룸은 각기의 매력을 갖추고 있으며, 더 좋은 환경의 스터디와 회의 진행, 워크샵을 원하는 분들을 위한 공간입니다. 코르크벽과 공간을 비추는 주광등은 집중력을 더합니다.
     </div>
   </li>
-</ul>
+</ul><br/>
 <div class="media">
   <div class="media-body">
-    <h5 class="mt-0 mb-1">Media object</h5>
-   한 팀만을 위한 원테이블 레스토랑 아름다운 공간과 꽃, 맛있는 음식이 제공됩니다. 조용하고 프라이빗한 공간에서 여러분의 소중한 추억을 정성스럽게 담아드립니다. 프로포즈, 소규모돌잔치, 웨딩, 각종파티 준비해드리고 있습니다. 상세페이지를 참조하시거나 모바일메신저 혹은 전화로 예약해주시면 친절히 상담해드릴게요. 
+    <h5 class="mt-2 mb-3">Bridal Shower</h5>
+   브라이덜 샤워는 ‘신부에게 우정이 비처럼 쏟아진다’라는 뜻으로, 결혼을 앞둔 친구를 위한 서프라이즈 파티, 신부를 위한 신랑의 프로포즈 이벤트로 지금의 아름다움과 행복한 추억을 남길 수 있습니다.
+   
+    
   </div>
-  <img src="http://localhost:8080/3rd_prj/common/images/2-5.jpg" class="ml-3" style="width:450px; height:300px" >
+  <img src="http://localhost:8080/3rd_prj/common/images/main3.jpg" class="ml-3" style="width:450px; height:250px" >
 </div>
 </div>
 
@@ -122,6 +121,7 @@ $(function(){
 </div>
 
 <div id="footer">
+<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
   <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>

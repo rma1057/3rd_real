@@ -6,8 +6,16 @@ package kr.co.prj.domain;
  */
 public class RsvTimeDomain {
 	
+	private boolean flag;
 	private int r_time;
 	private String r_realtime;
+	
+	public boolean isFlag() {
+		return flag;
+	}
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
 	public int getR_time() {
 		return r_time;
 	}
@@ -19,6 +27,10 @@ public class RsvTimeDomain {
 	}
 	public void setR_realtime(String r_realtime) {
 		this.r_realtime = r_realtime;
+	}
+	@Override
+	public String toString() {
+		return "RsvTimeDomain [flag=" + flag + ", r_time=" + r_time + ", r_realtime=" + r_realtime + "]";
 	}
 	
 	

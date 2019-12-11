@@ -181,11 +181,14 @@ function moveDiary(room_name, image1, charge){
 
 
 	<div align="center" style="font-size: 35px; font-weight: bold;">Reservation</div>
-		<div style="text-align: center; margin-bottom: 20px">
+	<br/><br/><br/>
+	
+	
+	<%-- 		<div style="text-align: center; margin-bottom: 20px">
 			<span style="font-size: 25px; font-weight: bold; background-color: red; color: white; ">
-				12월 얼리버드 EVENT Room2 10% 할인	<%-- <c:out value="${ sessionScope.memberId }"/> --%>
+				12월 얼리버드 EVENT Room2 10% 할인	<c:out value="${ sessionScope.memberId }"/>
 			 </span>
-		</div>	
+		</div>	 --%>
 
 	<!-- 추가되어야 할 부분 : 이미지 개수 홀수일 때  -->
 	
@@ -193,7 +196,7 @@ function moveDiary(room_name, image1, charge){
 		<!-- image:  %ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg -->
 		<c:forEach var="ri" items="${ RoomInfo }">
 		<figure class="snip1200" style="float: left; margin-left: 33px">
-		  <img src="http://localhost:8080/3rd_prj/common/images/${ ri.image1 }" id="partyRoom1"/>
+		  <img src="http://localhost:8080/3rd_prj/common/images/${ ri.image1 }" id="partyRoom1" width="500" height="333"/>
 		  <figcaption>
 		    <p><c:out value="${ ri.brief_info }"/></p>
 		    <div class="heading">
@@ -204,19 +207,14 @@ function moveDiary(room_name, image1, charge){
 		 <a href="javascript:moveDiary('${ ri.room_name }','${ ri.image1 }','${ ri.charge }')"></a>
 		</figure>
 		
-		    <form action=" /3rd_prj/diary/diary.do" method="post" id="DiaryFrm">
+
+		</c:forEach> 
+		    <form action="/3rd_prj/diary/diary.do" method="post" id="DiaryFrm">
             <input type="hidden" name="room_name" id="room_name"/>
             <input type="hidden" name="image1" id="image1"/>
             <input type="hidden" name="charge" id="charge"/>
             </form>
-
-		</c:forEach>
 		
-		<c:if test="${ empty RoomInfo }">
-		
-			사원정보가 없습니다.
-		
-		</c:if>
 	
 	</div>
 		

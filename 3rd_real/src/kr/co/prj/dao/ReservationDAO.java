@@ -10,10 +10,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import kr.co.prj.domain.BankInfoDomain;
+import kr.co.prj.domain.DiaryDomain;
 import kr.co.prj.domain.MemberCheckDomain;
 import kr.co.prj.domain.RoomInfoDomain;
 import kr.co.prj.domain.RsvTimeDomain;
+import kr.co.prj.vo.DiarySearchVO;
+import kr.co.prj.vo.ParamDateVO;
+import kr.co.prj.vo.RTimeVO;
 import kr.co.prj.vo.ReservationTimeVO;
+import kr.co.prj.vo.ReservationTotalVO;
 import kr.co.prj.vo.ReservationVO;
 
 public class ReservationDAO {
@@ -65,6 +71,52 @@ public class ReservationDAO {
 		return list;
 		
 	}//selectAllEmp
+	public List<RTimeVO> selectReservationTime(String rNum) throws SQLException{
+		List<RTimeVO> list = null;
+		
+		//3.Handler얻기
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			list=ss.selectList("rTime",rNum); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return list;
+		
+	}//selectAllEmp
+	
+	public ReservationTotalVO selectReservation(String rNum) throws SQLException{
+		ReservationTotalVO rVO = null;
+		
+		//3.Handler얻기
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			rVO=ss.selectOne("reservation",rNum); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return rVO;
+		
+	}//selectAllEmp
+	public List<ReservationTotalVO> selectReservation2(String id) throws SQLException{
+		List<ReservationTotalVO> list = null;
+		
+		//3.Handler얻기
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			list=ss.selectList("reservation2",id); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return list;
+		
+	}//selectAllEmp
 	
 	public List<RsvTimeDomain> selectRsvTime() throws SQLException{
 		List<RsvTimeDomain> list = null;
@@ -73,6 +125,22 @@ public class ReservationDAO {
 		try {
 			SqlSession ss = getSessionFactory().openSession();
 			list=ss.selectList("selectRsvTime"); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return list;
+		
+	}//selectAllEmp
+	
+	public List<DiaryDomain> diaryList(DiarySearchVO dsVO) throws SQLException{
+		List<DiaryDomain> list = null;
+		
+		//3.Handler얻기
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			list=ss.selectList("diaryList",dsVO); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
 			ss.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -179,7 +247,40 @@ public class ReservationDAO {
 		
 	}//insertReservation
 	
+	public BankInfoDomain selectBankInfo(String rNum) throws SQLException{
+		BankInfoDomain bid=null;
+		
+		try {
+			//Handler 얻기
+			SqlSession ss=getSessionFactory().openSession();
+			//쿼리 수행 : 한 행 조회
+			bid=ss.selectOne("bankInfo", rNum);
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
 	
+	
+		return bid;
+	}//selectMemberInfo 
+	
+	public List<Integer> timeCheck(ParamDateVO pdVO) throws SQLException{
+		List<Integer> cnt = null;
+		
+		try {
+			//Handler 얻기
+			SqlSession ss=getSessionFactory().openSession();
+			//쿼리 수행 : 한 행 조회
+			cnt=ss.selectList("rsvTimeCheck", pdVO);
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+	
+		
+		
+		return cnt;
+	}
 	
 }//class
 

@@ -1,8 +1,10 @@
+<%@page import="kr.co.prj.domain.BankInfoDomain"%>
+<%@page import="kr.co.prj.vo.ReservationTotalVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info=""
     %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +12,16 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
 <style type="text/css">
-	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
+
+
+	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto; 
+	display: flex; min-height: 100vh; flex-direction: column; 
+	}
 	/* 헤더 시작*/
 	#naviBar{ min-width:1100px; min-height: 130px; position:relative; font-size: 20px;}
 	/* 헤더 끝 */
 	/* 컨테이너 시작  */
-	#container{ width:1100px; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%;}
+	#container{ width:1100px; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%; flex: 1;}
 	.btn{width: 100px;height: 40px;}
 	.nav-item{margin: 10px;}
 	#sub-menuItem{font-family:"고딕";}
@@ -41,6 +47,12 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	$("#paymentBtn").click(function(){
+		
+		
+		
+	});
+	
 	
 });//ready
 </script>
@@ -55,32 +67,90 @@ $(function(){
 <div id="container">   
 
 <div id="container" align="center"> 
-	<div style="width:400px ; height: 450px;">
+	<div style="border: 1px solid #333; border-color: #A4A19E ; width:450px ; height: 550px;">
 	<br/><br/>
+	<% ReservationTotalVO rsVO = (ReservationTotalVO)request.getAttribute("rInfo"); %>
 		<table>
 			<tr class="trTable">
-				<td class="tdTable">예약날짜</td><td class="tdTable2">2019-11-07</td>
+				<td class="tdTable">예약날짜</td><td class="tdTable2"><c:out value="${rInfo.use_date }"></c:out></td>
 			</tr>
 			<tr class="trTable">
-				<td class="tdTable">예약시간</td><td class="tdTable2">8:00AM - 16:00PM</td>
+				<td class="tdTable">예약시간</td><td class="tdTable2"><c:out value="${rTime }"></c:out></td>
 			</tr>
 			<tr class="trTable">
-				<td class="tdTable">이름</td><td class="tdTable2"><c:out value="${ param.rsv_person }"/></td>
+				<td class="tdTable">이름</td><td class="tdTable2"><c:out value="${rInfo.name }"></c:out></td>
 			</tr>
 			<tr class="trTable">
-				<td class="tdTable">연락처</td><td class="tdTable2">010-1111-1111</td>
+				<td class="tdTable">연락처</td><td class="tdTable2"><c:out value="${rInfo.phone }"></c:out></td>
 			</tr>
 			<tr class="trTable">
-				<td class="tdTable">이메일</td><td class="tdTable2">${ param.email }</td>				
+				<td class="tdTable">이메일</td><td class="tdTable2"><c:out value="${rInfo.email }"></c:out></td>				
 			</tr>			
+			
 			<tr class="trTable">
-				<td class="tdTable"><strong>결제요금</strong></td><td class="tdTable"><strong>160,000원</strong></td>			
+				<td class="tdTable">예약일자</td><td class="tdTable2"><c:out value="${rInfo.reservation_date }"></c:out></td>				
+			</tr>		
+			
+			<%
+			if("B".equals(rsVO.getPay_method())){
+				BankInfoDomain bid = (BankInfoDomain)request.getAttribute("bInfo");
+			
+			%>
+				<tr class="trTable">
+					<td class="tdTable"><strong>입금은행</strong></td><td class="tdTable"><strong><%= bid.getBank() %></strong></td>			
+				</tr>
+				<tr class="trTable">
+					<td class="tdTable"><strong>입금계좌</strong></td><td class="tdTable"><strong><%= bid.getAccount_number() %></strong></td>			
+				</tr>
+			<%-- 	<tr class="trTable">
+					<td class="tdTable"><strong>결제요금</strong></td><td class="tdTable"><strong><c:out value="${rInfo.charge }"></c:out></strong></td>			
+				</tr> --%>
+					
+					
+					<%} %>
+			
+			<tr class="trTable">
+				<td class="tdTable"><strong>결제요금</strong></td><td class="tdTable"><strong><c:out value="${rInfo.charge }"></c:out></strong></td>			
 			</tr>
+			
+						<%
+		if("D".equals(rsVO.getPay_status()) && "B".equals(rsVO.getPay_method())){
+			BankInfoDomain bid = (BankInfoDomain)request.getAttribute("bInfo");
+		
+		%>
+			<tr class="trTable">
+				<td class="tdTable"><strong>결제상태</strong></td><td class="tdTable"><strong>입금대기</strong></td>			
+			</tr>
+				
+				<%}else if(rsVO.getPay_status().equals("Y")&& rsVO.getPay_method().equals("C")) { %>
+			<tr class="trTable">
+				<td class="tdTable"><strong>결제상태</strong></td><td class="tdTable"><strong>카드결제 완료</strong></td>			
+			</tr>
+				
+				<%}else if(rsVO.getPay_status().equals("Y")&& rsVO.getPay_method().equals("B")){ %>
+			<tr class="trTable">
+				<td class="tdTable"><strong>결제상태</strong></td><td class="tdTable"><strong>입금 완료</strong></td>			
+			</tr>
+				
+				<%}else{%>
+			<tr class="trTable">
+				<td class="tdTable"><strong>결제상태</strong></td><td class="tdTable"><strong>결제대기</strong></td>			
+			</tr>
+			<% }%>	
+			
+			
 		</table>
 		<br/><br/>
 		<div>
-		<input type="button" value="확인" class="btn btn-secondary alert-danger" id="goBtn" style="margin-right: 25px;">
-		<input type="button" value="결제" class="btn btn-secondary alert-secondary" id="backBtn">
+				<input type="button" value="확인" class="btn btn-secondary alert-danger" id="goBtn" style="margin-right: 25px;" onClick="location.href='/3rd_prj/index.do'">
+		<%
+		if(rsVO.getPay_status().equals("N")){
+			
+		
+		%>
+		<input type="button" value="결제" class="btn btn-secondary alert-secondary" id="backBtn" onClick="location.href='/3rd_prj/payment/paymentProcess.do'">
+				
+				<%} %>
 
 		</div>
 		<br/><br/>
@@ -91,13 +161,9 @@ $(function(){
 
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_prj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
-	<div id="fLogo">
-		
-	</div>
-	<div id="fContent">
+  <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
-		<h4><strong>[;P]</strong></h4>
+		<h4><strong>[:P]</strong></h4>
 		사업자명 : (주)Baek's company<br/>
 		 대표이사 : 윤태식   <br/> 
 		이메일 : wo2015@naver.com<br/>

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info=""
+    trimDirectiveWhitespaces="true"
     %>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -9,14 +10,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
 	#naviBar{ min-width:1100px; min-height: 130px; position:relative; font-size: 20px;}
 	/* 헤더 끝 */
 	/* 컨테이너 시작  */
-	#container{ width:1100px; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%;}
+	#container{ width:1100px; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 5%;}
 	.btn{width: 100px;height: 40px;}
 	.nav-item{margin: 10px;}
 	#sub-menuItem{font-family:"고딕";}
@@ -35,9 +36,12 @@
 <link href="https://fonts.googleapis.com/css?family=Amaranth&display=swap" rel="stylesheet">
 <style type="text/css">
 .alert-danger{color: #000000; background-color: #E3C6C2}
+bg-secondary{ background-color: #E3C6C2}
 </style>
 <script type="text/javascript">
 $(function(){
+
+	
 	$("#searchBtn").click(function(){
 		//유효성 검증
 		if ($("#keyword").val().trim() ==""){
@@ -75,7 +79,7 @@ function checkId(){
   <tbody>
  <c:forEach var="list" items="${list}">
 			<tr>
-				<td><c:out value="${list.num}"/></td>
+				<th scope="row"><c:out value="${list.num}"/></th>
 				<td>
 					 <c:choose>
 					 	<c:when test="${memberId != null and list.id eq memberId}">
@@ -139,26 +143,15 @@ function checkId(){
     </div>
 </div>
 </form>
-<div style="margin-left: 150px;">
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <c:forEach var="i" begin="1" end="${totalPage}" step="1">
-    <li class="page-item"><a class="page-link" href="/3rd_prj/board/qna_list.do?page=<c:out value="${i}"/>
-    <c:if test="${param.keyword !=null}">&field=<c:out value="${param.field}"/>&keyword=<c:out value="${param.keyword}"/></c:if>"><font color="#000000"><c:out value="${i}"/></font></a></li>
-    </c:forEach>
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-</div>
-
+<div style=" margin:0px auto; margin-left: 10%; margin-top: 10px;">
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+			<c:out value="${ indexList }" escapeXml="false"/>
+		    
+		  </ul>
+		</nav>
+	 </div>
+    </div>
 
 
 

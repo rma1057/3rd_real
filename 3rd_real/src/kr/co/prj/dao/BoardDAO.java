@@ -2,9 +2,6 @@ package kr.co.prj.dao;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,15 +10,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import kr.co.prj.domain.LoginDomain;
 import kr.co.prj.domain.NoticeBoardDetailDomain;
 import kr.co.prj.domain.NoticeListDomain;
 import kr.co.prj.domain.QnABoardDetailDomain;
 import kr.co.prj.domain.QnAListDomain;
-import kr.co.prj.vo.LoginVO;
+import kr.co.prj.vo.NoticeModifyVO;
+import kr.co.prj.vo.NoticeWriteVO;
+import kr.co.prj.vo.QnAAddRpVO;
 import kr.co.prj.vo.QnAModifyVO;
 import kr.co.prj.vo.QnAWriteVO;
-import kr.co.prj.vo.SearchRangeVO;
+import kr.co.prj.vo.RpModifyVO;
 import kr.co.prj.vo.SearchVO;
 
 
@@ -138,10 +136,9 @@ public class BoardDAO {
 	public int deletePostQnA(int q_num) {
 		int flag =0;
 		
-		
 			try {
 			SqlSession ss = getSessionFactory().openSession();
-				ss.delete("deletePost",q_num);
+				flag = ss.delete("deletePost",q_num);
 				ss.commit();
 				ss.close();
 			} catch (IOException e) {
@@ -165,6 +162,37 @@ public class BoardDAO {
 		
 		return flag;
 	}//updatePostQnA
+	public int updateQnARp(QnAAddRpVO qarVO) {
+		int flag=0;
+		
+		SqlSession ss;
+		try {
+			ss = getSessionFactory().openSession();
+			flag = ss.update("updateRp",qarVO);
+			ss.commit();
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return flag;
+	}//updatePostQnA
+	
+	public int replyModify(RpModifyVO rmVO) {
+		int cnt=0;
+		
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			cnt = ss.update("rpModify",rmVO);
+			ss.commit();
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		
+		return cnt=0;
+	}//replyModify
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////Notice//////////////////////////////////////////////////////////////////////
 	public List<NoticeListDomain> selectAllNotice(SearchVO sVO)throws SQLException{
@@ -175,7 +203,6 @@ public class BoardDAO {
 				SqlSession ss = getSessionFactory().openSession();
 				list=ss.selectList("noticeList",sVO); //parameterType속성이 존재하지 없기 때문에 아이디만 넣는다.
 				ss.close();
-				System.out.println( "시작번호" + sVO.getStartNum()+"끝번호"+sVO.getEndNum());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}//end catch
@@ -193,7 +220,53 @@ public class BoardDAO {
 				e.printStackTrace();
 			}//end catch
 		return nbdd;
-	}//selectDetailQnA
+	}//selectDetailNotice
+	
+
+	public int insertNoticePost(NoticeWriteVO nwVO) {
+		int flag = 0;
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+			flag=ss.insert("n_writePost", nwVO);
+			ss.commit();
+			ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//endcatch
+		
+		
+		return flag;
+	}//inserNoticePost
+	
+	
+	public int deletePostNotice(int q_num) {
+		int flag =0;
+		
+			try {
+			SqlSession ss = getSessionFactory().openSession();
+				flag = ss.delete("n_deletePost",q_num);
+				ss.commit();
+				ss.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}//end catch
+			
+		return flag;
+	}//deletePostNotice
+	public int updatePostNotice(NoticeModifyVO nmVO) {
+		int flag=0;
+		
+		try {
+			SqlSession ss = getSessionFactory().openSession();
+		flag = ss.update("n_updatePost",nmVO);
+		ss.commit();
+		ss.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return flag;
+	}//updatePostNotice
 	
 	
 }//class

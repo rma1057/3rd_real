@@ -7,15 +7,21 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.prj.domain.QnABoardDetailDomain;
 import kr.co.prj.domain.QnAListDomain;
 import kr.co.prj.service.QnAService;
+import kr.co.prj.vo.IndexListVO;
+import kr.co.prj.vo.QnAAddRpVO;
 import kr.co.prj.vo.QnAModifyVO;
 import kr.co.prj.vo.QnAWriteVO;
+import kr.co.prj.vo.RpModifyVO;
 import kr.co.prj.vo.SearchRangeVO;
 import kr.co.prj.vo.SearchVO;
 
@@ -42,15 +48,22 @@ public class QnAController {
 		SearchVO sVO = new SearchVO(field,keyword,tempPage,startNum,endNum);
 		int totalCount=qs.selectTotalCount(sVO); // 전체 글 조회
 		int totalPage=qs.totalPage(pageScale, totalCount); //총 페이지 수
+		String indexList="";
 		
-		
-		
-	
+		//인덱스 리스트 생성
+		if(field==null&&keyword==null) {
+			 indexList=qs.indexList(new IndexListVO(tempPage, totalPage, "qna_list.do?"));
+			
+		}else {
+			 indexList=qs.indexList(new IndexListVO(tempPage, totalPage, "qna_list.do?field="+field+"&keyword="+keyword+"&"));
+		}
 
 		SearchRangeVO srVO = new SearchRangeVO(startNum,endNum);
 		 List<QnAListDomain> list = qs.searchAllQnA(sVO);
 		 model.addAttribute("list", list);
 		 model.addAttribute("totalPage", totalPage);
+		 //view에서 값을 사용할 수 있도록 scope객체에 값을 설정
+		 model.addAttribute("indexList", indexList);
 		 return "board/qna_list";
 	}//searchBoard
 	
@@ -65,7 +78,6 @@ public class QnAController {
 	
 	@RequestMapping(value="board/write_form.do",method=GET)
 	public String writeForm() {
-	
 		return "board/write_form";
 	}//searchQnADetail
 	/**
@@ -74,17 +86,25 @@ public class QnAController {
 	 * @return
 	 */
 	@RequestMapping(value="board/write_post.do",method=POST)
+	@ResponseBody
 	public String writeProcess(HttpSession session,QnAWriteVO qwVO) {
+		System.out.println(qwVO.getUser_id()+"호호홍홍홍");
+	
+		System.out.println(qwVO);
+		System.out.println("-----------------------------");
+		System.out.println(session.getAttribute("memberId"));
+		JSONObject json = null;
 		QnAService qs = new QnAService();
-		 qs.insertQnAPost(qwVO);
-		return "board/write_process";
+		 json = qs.insertQnAPost(qwVO);
+		return json.toJSONString();
 	}
 	@RequestMapping(value="board/delete_post.do",method=GET)
+	@ResponseBody
 	public String deleteProcess(int q_num) {
+		JSONObject json=null;
 		QnAService qs = new QnAService();
-	
-		qs.deletePostQnA(q_num);
-		return "board/delete_process";
+		json = qs.deletePostQnA(q_num);
+		return json.toJSONString();
 	}//deleteProcess
 	@RequestMapping(value="board/modify_form.do",method=POST)
 	public String modifyForm() {
@@ -92,15 +112,30 @@ public class QnAController {
 		return "board/modify_form";
 	}//modifyForm
 	@RequestMapping(value="board/modify_process.do",method=POST)
+	@ResponseBody
 	public String modifyProcess(QnAModifyVO qVo) {
+		JSONObject json = null;
 		QnAService qs = new QnAService();
-		
-		qs.updatePostQnA(qVo);
-		return "board/modify_process";
+		json =qs.updatePostQnA(qVo);
+		return json.toJSONString();
 	}//modifyProcess
+	
 	@RequestMapping(value="board/addRp.do" , method=POST)
-	public String addRp_process() {
+	@ResponseBody
+	public String addRp_process(QnAAddRpVO qarVO) {
+		JSONObject json = null;
+		QnAService qs = new QnAService();
+		json = qs.updateQnARp(qarVO);
 		
-		return "board/addRp_process";
-	}
+		return json.toJSONString();
+	}//addRp_process
+	@RequestMapping(value="board/rp_modify.do", method=POST)
+	@ResponseBody
+	public String rpModifyProcess(RpModifyVO rmVO) {
+		JSONObject json = null;
+		QnAService qs = new QnAService();
+		json = qs.replyModify(rmVO);
+		
+		return  json.toJSONString();
+	}//rpModifyProcess
 }//class

@@ -19,6 +19,7 @@
 	.nav-item{margin: 10px;}
 	#sub-menuItem{font-family:"고딕";}
 	#ex{padding-bottom: 20px; width: 150px; font-size: 15px;}
+	.media-body{margin-left: 120px}
 	/* 컨테이너 끝  */
 	/* 푸터 시작  */
 	#footer{  min-width:1100px;min-height: 250px;position:relative;  background-color: #E3C6C2;}
@@ -44,7 +45,7 @@ $(function(){
 <div id="class4Wrap">
 <div id="naviBar">
  	<!-- MENU 시작 -->
-		<%@include file="../../../common/navbar/nav.jsp" %>
+	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
 <div id="container">   
@@ -55,10 +56,46 @@ $(function(){
 	<div style=" font-size: 15px; text-align: center">
 	서울특별시 성동구 성수동2가 281-2<br/>
 	(서울특별시 성동구 광나루로8길 11)
-	</div><br/>
+	</div><br/><br/>
          
     <div class="media">
-  <img src="http://localhost:8080/3rd_prj/common/images/addr.PNG" class="align-self-center mr-3" style="margin-left: 150px">
+  <div class="col-12 col-md-6">
+      <div id="map" style="width:460px;height:500px; border-top-left-radius:10px; border-bottom-left-radius:10px; margin-left: 140px"></div>
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3be8edf26b33f7734075714b4c580d88"></script>
+      <script>
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+          mapOption = { 
+              center: new kakao.maps.LatLng(37.49932297018342 , 127.03320846700835 ), // 지도의 중심좌표
+              level: 3 // 지도의 확대 레벨
+          };
+      
+      var map = new kakao.maps.Map(mapContainer, mapOption);
+      
+      // 마커가 표시될 위치입니다 
+      var markerPosition  = new kakao.maps.LatLng(37.49932297018342 , 127.03320846700835 ); 
+      
+      // 마커를 생성합니다
+      var marker = new kakao.maps.Marker({
+          position: markerPosition
+      });
+      
+      // 마커가 지도 위에 표시되도록 설정합니다
+      marker.setMap(map);
+      
+      var iwContent = '<div style="padding:5px;">Party [ : P ] <br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도 </a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">| 길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          iwPosition = new kakao.maps.LatLng(37.49932297018342 , 127.03320846700835 ); //인포윈도우 표시 위치입니다
+      
+      // 인포윈도우를 생성합니다
+      var infowindow = new kakao.maps.InfoWindow({
+          position : iwPosition, 
+          content : iwContent 
+      });
+        
+      // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+      infowindow.open(map, marker); 
+      </script>
+      </div>
+
   <div class="media-body" >
     <h5 class="mt-0"><img src="http://localhost:8080/3rd_prj/common/images/bus.png" style="width:60px; height:55px"></h5>
     <p >
@@ -85,6 +122,7 @@ $(function(){
 </div>
 
 <div id="footer">
+<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
   <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>

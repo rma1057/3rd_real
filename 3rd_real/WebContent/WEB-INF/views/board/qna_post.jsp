@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -40,19 +40,104 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	
 	$("#addRp").click(function(){
-		$("#rpFrm").submit();
+		var q_answer_flag = $("#q_answer_flag").val();
+		
+		if(q_answer_flag =="N"){
+			var str = $("#q_answer").val();
+			str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+			$("#q_answer").val(str);
+		formData = $("#rpFrm").serialize();	
+		$.ajax({
+				url:"/3rd_prj/board/addRp.do",
+				data:formData,
+				type:"post",
+				dataType:"json",
+				error:function(xhr){
+					alert("문제발생\n" + xhr.status + "\n" + xhr.statusText);
+				},
+				success:function(json){
+					location.href="/3rd_prj/board/qna_post.do?q_num="+$("#q_num").val();	
+				}//success
+			});//ajax 	
+			
+		}else{
+			alert("댓글을 이미 작성하셨습니다.");
+			
+		}//end else
 		
 	});//click
+	
 	$("#modifyPost").click(function(){
+		
 	$("#modify_frm").submit();
+	
+	});//click
+	
+	$("#modifyRp").click(function(){
+		var obj = document.repFrm;
+		$("#replyPre").toggle();
+		$("#replyNext").toggle();
+		
+		var q_answer = $("#c_answer").val().trim();
+		var n_answer = $("#n_answer").val().trim();
+		
+		var str = $("#n_answer").val();
+
+		str = str.split('<br/>').join("\r\n");
+
+		$("#n_answer").val(str);
+				
+		if(q_answer != n_answer){
+			if(confirm("변경내용을 저장하시겠습니까??")){		
+				var str = $("#n_answer").val();
+				str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+				$("#n_answer").val(str);	
+				
+			formData = $("#repFrm").serialize();	
+			$.ajax({
+				url:"/3rd_prj/board/rp_modify.do",
+				data:formData,
+				type:"post",
+				dataType:"json",
+				error:function(xhr){
+					alert("문제발생\n" + xhr.status + "\n" + xhr.statusText);
+				},
+				success:function(json){
+				location.href="/3rd_prj/board/qna_post.do?q_num="+$("#q_num").val();	
+				}//success
+			});//ajax 	
+			
+			
+			
+			
+			}//end if
+		}//end if
 	});//click
 });//ready
 function del_process(q_num){
 	if(confirm("정말 삭제하시겠습니까?")){
 		var q_num = q_num;
-		location.href="/3rd_prj/board/delete_post.do?q_num="+q_num;
-	}//end if
+		$.ajax({
+			url:"/3rd_prj/board/delete_post.do",
+			data:"q_num="+q_num,
+			type:"get",
+			dataType:"json",
+			error:function(xhr){
+				alert("문제발생\n" + xhr.status + "\n" + xhr.statusText);
+			},
+			success:function(json){
+				if(json.result == true){
+					$("#answer").html();
+					location.href="/3rd_prj/board/qna_list.do"
+				}else{
+					alert("게시글이 삭제되지 않았습니다.");
+				}//end if
+			}//success
+		});//ajax 	
+		
+			}//end if
 	
 }//del_process
 </script>
@@ -86,30 +171,45 @@ function del_process(q_num){
       </td>
    	</tr>
      <c:if test="${qbdd.q_answer_Flag eq 'Y'}">
-     <tr>
+     <tr id="answer">
+
    	<th id="th"  style="vertical-align: middle; height:150px; text-align: center;">관리자   </th>
       <td style="background-color: #FFFAF0;">
-      <div style="float:left;">
-       <c:out value="${qbdd.q_answer}" escapeXml="false"/> <span style="font-size: 12px; color: gray; margin-left: 50px;" ><c:out value="${qbdd.q_answer_date}"/></span>
+        <form id="repFrm" name="repFrm" >
+      <div style="float:left;" id="reply">
+      <div id="replyPre" >
+      <c:out value="${qbdd.q_answer}" escapeXml="false"/><span style="font-size: 12px; color: gray; margin-left: 50px;" ><c:out value="${qbdd.q_answer_date}"/></span>
+      </div>
+      <div id="replyNext" style="display: none">
+      <textarea rows="5" style="width: 810px;"   class="form-control" id="n_answer" name="q_answer"> <c:out value="${qbdd.q_answer}" escapeXml="false"/></textarea>
+      </div>
+      
        </div>
-        <c:if test="${admin_id eq null }">
+        <c:if test="${admin_id ne null }">
          <div style="float:right;">
-    <input type="button" value="수정" class="btn btn-secondary alert-secondary" id="modifyRp" />
+         <input type="hidden" name="q_num" value="${qbdd.q_num }"/>
+         <input type="hidden" name="c_answer" id="c_answer" value="${qbdd.q_answer}"/>
+   		 <input type="button" value="수정" class="btn btn-secondary alert-secondary" id="modifyRp" />
     	</div> 	
     	</c:if>
+    	 </form>
       </td>
+     
       </tr>
       </c:if>
     <tr>
-     <c:if test="${admin_id eq null }">
+     <c:if test="${admin_id ne null }">
       <th scope="row" id="th" style="vertical-align: middle;">댓글</th>
       <td>
       <div>
-     <form action="/3rd_prj/board/addRp.do" method="post" id="rpFrm" name="rpFrm">
+     <form  id="rpFrm" name="rpFrm">
       <div style="float:left;">
-      <textarea class="form-control" style="width: 810px;" rows="5"></textarea>
+      <textarea name="q_answer" id="q_answer" class="form-control" style="width: 810px;" rows="5" 
+      <c:if test="${qbdd.q_answer_Flag eq 'Y'}">readonly="readonly" placeholder="답글을 이미 작성 하셨습니다."</c:if>></textarea>
       </div>
       <div style="float:right;">
+	<input type="hidden" name="q_num" id="q_num" value="<c:out value="${qbdd.q_num}"/>"/>
+	<input type="hidden" id="q_answer_flag" name="q_answer_flag" value="<c:out value="${qbdd.q_answer_Flag}"/>"/>
     <input type="button" value="입력" class="btn btn-secondary alert-danger" id="addRp" name="addRp" style="width: 110px; height: 135px;"/>
     	</div>
     </form>

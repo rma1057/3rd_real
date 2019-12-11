@@ -7,14 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
-	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
+
+	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto; 
+	display: flex; min-height: 100vh; flex-direction: column; 
+	}
 	/* 헤더 시작*/
 	#naviBar{ min-width:1100px; min-height: 130px; position:relative; font-size: 20px;}
 	/* 헤더 끝 */
 	/* 컨테이너 시작  */
-	#container{ width:1100px; height: 0px auto; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%;}
+	#container{ width:1100px; position:relative; margin: 0px auto; margin-top:70px; margin-bottom: 10%; flex: 1;}
 	.btn{width: 110px;height: 40px;}
 	.nav-item{margin: 10px;}
 	#sub-menuItem{font-family:"고딕";}
@@ -39,6 +42,37 @@ $(function(){
 	$('#myModal').on('shown.bs.modal', function () {
 		  $('#myInput').trigger('focus')
 		})//버튼누르는게 아니면 모달창이 안뜸ㅠ input_form의 작성버튼이랑 연결해야 할 듯욤
+		
+		
+	
+			$("#account").change(function(){
+				alert("!!");
+				var tempAc2=$("#account").val();
+				if( tempAc2 !="은행선택"){
+				//	if( tempEm2 !="직접입력"){
+						$("#account2").val( tempAc2 );
+				//	}//end if
+				}else{
+					$("#account2").val("");
+					$("#account2").focus();
+				}
+			})
+			
+			$("#cardBtn").click(function(){
+				if(confirm("결제할까요?")){
+					$("#payCardFrm").submit();
+				}
+				
+			})
+			
+				$("#bankBtn").click(function(){
+				if(confirm("결제할까요?")){
+					$("#payBankFrm").submit();
+				}
+				
+			})
+		
+		
 });//ready
 </script>
 </head>
@@ -50,34 +84,99 @@ $(function(){
  	<!-- MENU 끝 -->
 </div>
 <div id="container" align="center">   
-		<div id="transaction" style="width:450px ; height: 450px;">
+		<div id="transaction" style="width:450px ; ">
 	
 		<div style="text-align: left; padding-top: 5px">&nbsp;&nbsp;<input type="radio" name="radio" value="카드결제" > <strong >&nbsp;&nbsp;카드결제</strong></div>
-		<hr>
-		<img src="http://localhost:8080/3rd_prj/view/images/addbtn1.png">&nbsp;&nbsp;1111-1111-1111<br/>
-		<img src="http://localhost:8080/3rd_prj/view/images/addbtn1.png">&nbsp;&nbsp;2222-2222-2222<br/>		
+ 	<form action="payForCard.do" method="post" id="payCardFrm">
+    <div class="card" id="information">
+    <div class="card-body" >
+<h5 class="card-title">등록된 카드</h5>
+<table class="table table-hover" style="text-align: center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">유형</th>
+      <th scope="col" style="width: 80px;">카드번호</th>
+      <th scope="col">만료일</th>
+      <th scope="col" >선택</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+   <c:forEach var="sc" items="${CardList }">
+    <tr>
+      <th scope="row"><c:out value="${sc.card_type }"></c:out></th>
+      <td><c:out value="****-${sc.card_num4 }"></c:out></td>
+      <td><c:out value="${sc.ex_date }"></c:out></td>
+      <td><div><input class="form-check-input" type="radio" name="chk" id="chk" value="${sc.card_info_code}"></div></td>
+    </tr>
+    </c:forEach> 
+    
+    
+   </tbody>
+</table>    
+
+    </div>
+
+    </div>
+ 	</form>
 		 <div id="btnClass"style="position: relative; margin-top: 50px;" align="center">
-				<input type="button" value="결제" class="btn btn-secondary alert-danger" id="goBtn" style="margin-right: 25px;" >
-				<input type="button" value="수단변경" class="btn btn-secondary alert-secondary" id="backBtn">
+				<input type="button" value="결제" class="btn btn-secondary alert-danger" id="cardBtn" style="margin-right: 25px;" >
 		</div>  
 		<br/>
 		<div style="text-align: left; padding-top: 5px">&nbsp;&nbsp;<input type="radio" name="radio" value="무통장입금" > <strong >&nbsp;&nbsp;무통장입금</strong></div>
 		<br/>
+			<form action="payForBank.do" method="post" id="payBankFrm">
 		<div class="dropdown">
-		 계좌번호&nbsp;
-		 <input type="text" name="acnum" value="계좌번호">&nbsp;
-				
-			  <button class="btn btn-secondary alert-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    은행 선택
-			  </button>
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	<!-- 	 <input type="text" name="acnum" value="계좌번호">&nbsp;
+				 -->
+<table class="table table-hover" style="text-align: center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" style="width: 80px;">은행</th>
+      <th scope="col" style="width: 200px;">계좌번호</th>
+      <th scope="col" style="width: 80px;">선택</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+  <c:forEach var="accountList" items="${AccountList }">
+    <tr>
+      <th scope="row"><c:out value="${ accountList.bank }"></c:out></th>
+      <td><c:out value="${ accountList.account_number }"></c:out></td>
+      <td><div><input class="form-check-input" type="radio" name="bank" id="bank" value="${ accountList.bank }"></div></td>
+    </tr>
+    </c:forEach> 
+    
+    
+   </tbody>
+</table>    
+			
+			<%-- 
+			<div class="col-sm-3">
+			
+			
+			
+			      <select class="form-control" id="account"  name="bank">
+						<option value="은행선택">은행선택</option>
+			  		  <c:forEach var="accountList" items="${AccountList }">
+						<option value="${ accountList.account_number }"><c:out value="${ accountList.bank }"/></option>
+						<input type="hidden" value="${ accountList.account_number }"/>
+					  </c:forEach>
+				  </select>
+    		</div>
+    		 <div class="col-sm-3">
+   				   <input type="text" class="form-control" name="account2" id="account2"/>
+ 			 </div> --%>
+			  
+			<!--   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			    <a class="dropdown-item" href="#">우리은행</a>
 			    <a class="dropdown-item" href="#">국민은행</a>
 			    <a class="dropdown-item" href="#">하나은행</a>
-			  </div>
+			  </div> -->
 			 </div>
 			 <br/>
-			  <input type="button" value="결제" class="btn btn-secondary alert-danger" id="goBtn" style="margin-right: 25px;" >
+			  <input type="button" value="결제" class="btn btn-secondary alert-danger" id="bankBtn" style="margin-right: 25px;" >
+			</form>
 	</div>
 </div>
 

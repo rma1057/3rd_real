@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -37,7 +37,19 @@
 <script type="text/javascript">
 $(function(){
 	
+	$("#q_subject").keydown(function() {
+		if($("#q_subject").val().length>50){
+			alert("제목은 50자 이하만 작성 가능합니다.");
+			$("#q_subject").val($("#q_subject").val().substr(0, 50));
+			return;
+		}//end if
+	})
 	$("#goBtn").click(function() {
+		if($("#q_subject").val().length>50){
+			alert("제목은 50자 이하만 작성 가능합니다.");
+			$("#q_subject").val($("#q_subject").val().substr(0, 50));
+			return;
+		}//end if
 		
 		if($("#q_subject").val()==""){
 			alert("게시글 제목을 입력해주세요.");
@@ -49,9 +61,31 @@ $(function(){
 			return
 		}//end if
 		
-		
-	$("#writeFrm").submit();
-		
+		if(confirm("문의글을 등록하시겠습니까?")){
+			
+			var str = $("#q_content").val();
+			str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+			$("#q_content").val(str);
+		var formData = new FormData(document.getElementById('writeFrm'));
+		formData = $("#writeFrm").serialize();
+		$.ajax({
+			url:"/3rd_prj/board/write_post.do",
+			data:formData,
+			type:"post",
+			dataType:"json",
+			error:function(xhr){
+		alert(formData);
+				alert("문제발생\n" + xhr.status + "\n" + xhr.statusText);
+			},
+			success:function(json){
+				if(json.result == true){
+					location.href="/3rd_prj/board/qna_list.do"
+				}else{
+					alert("게시글이 등록되지 않았습니다.");
+				}//end if
+			}//success
+		});//ajax 	
+		}//end if
 	});//click
 	$("#backBtn").click(function(){
 		if(confirm('작성하지 않고 돌아가시겠습니까?')){
@@ -71,10 +105,9 @@ $(function(){
 </div>
 <div id="container">   
 
-   <form action="write_post.do" method="post" id="writeFrm">
+   <form id="writeFrm" name="writeFrm">
    <div style="margin-left: 50px;">
          <table>
-            
             <tr>
                <td id="ex">제목</td>
                <td>
@@ -90,19 +123,18 @@ $(function(){
             </tr>         
             </table>
              
-             
             </div>
+		<input type="hidden" id="user_id" name="user_id" value="<c:out value='${memberId}'/>"/>
            <div id="btnClass"style="position: relative; margin-top: 50px;" align="center">
 				<input type="button" value="등록" class="btn btn-secondary alert-danger" id="goBtn" style="margin-right: 25px;" >
 				<input type="button" value="돌아가기" class="btn btn-secondary alert-secondary" id="backBtn">
 				
 			</div>
-	<input type="hidden" name="user_id" value="<c:out value='${memberId}'/>"/>
          </form>
          
 </div>
 <div id="footer">
-<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<!-- 900(w)x150(h) -->
 	<div id="fLogo">
 		

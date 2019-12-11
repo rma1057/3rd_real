@@ -154,7 +154,7 @@ public class LoginController {
 
 			
 			content.append("<h1>"+"[ :P ]"+"</h1> \n\n")
-					  .append("<img src=\"http://localhost:8080/common/images/plogo.png\">")
+					  //.append("<img src=\"http://211.63.89.150:8080/3rd_prj/common/images/plogo.png\">")
 						
 					  .append("비밀번호는 관리자도 알 수 없도록<br/>")
 					  .append("암호화하여 저장되기 때문에<br/>")

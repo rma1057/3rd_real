@@ -3,11 +3,17 @@ package kr.co.prj.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+import org.springframework.ui.Model;
+
 import kr.co.prj.dao.BoardDAO;
 import kr.co.prj.domain.QnABoardDetailDomain;
 import kr.co.prj.domain.QnAListDomain;
+import kr.co.prj.vo.IndexListVO;
+import kr.co.prj.vo.QnAAddRpVO;
 import kr.co.prj.vo.QnAModifyVO;
 import kr.co.prj.vo.QnAWriteVO;
+import kr.co.prj.vo.RpModifyVO;
 import kr.co.prj.vo.SearchRangeVO;
 import kr.co.prj.vo.SearchVO;
 
@@ -109,26 +115,120 @@ public class QnAService {
 		return qbdd;
 	}//searchDetailQnA
 	
-	public int insertQnAPost(QnAWriteVO qwVO) {
-		int cnt = 0;
+	public JSONObject insertQnAPost(QnAWriteVO qwVO) {
+		JSONObject json = new JSONObject();
 		
 		BoardDAO bDAO = BoardDAO.getInstance();
-		cnt = bDAO.insertQnAPost(qwVO);
+		boolean flag = bDAO.insertQnAPost(qwVO)==1;
 		
-		return cnt;
+		json.put("result", flag);
+		
+		return json;
 	}//insertQnAPost
 	
-	public int deletePostQnA(int q_num) {
-		int cnt=0;
+	public JSONObject deletePostQnA(int q_num) {
+		JSONObject json = new JSONObject();
 		BoardDAO bDAO = BoardDAO.getInstance();
-		cnt = bDAO.deletePostQnA(q_num);
-		
-		return cnt;
+		boolean flag = bDAO.deletePostQnA(q_num)==1;
+		json.put("result" , flag);
+		return json;
 	}//deletePostQnA
-	public int updatePostQnA(QnAModifyVO qVo) {
-		int cnt = 0;
+	public JSONObject updatePostQnA(QnAModifyVO qVo) {
+		JSONObject json = new JSONObject();
 		BoardDAO bDAO = BoardDAO.getInstance();
-		cnt = bDAO.updatePostQnA(qVo);
-		return cnt;
+		boolean flag = bDAO.updatePostQnA(qVo)==1;
+		json.put("result", flag);
+		return json;
 	}//deletePostQnA
+	
+	public JSONObject updateQnARp(QnAAddRpVO qarVO) {
+		JSONObject json = new JSONObject();
+		BoardDAO bDAO = BoardDAO.getInstance();
+		boolean flag = bDAO.updateQnARp(qarVO)==1;
+		json.put("result", flag);
+		return json;
+	}//deletePostQnA
+	
+	public JSONObject replyModify(RpModifyVO rmVO) {
+		JSONObject json = new JSONObject();
+		BoardDAO bDAO = BoardDAO.getInstance();
+		boolean flag =bDAO.replyModify(rmVO)==1;
+		return json;
+	}//replyModify 
+	
+	// 현재 게시판의 페이지 인덱스 설정
+public String indexList(IndexListVO ilVO) {
+			int pagenumber; // 화면에 보여질 페이지 인덱스 수
+			int startpage; // 화면에 보여질 시작페이지 번호
+			int endpage; // 화면에 보여질 마지막페이지 번호
+			int curpage; // 이동하고자 하는 페이지 번호
+
+			String strList=""; // 리턴될 페이지 인덱스 리스트
+
+			pagenumber = 5; // 한 화면의 페이지 인덱스 수 
+
+			// 시작 페이지번호 구하기
+			startpage = ((ilVO.getCurrentPage() - 1) / pagenumber) * pagenumber + 1;
+
+			// 마지막 페이지번호 구하기
+			endpage = (((startpage - 1) + pagenumber) / pagenumber) * pagenumber;
+
+			// 총 페이지 수가 계산된 마지막페이지 번호보다 작을경우 
+
+			// 총 페이지 수가 마지막페이지 번호가 됨
+
+
+			if (ilVO.getTotalPage() <= endpage){
+				endpage = ilVO.getTotalPage();
+			}//end if
+
+			// 첫번째 페이지 인덱스 화면이 아닌경우
+			if ( ilVO.getCurrentPage() > pagenumber) {
+				curpage = startpage - 1; // 시작페이지 번호보다 1 적은 페이지로 이동														
+				strList = strList + "<li class=\"page-item\"><a class=\"page-link text-dark\" href="+ilVO.getUrl()+"page="+curpage+" aria-label=\"Previous\">\r\n" + 
+						"         <span aria-hidden=\"true\">&laquo;</span></a></li>"; 
+			}else{
+				strList = strList + "		    <li class=\"page-item\">\r\n" + 
+										"		      <a class=\"page-link text-dark\" href=\"#\" aria-label=\"Previous\">\r\n" + 
+										"		        <span aria-hidden=\"true\">&laquo;</span>\r\n" + 
+										"		      </a>\r\n" + 
+										"		    </li>";
+			}
+
+			//strList = strList + " ... ";
+
+			// 시작페이지 번호부터 마지막페이지 번호까지 화면에 표시
+			curpage = startpage;
+
+			while (curpage <= endpage){
+				if (curpage == ilVO.getCurrentPage()) {
+					strList = strList + "<li class=\"page-item\"><a class='page-link text-white  bg-secondary' title='현재페이지'>"+ilVO.getCurrentPage()+"</a></li>";
+				} else {
+					strList = strList +"<li class=\"page-item\"><a class=\"page-link text-dark \" href="+ilVO.getUrl()+"page="+curpage+">"+curpage+"</a></li>";
+				}//end else
+
+				curpage++;
+			}//end while
+
+			//strList = strList + " ... ";
+
+			// 뒤에 페이지가 더 있는경우
+			if ( ilVO.getTotalPage() > endpage) {
+				curpage = endpage + 1; 
+				strList = strList + "<li class=\"page-item\">\r\n" + 
+						"		      <a class=\"page-link text-dark \" href="+ilVO.getUrl()+"page="+curpage+" aria-label=\"Next\">\r\n" + 
+								"		        <span aria-hidden=\"true\">&raquo;</span></a>";
+			}else{
+				strList = strList + "<li class=\"page-item\">\r\n" + 
+						"		      <a class=\"page-link text-dark \" href=\"#\" aria-label=\"Next\">\r\n" + 
+						"		        <span aria-hidden=\"true\">&raquo;</span>\r\n" + 
+						"		      </a>\r\n" + 
+						"		    </li>";
+			}//end else
+
+			return strList;
+		}//indexList
+
+	
+	
 }//class

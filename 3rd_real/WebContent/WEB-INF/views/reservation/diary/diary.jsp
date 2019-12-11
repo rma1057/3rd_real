@@ -1,3 +1,6 @@
+<%@page import="kr.co.prj.vo.DiaryResultVO"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -13,7 +16,7 @@
       ne.printStackTrace();
    
    }
-   System.out.println(":"+paramYear+"/"+paramMonth);
+   //System.out.println(":"+paramYear+"/"+paramMonth);
    
    Calendar bCal = Calendar.getInstance();
      Calendar cal=Calendar.getInstance();     int nowYear=cal.get(Calendar.YEAR);
@@ -34,14 +37,14 @@
    int month = Calendar.getInstance().get(Calendar.MONTH);
    int date = Calendar.getInstance().get(Calendar.DATE);
    
-   System.out.println(year+"/"+month+"/"+date);
+   //System.out.println(year+"/"+month+"/"+date);
    
    
-   System.out.println(nowYear+"/"+nowMonth);
+ //  System.out.println(nowYear+"/"+nowMonth);
     cal.set(nowYear,nowMonth,1);
    bCal.set(nowYear,nowMonth-1, 1);
    int backLastDay = bCal.getActualMaximum(Calendar.DATE);
-   System.out.println(backLastDay+":마지막");
+  // System.out.println(backLastDay+":마지막");
    
  %>
 <!DOCTYPE html>
@@ -110,22 +113,16 @@ th,td { border: 1px solid #D6D7D7;}
  <!-- SmartMenus 끝 -->
 
 <script type="text/javascript">
-
-
-
-
-
 $(function(){
    $("#next").click(function(){
       
    })
 });
-function moveResv(room_name, year,month,day,image1){
-	$("#room_name").val(room_name);
+function moveResv( year,month,day){
+	
 	$("#param_year").val(year);
 	$("#param_month").val(month);
 	$("#param_day").val(day);
-	$("#image1").val(image1);
 	$("#resvFrm").submit();
 	
 }
@@ -151,20 +148,22 @@ function moveResv(room_name, year,month,day,image1){
          %>
          <div id="calWrap">
             <div id="calHeader">
-            <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth-1)%>'><img src="/3rd_prj/common/images/prev_btn.png"title="이전월"id="pre"/></a>
+           <%--  <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth-1)%>'><img src="/3rd_prj/common/images/prev_btn.png"title="이전월"id="pre"/></a> --%>
+            <a href="diary.do?month=<%=nowMonth-1<0?11:nowMonth-1%>&year=<%=
+         nowMonth-1<0?nowYear-1:nowYear %>"><img src="/3rd_prj/common/images/prev_btn.png" title="이전월"/></a>
             <span style="font-family: 고딕  SansSerif;font-weight: bold;font-size: 27px"><%=nowYear%>.<%=nowMonth+1 %></span>
-            <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth+1)%>'><img src="/3rd_prj/common/images/next_btn.png"title="다음월"id="next"/></a>
+            <%-- <a href='diary.do?<%="year="+nowYear+"&"+"month="+(nowMonth+1)%>'><img src="/3rd_prj/common/images/next_btn.png"title="다음월"id="next"/></a> --%>
+               <a href="diary.do?month=<%=nowMonth+1==12?0:nowMonth+1%>&year=<%=
+            nowMonth+1==12?nowYear+1:nowYear %>"><img src="/3rd_prj/common/images/next_btn.png" title="다음월"/></a>    
             <a href='diary.do'><img src="/3rd_prj/common/images/today_btn.png"title="현재월"/></a>
             </div>         
             <div id="calContent">
             
             
-            <form action=" /3rd_prj/reservation/rsv_input.do" method="post" id="resvFrm">
-            <input type="hidden" name="room_name" id="room_name"/>
+            <form action="/3rd_prj/reservation/rsv_input.do" method="post" id="resvFrm">
             <input type="hidden" name="param_year" id="param_year"/>
             <input type="hidden" name="param_month" id="param_month"/>
             <input type="hidden" name="param_day" id="param_day"/>
-            <input type="hidden" name="image1" id="image1"/>
             </form>
             
             <table id="diaryTab">
@@ -174,7 +173,7 @@ function moveResv(room_name, year,month,day,image1){
                <th class="weekTitle">화</th>
                <th class="weekTitle">수</th>
                <th class="weekTitle">목</th>
-               <th class="weekTitle">금<%= request.getParameter("image1") %></th>
+               <th class="weekTitle">금</th>
                <th class="satTitle" style="background-color: #C8C4C1">토</th>
             </tr>
             <tr>
@@ -183,7 +182,7 @@ function moveResv(room_name, year,month,day,image1){
                cal.set(Calendar.DAY_OF_MONTH, tempDay);//증가하는 가상의 일자를 달력객체에 설정
                if(cal.get(Calendar.DAY_OF_MONTH)!=tempDay ){
                   //증가하는 임시일자와 설정된 날짜를 꺼내온것이 다르다면 다음달 1일 이므로 반복문을 빠져 나간다.
-                  System.out.println(cal.get(Calendar.MONTH)+"월/"+cal.get(Calendar.DAY_OF_WEEK)+"요일");
+                //  System.out.println(cal.get(Calendar.MONTH)+"월/"+cal.get(Calendar.DAY_OF_WEEK)+"요일");
                   
                   if(cal.get(Calendar.DAY_OF_WEEK) != 1){
                   int nextDay = 1;
@@ -210,9 +209,9 @@ function moveResv(room_name, year,month,day,image1){
                   
                
                   for(int blankTd=cal.get(Calendar.DAY_OF_WEEK)-1;blankTd>0;blankTd--){
-                     System.out.println(blankTd-1);
+                   //  System.out.println(blankTd-1);
                %>
-               <td class="blankTd"><a href="/3rd_prj/reservation/rsv_input.do">
+               <td class="blankTd"><!-- <a href="/3rd_prj/reservation/rsv_input.do"> -->
          
                <%= backLastDay-(blankTd-1)%></a></td>
                <%
@@ -225,6 +224,13 @@ function moveResv(room_name, year,month,day,image1){
                if(year == nowYear && month == nowMonth && date == tempDay){
                   backColor = "style='background-color: #e9f4fb'";
                }
+               boolean flag = false;
+               if(year < nowYear || (year ==nowYear &&  month <= nowMonth  && date < tempDay  )){
+					flag =true;
+               }
+               
+               
+               
                %>
                
                
@@ -238,21 +244,89 @@ function moveResv(room_name, year,month,day,image1){
                case Calendar.SUNDAY:
                   color ="style='color:#FF0000'"; 
                break;
+               default:
+            	   color="style='color:#007BFF'";
+            	   break;
                }
             
                
                %>
                
                		
-                  <a href="javascript:moveResv('${ param.room_name }','<%=nowYear %>','<%=nowMonth+1 %>', '<%=tempDay %>','<%= request.getParameter("image1") %>')"><div <%=color %>><%=tempDay %></div></a>
+                <%--   <a href="javascript:moveResv('<%=nowYear %>','<%=nowMonth+1 %>', '<%=tempDay %>')"><div <%=color %>><%=tempDay %></div></a> --%>
                   <%-- <input type="hidden" value="<%= nowYear %>-<%= nowMonth %>-<%=tempDay %>" name="rsvDate">  --%>
 <%--                	  <% if (cal.get(Calendar.DAY_OF_WEEK)==Calendar.TUESDAY | cal.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY ) { %>                    
-	                  <div style="background-color: yellow">ㅎㅇㅎㅇ</div>
-	                  <div style="background-color: red">ㅎddd</div>
                   <%} %> --%>
+                  <%
+                  Map<Integer, DiaryResultVO[]> map = (HashMap<Integer, DiaryResultVO[]>)request.getAttribute("rListMap");
+                  if(map.containsKey(tempDay)){
+                	  DiaryResultVO[] drArr =  map.get(tempDay);
+                	  String[] dayColor = {"white","white","white","white"};
+                	  String[] dayTime = {"8-12","12-16","16-20","20-24"};
+                	  boolean[] idFlag = new boolean[4];
+                	  String id = (String)request.getAttribute("mamberId");
+                	  
+                	  int cnt=0;
+                	  for(int i=0;i<drArr.length;i++){
+                		  
+                		  if(drArr[i] != null){
+                			  dayColor[i] ="#E6E6E6";
+                		  	cnt++;
+                		  	if(drArr[i].getUserID().equals(id)){
+                		  		
+                		  	}
+                		  	
+                		  	
+                		  }else{
+                			  dayTime[i]="&nbsp;";
+                			  
+                		  }
+                		  
+                		  
+                		  
+                	  }
+                	  if(cnt==4){%>
+                		  
+                		
+                		 <div <%=color %>><%=tempDay %></div>
+                		  
+                <%}else{ %>	  
+                	  
+               <% if(flag){%>
+              
+                  
+                  <a href="javascript:moveResv('<%=nowYear %>','<%=nowMonth+1 %>', '<%=tempDay %>')"><div <%=color %>><%=tempDay %></div></a>
                   
                   
                   
+                  
+                  <%}else{%>
+                	   <div <%=color %>><%=tempDay %></div>
+                  <%}    	
+                	 } %> 
+              
+                  
+	                  <div style="background-color: <%=dayColor[0]%>"><div style='color:gray'><%=dayTime[0]%></div></div>
+	                  <div style="background-color: <%=dayColor[1]%>"><div style='color:gray'><%=dayTime[1]%></div></div>
+	                  <div style="background-color: <%=dayColor[2]%>"><div style='color:gray'><%=dayTime[2]%></div></div>
+	                  <div style="background-color: <%=dayColor[3]%>"><div style='color:gray'><%=dayTime[3]%></div></div>
+                	  
+                	  
+                	  
+                <% }else{  
+                
+                if(flag){%>
+              
+                  
+                  <a href="javascript:moveResv('<%=nowYear %>','<%=nowMonth+1 %>', '<%=tempDay %>')"><div <%=color %>><%=tempDay %></div></a>
+                  
+                  
+                  
+                  
+                  <%}else{%>
+                	   <div <%=color %>><%=tempDay %></div>
+                  <%}
+                	} %>
                   
                </td>
                <%

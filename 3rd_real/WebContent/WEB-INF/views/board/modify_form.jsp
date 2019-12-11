@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -35,8 +35,24 @@
 <link href="https://fonts.googleapis.com/css?family=Amaranth&display=swap" rel="stylesheet">
 <script type="text/javascript">
 $(function(){
-	$("#goBtn").click(function() {
 	
+	
+	$("#q_subject").keydown(function() {
+		if($("#q_subject").val().length>50){
+			alert("제목은 50자 이하만 작성 가능합니다.");
+			$("#q_subject").val($("#q_subject").val().substr(0, 50));
+			return;
+		}//end if
+	})
+	
+	var str = $("#q_content").val();
+
+	str = str.split('<br/>').join("\r\n");
+
+	$("#q_content").val(str);
+	
+	$("#goBtn").click(function() {
+		
 		if($("#q_subject").val()==""){
 			alert("게시글 제목을 입력해주세요.");
 			return;
@@ -47,7 +63,36 @@ $(function(){
 			return
 		}//end if
 	 if(confirm("변경사항을 수정하시겠습니까?")){
-		$("#modify_process").submit();
+		 
+		 if($("#q_subject").val().length>50){
+				alert("제목은 50자 이하만 작성 가능합니다.");
+				$("#q_subject").val($("#q_subject").val().substr(0, 50));
+				return;
+			}//end if
+		 
+		 var str = $("#q_content").val();
+			str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+			$("#q_content").val(str);
+		 
+		 var formData = new FormData(document.getElementById('modify_process'));
+		 formData = $("#modify_process").serialize();
+		 $.ajax({
+				url:"/3rd_prj/board/modify_process.do",
+				data:formData,
+				type:"post",
+				dataType:"json",
+				error:function(xhr){
+					alert("문제발생\n" + xhr.status + "\n" + xhr.statusText);
+				},
+				success:function(json){
+					if(json.result == true){
+						location.href="/3rd_prj/board/qna_post.do?q_num="+$("#q_num").val();
+					}else{
+						alert("게시글이 변경지 않았습니다.");
+					}//end if
+				}//success
+			});//ajax 	
+		 
 	 }
 	});//click
 	$("#backBtn").click(function(){
@@ -66,7 +111,7 @@ $(function(){
  	<!-- MENU 끝 -->
 </div>
 <div id="container">   
-   <form action="/3rd_prj/board/modify_process.do" id="modify_process" method="post">
+   <form id="modify_process" >
    <div style="margin-left: 50px;">
          <table>
            
@@ -96,7 +141,7 @@ $(function(){
          </form>
 </div>
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

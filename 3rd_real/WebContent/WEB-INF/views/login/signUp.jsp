@@ -250,7 +250,9 @@ $(function(){
 		}
 	});//click
 	
-
+	$("#backBtn").click(function(){
+		location.href="login.do"; //로그인창 연결해주기
+	});//click
 	
 	
 	

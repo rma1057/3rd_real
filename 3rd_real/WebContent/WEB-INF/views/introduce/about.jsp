@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     info=""
     %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,51 +45,42 @@ $(function(){
 <div id="class4Wrap">
 <div id="naviBar">
  	<!-- MENU 시작 -->
-		<%@include file="../../../common/navbar/nav.jsp" %>
+	<%@include file="../../../common/navbar/nav.jsp" %>
  	<!-- MENU 끝 -->
 </div>
 <div id="container">   
-          
 	<div style="font-size: 30px; font-weight: bold; text-align: center">
 	about
 	</div>
-	<div style="font-size: 20px; margin: auto; text-align: center">
+	<div style="font-size: 15px;  text-align: center; font-weight: bold ">
 	가치에 의미를 더하다
 	</div><br/>
-	
 	<div style="margin: auto;">
 	<img style="width:1100px;height:300px" src="http://localhost:8080/3rd_prj/common/images/main.PNG"></div><br/>
 	
-	<div class="card-deck" style="margin-top: 100px">
-	  <div class="card">
-	  <a href="about1.jsp">
-	    <img src="http://localhost:8080/3rd_prj/common/images/2.PNG" id="roomA"  class="card-img-top" >
-	  </a>
-	    <div class="card-body">
-	      <h5 class="card-title" style="font-weight: bold">"파티룸+브라이덜샤워+프로포즈"</h5>
-	      <p class="card-text">행복이 시작되는 다목적 복합문화공간 <br/>
-	강남구 중심에 위치해 접근성이 편리하며 9m의 높은 천고를 가진 넓은 홀에 콘서트도 가능한 최고의 조명, 음향 및 영상 시설을 보유하고 있어 세미나, 강연, 파티, 기업 행사등 다양한 목적에 따라 맞춤형 공간을 즐기실 수 있습니다.<br/><br/>
-	특별한 순간 이니에스타 등 국내에서 접하기 쉽지 않은 와인들을 엄선해 구비하여 와인 파티의 공간 및 찾아주시는 모든 분들께 특별함을 선사해 드립니다.
-	    </div>
-	  </div>
-	  <div class="card">
-	  	<a href="about2.jsp">
-	    <img src="http://localhost:8080/3rd_prj/common/images/4.jpg"  id="roomC" class="card-img-top" >
-	    </a>
-	    <div class="card-body">
-	      <h5 class="card-title" style="font-weight: bold">"그룹스터디룸+세미나실+강연장"</h5>
-	      <p class="card-text">각각  구분된 공간으로서, 사용하고자 하시는 목적에 따라 선택하실 수 있습니다.<br/><br/>
-	2인실에서부터 16인실까지의 그룹 스터디 또는 세미너 룸과
-	1인실에서부터 5인실까지의 Co-working 공유 오피스, 
-	그리고, 각종 행사와 모임 진행이 가능한 전망 좋은 카페테리아, 
-	12층 건물의 최상층에 위치하여, 멋진 낙조를 매일 저녁 감상하실 수 있는 곳입니다.<br/>
-	    </div>
-	  </div>
-	</div>	
-    
+  <div class="card-deck" style="margin-top: 80px">
+  <c:forEach var="list"  items="${concept}">		
+  <div class="card">
+			
+			<a href="about1.do?concept=${ list.concept_name }">
+			
+    <img src="http://localhost:8080/3rd_prj/common/images/<c:out value="${list.image}"/>" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title" style="font-weight: bold; color: black; "><c:out value="${list.concept_name2}"/></h5>
+    	<a style="text-decoration: none;"></a>
+      	<a class="card-text" style="color: black;"><c:out value="${list.info}"/>
+      	</a>
+    </div>
+    </a>
+  </div>
+    </c:forEach>
+  </div>
+</div>
+	  
 </div>
 
 <div id="footer">
+<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
   <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>
