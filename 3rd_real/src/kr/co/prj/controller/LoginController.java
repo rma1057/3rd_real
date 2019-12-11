@@ -180,8 +180,8 @@ public class LoginController {
 				System.out.println("메일 보내고 싶어여ㅠ");
 
 				messageHelper.setFrom("pspace.rental@gmail.com"); // 보내는사람 생략하면 정상작동을 안함
-				messageHelper.setTo("rma1057@gmail.com"); // 받는사람 이메일
-				messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+				messageHelper.setTo( tomail ); // 받는사람 이메일
+				messageHelper.setSubject( title ); // 메일제목은 생략이 가능하다
 				messageHelper.setText(String.valueOf(content), true); // 메일 내용
 
 				/**
