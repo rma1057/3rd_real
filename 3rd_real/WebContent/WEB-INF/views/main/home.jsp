@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
+<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -26,6 +27,9 @@
 	#fContent{ width: 1100px;height: 110px; padding-top: 30px; margin-right: auto; margin-left: auto }
 	/* 푸터 끝  */
 	#hTitle{font-family: '고딕'; font-size: 30px; font-weight: bold;}
+	
+	
+	.mt-2{font-family: 'Pacifico', cursive; font-size: 40px;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -83,10 +87,20 @@ $(function(){
   </a>
 </div><br/><br/>
 
+
+ <div class="mt-2 mb-3" style="font-size: 45px;" align="center">Our special place only for you</div>
+<br/><br/><br/><br/>
+
 <div id="container1">
 <ul class="list-unstyled">
  <div class="media">
   <div class="media-body">
+  
+
+  
+  
+  
+  
     <h5 class="mt-2 mb-3">Propose</h5>
    프로포즈
 나의 연인에게 진심을 담아 전하는 사랑고백.
@@ -96,10 +110,10 @@ $(function(){
 저희는 완벽한 프로포즈 준비를 위해 한분한분 친절하게 상담을 진행하고 있으며 또 그에 맞는 준비를 도와드립니다.
 
   </div>
-  <img src="http://localhost:8080/3rd_prj/common/images/main1.jpg" class="ml-3" style="width:450px; height:250px" >
+  <img src="http://localhost:8080/3rd_prj/common/images/main1.jpg" class="ml-3" style="width:550px; height:400px" >
 </div><br/>
   <li class="media my-4">
-   <img src="http://localhost:8080/3rd_prj/common/images/main2.jpg" class="mr-3" style="width:450px; height:250px" >
+   <img src="http://localhost:8080/3rd_prj/common/images/main2.jpg" class="mr-3" style="width:550px; height:400px" >
     <div class="media-body">
       <h5 class="mt-2 mb-3">meeting & workshop</h5>
       미팅룸, 두 개의 룸은 각기의 매력을 갖추고 있으며, 더 좋은 환경의 스터디와 회의 진행, 워크샵을 원하는 분들을 위한 공간입니다. 코르크벽과 공간을 비추는 주광등은 집중력을 더합니다.
@@ -113,7 +127,7 @@ $(function(){
    
     
   </div>
-  <img src="http://localhost:8080/3rd_prj/common/images/main3.jpg" class="ml-3" style="width:450px; height:250px" >
+  <img src="http://localhost:8080/3rd_prj/common/images/main3.jpg" class="ml-3" style="width:550px; height:400px" >
 </div>
 </div>
 

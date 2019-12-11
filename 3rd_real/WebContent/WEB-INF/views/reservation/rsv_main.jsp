@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
+<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; margin: 0px auto;
 	display: flex; min-height: 100vh; flex-direction: column;
@@ -33,7 +34,7 @@
 	
 	html,body{ margin:0; padding:0; width:100%; height:100% }
 
-	
+	#mt-2{font-family: 'Pacifico', cursive; }
 	
 	@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
 figure.snip1200 {
@@ -180,8 +181,8 @@ function moveDiary(room_name, image1, charge){
 
 
 
-	<div align="center" style="font-size: 35px; font-weight: bold;">Reservation</div>
-	<br/><br/><br/>
+	<div align="center" id="mt-2" style="font-size: 60px; font-weight: bold;">Reservation</div>
+	<br/><br/>
 	
 	
 	<%-- 		<div style="text-align: center; margin-bottom: 20px">
