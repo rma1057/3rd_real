@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/3rd_pprj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -241,7 +241,7 @@ $(function(){
 <div id="container">	
 <form class="card" id="cardInfoFrm" action="finish_signUp.do" method="post" style="width: 580px; height: 560px; padding-top: 20px ; margin-left: auto; margin-right: auto;">
 	<div class="card-body" align="center" >
-		<div><img src="http://localhost:8080/3rd_prj/common/images/credit-card3.png">&nbsp;&nbsp;&nbsp;&nbsp;<strong>결제정보 입력</strong></div><br/>
+		<div><img src="http://211.63.89.150:8080/3rd_prj/common/images/credit-card3.png">&nbsp;&nbsp;&nbsp;&nbsp;<strong>결제정보 입력</strong></div><br/>
 			
 			
 			

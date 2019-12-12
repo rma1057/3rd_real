@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/jsp_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -99,19 +99,19 @@ $(function(){
 </div>
 
 <div class="media">
-  <img src="http://localhost:8080/jsp_prj/common/images2/addr.PNG" class="align-self-center mr-3" alt="...">
+  <img src="http://211.63.89.150:8080/jsp_prj/common/images2/addr.PNG" class="align-self-center mr-3" alt="...">
   <div class="media-body">
-    <h5 class="mt-0"><img src="http://localhost:8080/jsp_prj/common/images2/bus.png" style="width:60px; height:55px"></h5>
+    <h5 class="mt-0"><img src="http://211.63.89.150:8080/jsp_prj/common/images2/bus.png" style="width:60px; height:55px"></h5>
     <p>
     	성산2교 정류장(ID:14186) 도보2분<br/>
 		성미약수터 정류장(ID:14910) 도보2분<br/><br/>
 	</p>
-   <img src="http://localhost:8080/jsp_prj/common/images2/car.png" style="width:60px; height:55px">
+   <img src="http://211.63.89.150:8080/jsp_prj/common/images2/car.png" style="width:60px; height:55px">
 	  <p class="mb-0">서울시 마포구 월드컵북로 12안길 35 <br/>
 		서울시 마포구 성산동 108-5 <br/>
 		주소를 네비게이션에 입력해 주세요.<br/><br/></p>
 	
-	<img src="http://localhost:8080/jsp_prj/common/images2/subway.png" style="width:60px; height:55px">
+	<img src="http://211.63.89.150:8080/jsp_prj/common/images2/subway.png" style="width:60px; height:55px">
 	  <p class="mb-0">2호선 역삼역 3번출구 도보 3분<br/>
 		2호선 강남역 10번출구 도보 7분<br/>
 		경의중앙선 강남역 10번출구 도보 7분</p>
@@ -121,7 +121,7 @@ $(function(){
 </div>
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_prj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

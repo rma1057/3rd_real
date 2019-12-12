@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/jsp_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ width:1100px; height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -155,7 +155,7 @@ $(function(){
          </div>
 </div>
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_prj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

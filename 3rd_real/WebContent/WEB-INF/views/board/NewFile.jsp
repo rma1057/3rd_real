@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/3rd_pprj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -54,7 +54,7 @@ $(function(){
 </div>
 
 <div id="footer">
-<a href="#"><img src="http://localhost:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 95%; top:80%; "/></a> 
+<a href="#"><img src="http://211.63.89.150:8080/3rd_pprj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 95%; top:80%; "/></a> 
   <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>

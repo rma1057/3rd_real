@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_pprj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/3rd_pprj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -34,14 +34,12 @@
 <link href="https://fonts.googleapis.com/css?family=Amaranth&display=swap" rel="stylesheet">
 <script type="text/javascript">
 $(function(){
-
 	$("#goBtn").click(function(){
 		//$("#cardInfoFrm").submit();
 		var four= /^[0-9]{4}$/
 		var three= /^[0-9]{3}$/
 		var five= /^[0-9/]{5}$/
 		var exData = /^[0-9]{2}$/-/^[0-9]{2}$/; 
-
 		 if($("#cardNum1").val()!=""){
 				$("#cardNum1").attr('class','form-control is-valid');
 				$("#cardNum_div1").attr('class','valid-feedback');
@@ -153,7 +151,6 @@ $(function(){
 		if(confirm("카드를 추가 할까요?")){
 			$("#cardInfoFrm").submit();
 		}	
-
 	});//click */
 	
 	
@@ -223,20 +220,13 @@ $(function(){
 		
 	
 	
-
 });//ready
 $(function(){
 	form = document.form1;
-
 	form.chApplNm.focus();
-
-
-
 	$("#chBirthYmd").attr("masktype", "date");
 	$("input:text").setMask();
 });
-
-
 </script>
 
 	
@@ -255,7 +245,7 @@ $(function(){
 
 <form class="card" id="cardInfoFrm" action="finishInputCardInfo.do" method="post" style="width: 550px; height: 550px; padding-top: 20px ; margin-left: auto; margin-right: auto;">
 	<div class="card-body" align="center" >
-		<div><img src="http://localhost:8080/3rd_prj/common/images/credit-card3.png">&nbsp;&nbsp;&nbsp;&nbsp;<strong>결제정보 입력</strong></div><br/>
+		<div><img src="http://211.63.89.150:8080/3rd_prj/common/images/credit-card3.png">&nbsp;&nbsp;&nbsp;&nbsp;<strong>결제정보 입력</strong></div><br/>
 			
 			<table>
 				<tr>

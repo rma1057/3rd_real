@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/3rd_prj/common/css/main.css"/>
 <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; margin: 0px auto;
@@ -197,7 +197,7 @@ function moveDiary(room_name, image1, charge){
 		<!-- image:  %ED%8C%8C%ED%8B%B0%EB%A3%B81.jpg -->
 		<c:forEach var="ri" items="${ RoomInfo }">
 		<figure class="snip1200" style="float: left; margin-left: 33px">
-		  <img src="http://localhost:8080/3rd_prj/common/images/${ ri.image1 }" id="partyRoom1" width="500" height="333"/>
+		  <img src="http://211.63.89.150:8080/3rd_prj/common/images/${ ri.image1 }" id="partyRoom1" width="500" height="333"/>
 		  <figcaption>
 		    <p><c:out value="${ ri.brief_info }"/></p>
 		    <div class="heading">
@@ -228,6 +228,7 @@ function moveDiary(room_name, image1, charge){
 </div>
 
 <div id="footer">
+		<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
   <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>

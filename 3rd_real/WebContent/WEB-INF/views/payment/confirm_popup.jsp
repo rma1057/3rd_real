@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/jsp_prj/common/css/main.css"/>
 <style type="text/css">
 
 
@@ -161,6 +161,7 @@ $(function(){
 
 
 <div id="footer">
+	<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
   <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -124,7 +124,7 @@ function handleImgFileSelect(e){
 			$("#img").attr("src", e.target.result);
 		}
 		reader.readAsDataURL(f);
-		$("#n_content").val($("#n_content").val()+"<img src='http://localhost:8080/3rd_prj/common/images/"+fileName+"'/>");
+		$("#n_content").val($("#n_content").val()+"<img src='http://211.63.89.150:8080/3rd_prj/common/images/"+fileName+"'/>");
 	});
 	 formData = new FormData(document.getElementById('addFile'));
 	
@@ -206,7 +206,7 @@ function handleImgFileSelect(e){
          
 </div>
 <div id="footer">
-<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<!-- 900(w)x150(h) -->
 	<div id="fLogo">
 		

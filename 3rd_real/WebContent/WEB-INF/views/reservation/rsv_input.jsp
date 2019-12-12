@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/3rd_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/3rd_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1800px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -90,8 +90,50 @@ $(function(){
 	
 	$("#goBtn").click(function(){
 		
+		//	rsv_person,num1,num2,num3,email,request   name:checkbox
+		
+		
+		if($("#rsv_person").val() == ""){
+	        alert("이름을 입력해 주세요");
+	        $("#rsv_person").focus();
+	        return ;
+	      }	
+		if($("#num1").val() == ""){
+	        alert("핸드폰번호를 입력해 주세요");
+	        $("#num1").focus();
+	        return ;
+	      }	
+		if($("#num2").val() == ""){
+	        alert("핸드폰번호를 입력해 주세요");
+	        $("#num2").focus();
+	        return ;
+	      }	
+		if($("#num3").val() == ""){
+	        alert("핸드폰번호를 입력해 주세요");
+	        $("#num3").focus();
+	        return ;
+	      }	
+		if($("#email").val() == ""){
+	        alert("이메일을 입력해 주세요");
+	        $("#email").focus();
+	        return ;
+	      }	
+
+  		 if(!$("input:checkbox[name='timetouse']").is(':checked')){
+			alert("시간을 선택해 주세요");
+			return;
+		     }
+		if(!$("input:checkbox[name='checkbox']").is(':checked')){
+	        alert("개인정보 수집 및 이용에 동의해주세요");
+	      
+	        return ;
+	      }	
+		
+		
+
+		
 	if(confirm("예약 할까요?")){
-		$("#goBtn").submit
+		  $("#rsvFrm").submit();  
 	}
 		
 	})
@@ -120,7 +162,7 @@ $(function(){
 			
 		<div id="leftside">
 			<h3><strong> [ :P ] / <%= session.getAttribute("room_name") %> </strong></h3><br/>
-			<img src="http://localhost:8080/3rd_prj/common/images/<c:out value="${ image1 }"/>" style="width: 490px">
+			<img src="http://211.63.89.150:8080/3rd_prj/common/images/<c:out value="${ image1 }"/>" style="width: 490px">
 			<br/><br/><br/>
 		
 			<div>		
@@ -160,7 +202,7 @@ $(function(){
 		
 		
 		<div id="rightside">
-		<form action="/3rd_prj/payment/confirm_parameter.do" method="post">
+		<form action="/3rd_prj/payment/confirm_parameter.do" method="post"  id="rsvFrm">
 			<h6><c:out value="${ param.param_year }"/>-<c:out value="${ param.param_month }"/>-<c:out value="${ param.param_day }"/>
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			 <a href="/3rd_prj/diary/diary.do" method="post">
@@ -259,7 +301,7 @@ $(function(){
 
 				<br/>
 				<input type="checkbox" name="checkbox" class="checkbox"> 개인정보 수집 및 이용에 동의합니다. <br/><br/><br/>
-				<input type="submit" value="작성" class="btn btn-secondary alert-danger" id="goBtn" style="margin-right: 25px;margin-left: 200px; margin-top:20px;" ><br/>
+				<input type="button" value="작성" class="btn btn-secondary alert-danger" id="goBtn" style="margin-right: 25px;margin-left: 200px; margin-top:20px;" ><br/>
 					
 			</form>
 		    
@@ -270,7 +312,7 @@ $(function(){
 </div>
 
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

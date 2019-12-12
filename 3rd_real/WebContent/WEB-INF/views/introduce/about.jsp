@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/jsp_prj/common/css/main.css"/>
 <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
@@ -59,7 +59,7 @@ $(function(){
 	가치에 의미를 더하다
 	</div><br/>
 	<div style="margin: auto;">
-	<img style="width:1100px;height:300px" src="http://localhost:8080/3rd_prj/common/images/main.PNG"></div><br/>
+	<img style="width:1100px;height:300px" src="http://211.63.89.150:8080/3rd_prj/common/images/main.PNG"></div><br/>
 	
   <div class="card-deck" style="margin-top: 80px">
   <c:forEach var="list"  items="${concept}">		
@@ -67,7 +67,7 @@ $(function(){
 			
 			<a href="about1.do?concept=${ list.concept_name }" >
 			
-    <img src="http://localhost:8080/3rd_prj/common/images/<c:out value="${list.image}"/>" class="card-img-top">
+    <img src="http://211.63.89.150:8080/3rd_prj/common/images/<c:out value="${list.image}"/>" class="card-img-top">
     <div class="card-body">
       <h5 class="card-title" style="font-weight: bold; color: black; font-size:25px; "><c:out value="${list.concept_name2}"/></h5>
       <br/>	
@@ -84,7 +84,7 @@ $(function(){
 </div>
 
 <div id="footer">
-<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
   <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/jsp_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
 	/* 헤더 시작*/
@@ -357,7 +357,8 @@ $(function(){
 </div>
 
 <div id="footer">
-  <div id="fContent">
+	<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+ 
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>
 		사업자명 : (주)Baek's company<br/>
@@ -380,8 +381,8 @@ $(function(){
 			&copy;CopyRight. AllRight Reserved.<br/>
 		</div>
 	</div>
-</div>
-</div>
+
+
 
 </body>
 </html>

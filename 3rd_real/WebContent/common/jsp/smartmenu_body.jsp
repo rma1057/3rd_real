@@ -23,12 +23,12 @@
 	    <nav id="main-nav">
       <!-- Sample menu definition -->
       <ul id="main-menu" class="sm sm-simple">
-        <li><a href="http://localhost:8080/spring_mvc_temp/diary/${ login_url }"><c:out value="${ msg }"/></a></li>
+        <li><a href="http://211.63.89.150:8080/spring_mvc_temp/diary/${ login_url }"><c:out value="${ msg }"/></a></li>
         
         <li><a href="#void">작업</a>
           <ul>
-            <li><a href="http://localhost:8080/spring_mvc_temp/diary/diary.jsp">캘린더</a></li>
-            <li><a href="http://localhost:8080/spring_mvc_temp/diary/list.jsp" >리스트</a></li>
+            <li><a href="http://211.63.89.150:8080/spring_mvc_temp/diary/diary.jsp">캘린더</a></li>
+            <li><a href="http://211.63.89.150:8080/spring_mvc_temp/diary/list.jsp" >리스트</a></li>
           </ul>
         </li>
         <li><a href="#">Upload</a>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/jsp_prj/common/css/main.css"/>
 <style type="text/css">
 	#class4Wrap{ width: 900px; height: 1100px; margin: 0px auto;}
 	/* 헤더 시작 */	
@@ -53,7 +53,7 @@ $(function(){
 <div id="header">
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white"  >
 	<!-- HOME Logo -->
-  <a class="navbar-brand" href="#" style="margin-left: 30px;"><img src="http://localhost:8080/jsp_prj/project333/project/images/home.png"/> </a>
+  <a class="navbar-brand" href="#" style="margin-left: 30px;"><img src="http://211.63.89.150:8080/jsp_prj/project333/project/images/home.png"/> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -100,7 +100,7 @@ $(function(){
 
 <div id="container">
 <div style="font-size: 30px; font-weight: bold; width:300px; height:70px; margin: auto;">
-<img style="width:65px;height:60px" src="http://localhost:8080/jsp_prj/common/images2/card.png">
+<img style="width:65px;height:60px" src="http://211.63.89.150:8080/jsp_prj/common/images2/card.png">
 카드 추가
 </div>
 
@@ -157,7 +157,7 @@ $(function(){
 </div>
 </div>
 <div id="footer">
-	<a href="#"><img src="http://localhost:8080/3rd_prj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+	<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/view/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
 	<div id="fLogo">
 		
 	</div>

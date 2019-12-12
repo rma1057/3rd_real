@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.150:8080/jsp_prj/common/css/main.css"/>
 <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
 <style type="text/css">
 	#class4Wrap{ min-width:1100px; min-height: 1100px; margin: 0px auto;}
@@ -175,7 +175,7 @@ $(function(){
 </div><br/><br/>
 
 <div style="margin: auto;">
-<img style="width:1100px;height:300px" src="http://localhost:8080/3rd_prj/common/images/main.PNG">
+<img style="width:1100px;height:300px" src="http://211.63.89.150:8080/3rd_prj/common/images/main.PNG">
 </div><br/><br/>
 </div>
 
@@ -197,10 +197,10 @@ $(function(){
                     <i class="fa fa-angle-double-right fa-2x fa-inverse" aria-hidden="true"></i>
                 </div>
                 <div class="slides">
-                    <div class="active" style="background-image:url(http://localhost:8080/3rd_prj/common/images/<c:out value="${list.image3}"/>);"></div>
-                    <div style="background-image:url(http://localhost:8080/3rd_prj/common/images/<c:out value="${list.image3}"/>);"></div>
-                    <div style="background-image:url(http://localhost:8080/3rd_prj/common/images/<c:out value="${list.image2}"/>);"></div>
-                    <div style="background-image:url(http://localhost:8080/3rd_prj/common/images/<c:out value="${list.image1}"/>);"></div>
+                    <div class="active" style="background-image:url(http://211.63.89.150:8080/3rd_prj/common/images/<c:out value="${list.image3}"/>);"></div>
+                    <div style="background-image:url(http://211.63.89.150:8080/3rd_prj/common/images/<c:out value="${list.image3}"/>);"></div>
+                    <div style="background-image:url(http://211.63.89.150:8080/3rd_prj/common/images/<c:out value="${list.image2}"/>);"></div>
+                    <div style="background-image:url(http://211.63.89.150:8080/3rd_prj/common/images/<c:out value="${list.image1}"/>);"></div>
                 </div>
             </div>
         </td>
@@ -214,7 +214,7 @@ $(function(){
 
 </div>
 <div id="footer">
-<a href="#"><img src="http://localhost:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
+<a href="#"><img src="http://211.63.89.150:8080/3rd_prj/common/images/arrow.png" width="50" height="50" style="position:fixed; left: 93%; top:85%; "/></a> 
   <div id="fContent">
 	<div style="float: left; margin-left:150px; margin-right:8%; font-size:14px;">
 		<h4><strong>[:P]</strong></h4>
